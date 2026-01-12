@@ -640,3 +640,64 @@ body, html {
     overflow-x: hidden;
     overflow-y: auto !important;
 }
+
+/* ============================================
+   FEATURE GRID WITH IMAGES
+   ============================================ */
+
+.feature-grid-images {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-item-image {
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.feature-item-image .feature-image {
+    margin-bottom: 2rem !important;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.feature-item-image .feature-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-elegant);
+}
+
+.feature-item-image:hover .feature-image img {
+    transform: scale(1.05);
+}
+
+.feature-item-image h3 {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--gold) !important;
+}
+
+.feature-item-image p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--silver) !important;
+}
+
+@media (max-width: 900px) {
+    .feature-grid-images {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .feature-item-image .feature-image img {
+        height: 200px;
+    }
+}

@@ -5,10 +5,10 @@
 
 // Enqueue Google Fonts and theme styles
 function opal_enqueue_styles() {
-    // Google Fonts
+    // Google Fonts - Elegant pairing
     wp_enqueue_style(
         "opal-google-fonts",
-        "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap",
+        "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap",
         array(),
         null
     );
@@ -28,7 +28,7 @@ add_action("wp_enqueue_scripts", "opal_enqueue_styles");
 
 // Add custom body class
 function opal_body_class($classes) {
-    $classes[] = "opal-design-v2";
+    $classes[] = "opal-elegant-v3";
     return $classes;
 }
 add_filter("body_class", "opal_body_class");

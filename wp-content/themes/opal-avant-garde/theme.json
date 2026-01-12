@@ -5,7 +5,7 @@
 			"palette": [
 				{
 					"color": "#050505",
-					"name": "Luxury Black",
+					"name": "Obsidian",
 					"slug": "obsidian"
 				},
 				{
@@ -19,15 +19,25 @@
 					"slug": "white"
 				},
 				{
+					"color": "#F0F0F0",
+					"name": "Soft Grey",
+					"slug": "soft-grey"
+				},
+				{
+					"color": "#222222",
+					"name": "Deep Grey",
+					"slug": "deep-grey"
+				},
+				{
 					"color": "#E5E5E5",
-					"name": "Stone Grey",
+					"name": "Stone",
 					"slug": "stone"
 				}
 			],
 			"customGradient": true,
 			"gradients": [
 				{
-					"gradient": "linear-gradient(135deg, rgba(224,195,252,0.2) 0%, rgba(142,197,252,0.2) 100%)",
+					"gradient": "linear-gradient(135deg, rgba(224,195,252,0.1) 0%, rgba(142,197,252,0.1) 100%)",
 					"name": "Opal Haze",
 					"slug": "opal-haze"
 				}
@@ -70,6 +80,10 @@
 				"steps": 0
 			},
 			"customSpacingSize": true
+		},
+		"layout": {
+			"contentSize": "1200px",
+			"wideSize": "100%"
 		}
 	},
 	"styles": {
@@ -99,20 +113,14 @@
 					"fontWeight": "400",
 					"letterSpacing": "-0.02em"
 				}
-			},
-			"link": {
-				"typography": {
-					"textDecoration": "none"
-				},
-				"color": {
-					"text": "var(--wp--preset--color--obsidian)"
-				},
-				":hover": {
-					"color": {
-						"text": "var(--wp--preset--color--stone)"
-					}
-				}
 			}
 		}
-	}
+	},
+	"customTemplates": [
+		{
+			"name": "page-blank",
+			"title": "Avant-Garde Blank Template",
+			"postTypes": ["page"]
+		}
+	]
 }

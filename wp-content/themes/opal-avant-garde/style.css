@@ -1,6 +1,6 @@
 /*
 Theme Name: Opal Avant-Garde
-Version: 3.4.0
+Version: 3.5.0
 Template: twentytwentyfour
 */
 
@@ -79,8 +79,8 @@ header nav a { font-family: var(--font-body) !important; font-size: 0.7rem !impo
 .wp-block-button__link { font-family: var(--font-body) !important; font-size: 0.7rem !important; font-weight: 500 !important; letter-spacing: 0.25em; text-transform: uppercase; padding: 1.2rem 3rem !important; border-radius: 0 !important; border: 1px solid var(--white) !important; background: rgba(0,0,0,0.3) !important; color: var(--white) !important; backdrop-filter: blur(10px); transition: all 0.5s ease; }
 .wp-block-button__link:hover { background: var(--white) !important; color: var(--charcoal) !important; }
 
-.section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--charcoal) !important; background: transparent !important; color: var(--charcoal) !important; }
-.section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--charcoal) !important; color: var(--white) !important; }
+.section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--white) !important; background: transparent !important; color: var(--white) !important; }
+.section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--white) !important; color: var(--charcoal) !important; }
 
 /* SECTIONS */
 .section-dark { background: var(--charcoal) !important; color: var(--white) !important; padding: 12vh 8vw !important; }
@@ -89,9 +89,19 @@ header nav a { font-family: var(--font-body) !important; font-size: 0.7rem !impo
 
 .section-graphite { background: var(--graphite) !important; color: var(--white) !important; padding: 12vh 8vw !important; }
 
-.section-light { background: var(--charcoal) !important; padding: 12vh 8vw !important; }
+.section-light { 
+    background: var(--charcoal) !important; 
+    padding: 12vh 4vw !important; 
+}
 .section-light h2 { color: var(--white) !important; }
 .section-light > p, .section-light .has-text-align-center { color: var(--silver) !important; }
+
+/* FORCE FULL WIDTH FOR WOOCOMMERCE IN SECTION-LIGHT */
+.section-light .woocommerce,
+.section-light .wp-block-shortcode {
+    width: 100% !important;
+    max-width: 100% !important;
+}
 
 .section-white { background: var(--white) !important; padding: 12vh 8vw !important; }
 
@@ -115,41 +125,100 @@ header nav a { font-family: var(--font-body) !important; font-size: 0.7rem !impo
     .feature-item-image .feature-image img { height: 280px; }
 }
 
-/* WOOCOMMERCE PRODUCTS - FORCE VISIBLE IMAGES */
-.woocommerce ul.products { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 2rem !important; list-style: none !important; padding: 0 !important; margin: 0 !important; }
+/* WOOCOMMERCE PRODUCTS - FIXED WIDTH LAYOUT */
+.woocommerce ul.products,
+ul.products.columns-4 { 
+    display: grid !important; 
+    grid-template-columns: repeat(4, 1fr) !important; 
+    gap: 1.5rem !important; 
+    list-style: none !important; 
+    padding: 0 !important; 
+    margin: 0 !important;
+    width: 100% !important;
+}
 
-.woocommerce ul.products li.product { 
+.woocommerce ul.products li.product,
+ul.products li.product { 
     background: var(--white) !important; 
     text-align: center !important; 
-    transition: all 0.5s ease !important;
+    transition: all 0.4s ease !important;
     overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    margin: 0 !important;
 }
 
 .woocommerce ul.products li.product:hover { 
     transform: translateY(-8px) !important; 
-    box-shadow: 0 30px 60px rgba(0,0,0,0.2) !important; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3) !important; 
 }
 
-/* CRITICAL: Force product images to show with gradient background */
+/* PRODUCT IMAGES - ENSURE VISIBLE */
 .woocommerce ul.products li.product img,
-.woocommerce ul.products li.product .attachment-woocommerce_thumbnail,
-ul.products li.product img.wp-post-image,
-.products .product img {
+ul.products li.product img {
     display: block !important;
     width: 100% !important;
-    height: 250px !important;
+    height: 220px !important;
     object-fit: contain !important;
-    background: linear-gradient(145deg, #e8e8e8 0%, #d0d0d0 100%) !important;
-    padding: 1.5rem !important;
-    margin: 0 auto 1rem !important;
+    background: #e5e5e5 !important;
+    padding: 1rem !important;
+    margin: 0 !important;
 }
 
-.woocommerce ul.products li.product a.woocommerce-LoopProduct-link { display: block !important; padding: 1.5rem !important; }
+.woocommerce ul.products li.product a.woocommerce-LoopProduct-link,
+ul.products li.product a.woocommerce-LoopProduct-link { 
+    display: block !important; 
+    padding: 0 !important;
+    width: 100% !important;
+}
 
-.woocommerce ul.products li.product .woocommerce-loop-product__title { font-family: var(--font-display) !important; font-size: 1.2rem !important; color: var(--charcoal) !important; }
-.woocommerce ul.products li.product .price { color: var(--slate) !important; font-size: 0.9rem !important; }
-.woocommerce ul.products li.product .button { font-size: 0.65rem !important; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.9rem 1.8rem !important; background: var(--charcoal) !important; color: var(--white) !important; border-radius: 0 !important; margin: 1rem 1.5rem 1.5rem; display: inline-block !important; }
-.woocommerce ul.products li.product .onsale { background: var(--gold) !important; color: var(--charcoal) !important; font-size: 0.7rem !important; font-weight: 600 !important; padding: 0.3rem 0.8rem !important; }
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+ul.products li.product .woocommerce-loop-product__title { 
+    font-family: var(--font-display) !important; 
+    font-size: 1.1rem !important; 
+    color: var(--charcoal) !important;
+    padding: 1rem 1rem 0.5rem !important;
+    margin: 0 !important;
+}
+
+.woocommerce ul.products li.product .price,
+ul.products li.product .price { 
+    color: var(--slate) !important; 
+    font-size: 0.85rem !important;
+    padding: 0 1rem 1rem !important;
+}
+
+.woocommerce ul.products li.product .button,
+ul.products li.product .button { 
+    font-size: 0.6rem !important; 
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    padding: 0.8rem 1.2rem !important;
+    background: var(--charcoal) !important;
+    color: var(--white) !important;
+    border-radius: 0 !important;
+    margin: 0 1rem 1rem !important;
+    display: inline-block !important;
+    width: calc(100% - 2rem) !important;
+}
+
+.woocommerce ul.products li.product .onsale,
+ul.products li.product .onsale { 
+    background: var(--gold) !important; 
+    color: var(--charcoal) !important;
+    font-size: 0.65rem !important;
+    font-weight: 600 !important;
+    padding: 0.3rem 0.6rem !important;
+    position: absolute !important;
+    top: 0.5rem !important;
+    left: 0.5rem !important;
+    z-index: 10 !important;
+}
+
+ul.products li.product {
+    position: relative !important;
+}
 
 /* TESTIMONIAL */
 .testimonial-section { text-align: center; max-width: 900px; margin: 0 auto; }
@@ -160,10 +229,12 @@ ul.products li.product img.wp-post-image,
 footer.wp-block-template-part { background: var(--black) !important; color: var(--white) !important; padding: 10vh 8vw 5vh !important; }
 footer .wp-block-site-title a { font-family: var(--font-display) !important; font-size: 1.5rem !important; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white) !important; }
 
-@media (max-width: 900px) {
-    .woocommerce ul.products { grid-template-columns: repeat(2, 1fr) !important; }
+@media (max-width: 1000px) {
+    .woocommerce ul.products,
+    ul.products.columns-4 { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
-@media (max-width: 500px) {
-    .woocommerce ul.products { grid-template-columns: 1fr !important; }
+@media (max-width: 600px) {
+    .woocommerce ul.products,
+    ul.products.columns-4 { grid-template-columns: 1fr !important; }
 }

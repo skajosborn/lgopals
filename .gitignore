@@ -1,0 +1,9 @@
+# WordPress & Docker
+db_data/
+ai1wm-backups/
+uploads.ini
+.DS_Store
+
+# Large files
+*.wpress
+*.sql

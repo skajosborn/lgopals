@@ -3,18 +3,13 @@ Theme Name: Opal Avant-Garde
 Theme URI: http://localhost:8088
 Description: An elegant, luxury design for Lab Grown Opals.
 Author: Senior Frontend Architect
-Version: 3.0.0
+Version: 3.1.0
 Template: twentytwentyfour
 */
-
-/* ============================================
-   DESIGN SYSTEM: REFINED ELEGANCE
-   ============================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap");
 
 :root {
-    /* Refined Color Palette */
     --black: #000000;
     --charcoal: #1a1a1a;
     --graphite: #2d2d2d;
@@ -24,29 +19,16 @@ Template: twentytwentyfour
     --platinum: #d4d4d4;
     --ivory: #f8f6f3;
     --white: #ffffff;
-    
-    /* Warm accent from the image */
     --gold: #c9a962;
-    --copper: #b87333;
-    
-    /* Typography */
-    --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-    --font-body: "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
-    
-    /* Motion */
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-body: "Montserrat", -apple-system, sans-serif;
     --ease-elegant: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --duration-slow: 0.8s;
     --duration-medium: 0.5s;
     --duration-fast: 0.3s;
 }
 
-/* ============================================
-   BASE
-   ============================================ */
-
-*, *::before, *::after {
-    box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -58,68 +40,29 @@ body {
     color: var(--charcoal);
     background-color: var(--white);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
-
-/* ============================================
-   TYPOGRAPHY
-   ============================================ */
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 400;
     line-height: 1.2;
     margin: 0 0 1.5rem 0;
-    color: var(--charcoal);
 }
 
-h1 {
-    font-size: clamp(3.5rem, 10vw, 8rem);
-    font-weight: 300;
-    letter-spacing: 0.02em;
-}
+h1 { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 300; letter-spacing: 0.02em; }
+h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h3 { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--font-body); }
+p { margin: 0 0 1.5rem 0; font-size: 0.95rem; color: var(--slate); }
 
-h2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 400;
-    letter-spacing: 0.01em;
-}
-
-h3 {
-    font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    font-family: var(--font-body);
-}
-
-p {
-    margin: 0 0 1.5rem 0;
-    font-size: 0.95rem;
-    color: var(--slate);
-    letter-spacing: 0.01em;
-}
-
-/* ============================================
-   HEADER
-   ============================================ */
-
+/* HEADER */
 header.wp-block-template-part {
     position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 1000;
     background: rgba(255,255,255,0.98) !important;
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0,0,0,0.06);
     padding: 1.5rem 6vw !important;
-    transition: all var(--duration-medium) var(--ease-elegant);
-}
-
-header .wp-block-site-title {
-    margin: 0 !important;
 }
 
 header .wp-block-site-title a {
@@ -128,7 +71,6 @@ header .wp-block-site-title a {
     font-weight: 400 !important;
     letter-spacing: 0.08em;
     color: var(--charcoal) !important;
-    text-decoration: none !important;
     text-transform: uppercase;
 }
 
@@ -139,46 +81,13 @@ header nav a {
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--slate) !important;
-    text-decoration: none !important;
-    transition: color var(--duration-fast) var(--ease-elegant);
-    padding: 0.5rem 0;
-    position: relative;
 }
 
-header nav a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--charcoal);
-    transition: width var(--duration-medium) var(--ease-elegant);
-}
+header nav a:hover { color: var(--charcoal) !important; }
 
-header nav a:hover {
-    color: var(--charcoal) !important;
-}
+.home .entry-title, .home .entry-header, .home .wp-block-post-title { display: none !important; }
 
-header nav a:hover::after {
-    width: 100%;
-}
-
-/* ============================================
-   HIDE DEFAULT TITLES
-   ============================================ */
-
-.home .entry-title,
-.home .entry-header,
-.home .wp-block-post-title,
-body.page .entry-header {
-    display: none !important;
-}
-
-/* ============================================
-   HERO SECTION
-   ============================================ */
-
+/* HERO - IMPROVED TEXT VISIBILITY */
 .hero-fullscreen {
     position: relative;
     min-height: 100vh;
@@ -187,8 +96,6 @@ body.page .entry-header {
     justify-content: center;
     overflow: hidden;
     background: var(--black);
-    margin-top: 0 !important;
-    padding: 0 !important;
 }
 
 .hero-bg-image {
@@ -197,11 +104,25 @@ body.page .entry-header {
     z-index: 1;
 }
 
+.hero-bg-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.2) 30%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+    z-index: 2;
+}
+
 .hero-bg-image img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    opacity: 0.85;
+    opacity: 1;
 }
 
 .hero-content-center {
@@ -216,44 +137,42 @@ body.page .entry-header {
     color: var(--white) !important;
     font-weight: 300;
     margin-bottom: 1.5rem;
-    text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3);
     font-style: italic;
 }
 
 .hero-content-center p {
-    color: var(--platinum) !important;
-    font-size: 0.85rem;
-    font-weight: 400;
+    color: var(--white) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     margin-bottom: 3.5rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.6), 0 1px 5px rgba(0,0,0,0.4);
 }
 
-/* Scroll indicator */
 .scroll-indicator {
     position: absolute;
     bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--silver);
+    color: var(--white);
     font-family: var(--font-body);
     font-size: 0.65rem;
     font-weight: 500;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    opacity: 0.8;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .scroll-indicator::after {
     content: "";
+    display: block;
     width: 1px;
     height: 50px;
-    background: linear-gradient(to bottom, var(--silver), transparent);
+    background: linear-gradient(to bottom, var(--white), transparent);
+    margin: 0.75rem auto 0;
     animation: scrollPulse 2.5s ease-in-out infinite;
 }
 
@@ -262,10 +181,7 @@ body.page .entry-header {
     50% { opacity: 1; }
 }
 
-/* ============================================
-   BUTTONS
-   ============================================ */
-
+/* BUTTONS */
 .wp-block-button__link {
     font-family: var(--font-body) !important;
     font-size: 0.7rem !important;
@@ -275,10 +191,10 @@ body.page .entry-header {
     padding: 1.2rem 3rem !important;
     border-radius: 0 !important;
     border: 1px solid var(--white) !important;
-    background: transparent !important;
+    background: rgba(0,0,0,0.3) !important;
     color: var(--white) !important;
+    backdrop-filter: blur(10px);
     transition: all var(--duration-medium) var(--ease-elegant);
-    cursor: pointer;
 }
 
 .wp-block-button__link:hover {
@@ -286,10 +202,10 @@ body.page .entry-header {
     color: var(--charcoal) !important;
 }
 
-/* Dark section buttons */
 .section-light .wp-block-button__link,
 .section-white .wp-block-button__link {
     border-color: var(--charcoal) !important;
+    background: transparent !important;
     color: var(--charcoal) !important;
 }
 
@@ -299,23 +215,15 @@ body.page .entry-header {
     color: var(--white) !important;
 }
 
-/* ============================================
-   SECTION BLOCKS
-   ============================================ */
-
+/* SECTIONS */
 .section-dark {
     background: var(--charcoal) !important;
     color: var(--white) !important;
     padding: 12vh 8vw !important;
 }
 
-.section-dark h1, .section-dark h2, .section-dark h3 {
-    color: var(--white) !important;
-}
-
-.section-dark p {
-    color: var(--silver) !important;
-}
+.section-dark h1, .section-dark h2, .section-dark h3 { color: var(--white) !important; }
+.section-dark p { color: var(--silver) !important; }
 
 .section-graphite {
     background: var(--graphite) !important;
@@ -323,29 +231,15 @@ body.page .entry-header {
     padding: 12vh 8vw !important;
 }
 
-.section-graphite h1, .section-graphite h2, .section-graphite h3 {
-    color: var(--white) !important;
-}
-
-.section-graphite p {
-    color: var(--pewter) !important;
-}
-
 .section-light {
     background: var(--ivory) !important;
-    color: var(--charcoal) !important;
     padding: 12vh 8vw !important;
 }
 
 .section-white {
     background: var(--white) !important;
-    color: var(--charcoal) !important;
     padding: 12vh 8vw !important;
 }
-
-/* ============================================
-   MANIFESTO / ABOUT SECTION
-   ============================================ */
 
 .manifesto-section {
     text-align: center;
@@ -353,334 +247,15 @@ body.page .entry-header {
     margin: 0 auto;
 }
 
-.manifesto-section h2 {
-    font-style: italic;
-    margin-bottom: 2.5rem;
-}
+.manifesto-section h2 { font-style: italic; margin-bottom: 2.5rem; }
+.manifesto-section p { font-size: 1.05rem; line-height: 2.1; font-weight: 300; }
 
-.manifesto-section p {
-    font-size: 1.05rem;
-    line-height: 2.1;
-    font-weight: 300;
-}
-
-/* ============================================
-   FEATURE GRID
-   ============================================ */
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5rem;
-    margin-top: 5rem;
-    max-width: 1000px;
-}
-
-.feature-item {
-    text-align: center;
-}
-
-.feature-item h3 {
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-    font-family: var(--font-body);
-    font-weight: 500;
-    color: var(--gold) !important;
-}
-
-.feature-item p {
-    font-size: 0.9rem;
-    line-height: 1.9;
-    color: var(--silver) !important;
-}
-
-/* ============================================
-   WOOCOMMERCE PRODUCTS
-   ============================================ */
-
-.woocommerce ul.products {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2.5rem !important;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.woocommerce ul.products li.product {
-    background: var(--white);
-    padding: 2rem;
-    margin: 0 !important;
-    width: 100% !important;
-    transition: all var(--duration-medium) var(--ease-elegant);
-    text-align: center;
-}
-
-.woocommerce ul.products li.product:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.06);
-}
-
-.woocommerce ul.products li.product a img {
-    margin-bottom: 1.5rem !important;
-    transition: transform var(--duration-slow) var(--ease-elegant);
-}
-
-.woocommerce ul.products li.product:hover a img {
-    transform: scale(1.02);
-}
-
-.woocommerce ul.products li.product .woocommerce-loop-product__title {
-    font-family: var(--font-display) !important;
-    font-size: 1.2rem !important;
-    font-weight: 400 !important;
-    color: var(--charcoal) !important;
-    padding: 0 !important;
-    margin-bottom: 0.5rem !important;
-}
-
-.woocommerce ul.products li.product .price {
-    font-family: var(--font-body) !important;
-    font-size: 0.85rem !important;
-    font-weight: 500 !important;
-    color: var(--slate) !important;
-    letter-spacing: 0.05em;
-}
-
-.woocommerce ul.products li.product .button {
-    font-family: var(--font-body) !important;
-    font-size: 0.65rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.9rem 1.8rem !important;
-    margin-top: 1rem !important;
-    background: var(--charcoal) !important;
-    color: var(--white) !important;
-    border-radius: 0 !important;
-    transition: all var(--duration-fast) var(--ease-elegant);
-}
-
-.woocommerce ul.products li.product .button:hover {
-    background: var(--black) !important;
-}
-
-/* ============================================
-   IMAGE SHOWCASE SECTION
-   ============================================ */
-
-.image-showcase {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 80vh;
-}
-
-.image-showcase-left {
-    position: relative;
-    overflow: hidden;
-}
-
-.image-showcase-left img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--duration-slow) var(--ease-elegant);
-}
-
-.image-showcase-left:hover img {
-    transform: scale(1.03);
-}
-
-.image-showcase-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8vw;
-    background: var(--charcoal);
-    color: var(--white);
-}
-
-.image-showcase-right h2 {
-    color: var(--white);
-    font-style: italic;
-}
-
-.image-showcase-right p {
-    color: var(--silver);
-    font-size: 0.95rem;
-    line-height: 2;
-}
-
-/* ============================================
-   TESTIMONIAL
-   ============================================ */
-
-.testimonial-section {
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.testimonial-section blockquote {
-    font-family: var(--font-display);
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
-    font-style: italic;
-    font-weight: 400;
-    line-height: 1.7;
-    margin: 0 0 2rem 0;
-    padding: 0;
-    border: none;
-    color: var(--white);
-}
-
-.testimonial-section cite {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-style: normal;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--pewter);
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-
-footer.wp-block-template-part {
-    background: var(--black) !important;
-    color: var(--white) !important;
-    padding: 10vh 8vw 5vh !important;
-}
-
-footer h2, footer h3, footer h4 {
-    color: var(--white) !important;
-    font-family: var(--font-body);
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-}
-
-footer p {
-    color: var(--pewter) !important;
-    font-size: 0.85rem;
-}
-
-footer a {
-    color: var(--silver) !important;
-    text-decoration: none;
-    transition: color var(--duration-fast) var(--ease-elegant);
-}
-
-footer a:hover {
-    color: var(--white) !important;
-}
-
-footer .wp-block-site-title a {
-    font-family: var(--font-display) !important;
-    font-size: 1.5rem !important;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--white) !important;
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-
-@media (max-width: 1024px) {
-    .feature-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .image-showcase {
-        grid-template-columns: 1fr;
-    }
-    
-    .image-showcase-left {
-        min-height: 50vh;
-    }
-}
-
-@media (max-width: 768px) {
-    header.wp-block-template-part {
-        padding: 1rem 5vw !important;
-    }
-    
-    .hero-content-center h1 {
-        font-size: clamp(2.5rem, 12vw, 4rem);
-    }
-    
-    .section-dark,
-    .section-graphite,
-    .section-light,
-    .section-white {
-        padding: 8vh 6vw !important;
-    }
-}
-
-/* ============================================
-   SCROLLING FIX
-   ============================================ */
-
-.hero-fullscreen {
-    min-height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-}
-
-main, .wp-site-blocks {
-    overflow: visible !important;
-}
-
-body, html {
-    overflow-x: hidden;
-    overflow-y: auto !important;
-}
-
-/* ============================================
-   FEATURE GRID WITH IMAGES
-   ============================================ */
-
-.feature-grid-images {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.feature-item-image {
-    text-align: center;
-    padding: 0 1rem;
-}
-
-.feature-item-image .feature-image {
-    margin-bottom: 2rem !important;
-    overflow: hidden;
-    border-radius: 0;
-}
-
-.feature-item-image .feature-image img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform var(--duration-slow) var(--ease-elegant);
-}
-
-
-/* ============================================
-   FEATURE GRID - VERTICAL STACKED LAYOUT
-   ============================================ */
-
+/* FEATURE GRID - VERTICAL */
 .feature-grid-images {
     display: flex !important;
     flex-direction: column !important;
     gap: 6rem;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -690,22 +265,12 @@ body, html {
     gap: 4rem;
     align-items: center;
     text-align: left;
-    padding: 0;
 }
 
-.feature-item-image:nth-child(even) {
-    direction: rtl;
-}
+.feature-item-image:nth-child(even) { direction: rtl; }
+.feature-item-image:nth-child(even) > * { direction: ltr; }
 
-.feature-item-image:nth-child(even) > * {
-    direction: ltr;
-}
-
-.feature-item-image .feature-image {
-    margin-bottom: 0 !important;
-    overflow: hidden;
-    border-radius: 0;
-}
+.feature-item-image .feature-image { margin-bottom: 0 !important; overflow: hidden; }
 
 .feature-item-image .feature-image img {
     width: 100%;
@@ -714,17 +279,12 @@ body, html {
     transition: transform var(--duration-slow) var(--ease-elegant);
 }
 
-.feature-item-image:hover .feature-image img {
-    transform: scale(1.03);
-}
+.feature-item-image:hover .feature-image img { transform: scale(1.03); }
 
 .feature-item-image h3 {
     font-size: 0.8rem;
     letter-spacing: 0.2em;
-    text-transform: uppercase;
     margin-bottom: 1.2rem;
-    font-family: var(--font-body);
-    font-weight: 500;
     color: var(--gold) !important;
 }
 
@@ -741,12 +301,83 @@ body, html {
         gap: 2rem;
         text-align: center;
     }
-    
-    .feature-item-image:nth-child(even) {
-        direction: ltr;
-    }
-    
-    .feature-item-image .feature-image img {
-        height: 280px;
-    }
+    .feature-item-image:nth-child(even) { direction: ltr; }
+    .feature-item-image .feature-image img { height: 280px; }
 }
+
+/* WOOCOMMERCE */
+.woocommerce ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.5rem !important;
+}
+
+.woocommerce ul.products li.product {
+    background: var(--white);
+    padding: 2rem;
+    text-align: center;
+    transition: all var(--duration-medium) var(--ease-elegant);
+}
+
+.woocommerce ul.products li.product:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.06);
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+    font-family: var(--font-display) !important;
+    font-size: 1.2rem !important;
+}
+
+.woocommerce ul.products li.product .button {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.9rem 1.8rem !important;
+    background: var(--charcoal) !important;
+    color: var(--white) !important;
+    border-radius: 0 !important;
+}
+
+/* TESTIMONIAL */
+.testimonial-section {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.testimonial-section blockquote {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--white);
+}
+
+.testimonial-section cite {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pewter);
+}
+
+/* FOOTER */
+footer.wp-block-template-part {
+    background: var(--black) !important;
+    color: var(--white) !important;
+    padding: 10vh 8vw 5vh !important;
+}
+
+footer .wp-block-site-title a {
+    font-family: var(--font-display) !important;
+    font-size: 1.5rem !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white) !important;
+}
+
+/* SCROLLING */
+.hero-fullscreen { max-height: 100vh; }
+main, .wp-site-blocks { overflow: visible !important; }
+body, html { overflow-x: hidden; overflow-y: auto !important; }

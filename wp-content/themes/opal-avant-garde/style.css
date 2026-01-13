@@ -64,21 +64,7 @@ header.wp-block-template-part .wp-block-group {
 
 /* Site Title Area */
 header .wp-block-site-title {
-    display: flex !important;
-    align-items: center !important;
-    gap: 12px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    flex-shrink: 0 !important;
-}
-
-header .wp-block-site-title a {
-    font-family: var(--font-display) !important;
-    font-size: 1.1rem !important;
-    letter-spacing: 0.1em !important;
-    text-transform: uppercase !important;
-    color: var(--charcoal) !important;
-    text-decoration: none !important;
+    display: none !important; /* Hide title as it is redundant with logo */
 }
 
 header .wp-block-site-logo {
@@ -89,8 +75,9 @@ header .wp-block-site-logo {
 }
 
 header .wp-block-site-logo img {
-    max-height: 32px !important;
+    max-height: 120px !important; /* Larger to compensate for white space in logo.jpeg */
     width: auto !important;
+    margin: -20px 0 !important; /* Pull it in to avoid pushing the header height too much */
 }
 
 /* Navigation - Center and Force Horizontal */
@@ -99,7 +86,7 @@ header .wp-block-navigation {
     align-items: center !important;
     justify-content: center !important;
     flex-grow: 1 !important;
-    margin: 0 2rem !important;
+    margin: 0 1rem !important;
 }
 
 header .wp-block-navigation__responsive-container,
@@ -107,13 +94,14 @@ header .wp-block-navigation__responsive-container-content,
 header .wp-block-navigation__container {
     display: flex !important;
     flex-direction: row !important;
-    gap: 2rem !important;
+    gap: 1.2rem !important; /* Reduced gap to fit on one line */
     list-style: none !important;
     margin: 0 !important;
     padding: 0 !important;
     visibility: visible !important;
     opacity: 1 !important;
     position: static !important;
+    flex-wrap: nowrap !important; /* Prevent wrapping */
 }
 
 /* Link Styling */
@@ -667,13 +655,24 @@ body.woocommerce-shop .product:hover {
 }
 
 /* Product images */
-body.woocommerce-shop .wc-block-components-product-image img {
+body.woocommerce-shop .wc-block-components-product-image img,
+body.woocommerce-shop .wc-block-grid__product-image img,
+body.woocommerce-shop .wp-block-post img,
+body.woocommerce-shop .product img,
+ul.products li.product img {
+    width: 100% !important;
+    height: 300px !important; /* Fixed height for consistency */
+    object-fit: contain !important; /* Ensure the whole image is visible */
+    padding: 2rem !important; /* Zoom out by adding padding */
+    background: #fcfcfc !important; /* Very light gray to define the card area */
     transition: transform 0.6s ease !important;
 }
 
 body.woocommerce-shop .wc-block-grid__product:hover .wc-block-components-product-image img,
-body.woocommerce-shop .wp-block-post:hover img {
-    transform: scale(1.05) !important;
+body.woocommerce-shop .wc-block-grid__product:hover img,
+body.woocommerce-shop .wp-block-post:hover img,
+body.woocommerce-shop .product:hover img {
+    transform: scale(1.02) !important; /* Very subtle hover for elegance */
 }
 
 /* Product titles */

@@ -305,3 +305,213 @@ body.woocommerce-shop header.wp-block-template-part a,
 body.woocommerce-shop header.wp-block-template-part nav a {
     color: #4a4a4a !important;
 }
+
+/* ========================================
+   REFINED SHOP PAGE STYLING
+   ======================================== */
+
+/* Elegant gradient background */
+body.woocommerce-shop,
+body.woocommerce-shop .wp-site-blocks,
+body.woocommerce-shop .has-background,
+body.woocommerce-shop .has-base-background-color {
+    background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%) !important;
+}
+
+/* Shop title styling */
+body.woocommerce-shop .wc-block-breadcrumbs {
+    text-align: center !important;
+    padding: 3rem 0 1rem !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    color: #888 !important;
+}
+
+body.woocommerce-shop .wc-block-breadcrumbs a {
+    color: #aaa !important;
+    text-decoration: none !important;
+}
+
+body.woocommerce-shop .wc-block-breadcrumbs a:hover {
+    color: #c9a962 !important;
+}
+
+/* Results count and sorting row */
+body.woocommerce-shop .woocommerce-result-count {
+    color: #999 !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.1em !important;
+}
+
+body.woocommerce-shop .woocommerce-ordering select {
+    background: #2d2d2d !important;
+    color: #ddd !important;
+    border: 1px solid #444 !important;
+    padding: 0.6rem 1.5rem 0.6rem 1rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+}
+
+/* Product cards */
+body.woocommerce-shop .wc-block-grid__product,
+body.woocommerce-shop .wp-block-post,
+body.woocommerce-shop .product {
+    background: #fff !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+body.woocommerce-shop .wc-block-grid__product:hover,
+body.woocommerce-shop .wp-block-post:hover,
+body.woocommerce-shop .product:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25) !important;
+}
+
+/* Product images */
+body.woocommerce-shop .wc-block-components-product-image img {
+    transition: transform 0.6s ease !important;
+}
+
+body.woocommerce-shop .wc-block-grid__product:hover .wc-block-components-product-image img,
+body.woocommerce-shop .wp-block-post:hover img {
+    transform: scale(1.05) !important;
+}
+
+/* Product titles */
+body.woocommerce-shop .wp-block-post-title,
+body.woocommerce-shop .wc-block-grid__product-title,
+body.woocommerce-shop .woocommerce-loop-product__title {
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 400 !important;
+    color: #1a1a1a !important;
+    padding: 1.25rem 1rem 0.5rem !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+body.woocommerce-shop .wp-block-post-title a {
+    color: #1a1a1a !important;
+    text-decoration: none !important;
+}
+
+/* Product prices */
+body.woocommerce-shop .wc-block-components-product-price,
+body.woocommerce-shop .wc-block-grid__product-price,
+body.woocommerce-shop .price {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 0.85rem !important;
+    color: #666 !important;
+    text-align: center !important;
+    padding: 0.25rem 1rem 1rem !important;
+}
+
+/* Product buttons */
+body.woocommerce-shop .wc-block-components-product-button .wc-block-components-product-button__button,
+body.woocommerce-shop .wp-block-button__link,
+body.woocommerce-shop .add_to_cart_button,
+body.woocommerce-shop .product_type_variable {
+    display: block !important;
+    width: calc(100% - 2rem) !important;
+    margin: 0 1rem 1rem !important;
+    padding: 0.9rem 1.5rem !important;
+    background: #1a1a1a !important;
+    color: #fff !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 0.65rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    border: none !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+body.woocommerce-shop .wc-block-components-product-button .wc-block-components-product-button__button:hover,
+body.woocommerce-shop .wp-block-button__link:hover,
+body.woocommerce-shop .add_to_cart_button:hover,
+body.woocommerce-shop .product_type_variable:hover {
+    background: #c9a962 !important;
+    color: #1a1a1a !important;
+}
+
+/* Sale badge */
+body.woocommerce-shop .wc-block-components-product-sale-badge,
+body.woocommerce-shop .onsale {
+    position: absolute !important;
+    top: 12px !important;
+    left: 12px !important;
+    background: #c9a962 !important;
+    color: #1a1a1a !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 0.6rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 0 !important;
+    z-index: 10 !important;
+}
+
+/* Pagination */
+body.woocommerce-shop .wp-block-query-pagination,
+body.woocommerce-shop nav.woocommerce-pagination {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    padding: 3rem 0 !important;
+}
+
+body.woocommerce-shop .wp-block-query-pagination-numbers a,
+body.woocommerce-shop .wp-block-query-pagination-numbers span,
+body.woocommerce-shop .woocommerce-pagination a,
+body.woocommerce-shop .woocommerce-pagination span {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    background: rgba(255,255,255,0.1) !important;
+    color: #ddd !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 0.8rem !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+body.woocommerce-shop .wp-block-query-pagination-numbers a:hover,
+body.woocommerce-shop .woocommerce-pagination a:hover {
+    background: #c9a962 !important;
+    color: #1a1a1a !important;
+    border-color: #c9a962 !important;
+}
+
+body.woocommerce-shop .wp-block-query-pagination-numbers span.current,
+body.woocommerce-shop .woocommerce-pagination span.current {
+    background: #c9a962 !important;
+    color: #1a1a1a !important;
+    border-color: #c9a962 !important;
+}
+
+body.woocommerce-shop .wp-block-query-pagination-next,
+body.woocommerce-shop .wp-block-query-pagination-previous {
+    background: transparent !important;
+    color: #c9a962 !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    padding: 0 1rem !important;
+}
+
+body.woocommerce-shop .wp-block-query-pagination-next:hover,
+body.woocommerce-shop .wp-block-query-pagination-previous:hover {
+    color: #fff !important;
+}

@@ -291,3 +291,17 @@ body.woocommerce-shop .woocommerce-ordering select {
     color: #fff !important;
     border: 1px solid #4a4a4a !important;
 }
+
+/* Shop page header - keep white */
+body.woocommerce-shop header.wp-block-template-part,
+body.woocommerce-shop header.wp-block-template-part .has-background,
+body.woocommerce-shop header.wp-block-template-part .wp-block-group,
+body.woocommerce-shop header.wp-block-template-part > div {
+    background: #fff !important;
+    background-color: #fff !important;
+}
+
+body.woocommerce-shop header.wp-block-template-part a,
+body.woocommerce-shop header.wp-block-template-part nav a {
+    color: #1a1a1a !important;
+}

@@ -17,6 +17,8 @@ services:
     volumes:
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       - ./ai1wm-backups:/var/www/html/wp-content/ai1wm-backups
+      - ./wp-content/themes/opal-avant-garde:/var/www/html/wp-content/themes/opal-avant-garde
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
     ports:
       - "8088:80"
     restart: always

@@ -45,95 +45,184 @@ p { margin: 0 0 1.5rem 0; font-size: 0.95rem; color: var(--slate); }
 
 /* AGGRESSIVE HEADER RESET - FINAL FORM */
 header.wp-block-template-part {
-    height: 75px !important;
+    height: 80px !important;
     padding: 0 5vw !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    gap: 0 !important;
-    background: rgba(255,255,255,0.98) !important;
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: transparent !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    z-index: 1000 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
 }
 
-header.wp-block-template-part > div,
-header.wp-block-template-part .wp-block-group {
-    display: contents !important; /* Flatten the structure */
-}
-
-/* Site Title Area */
+header .wp-block-site-logo,
 header .wp-block-site-title {
-    display: none !important; /* Hide title as it is redundant with logo */
+    display: none !important;
 }
 
-header .wp-block-site-logo {
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-}
-
-header .wp-block-site-logo img {
-    max-height: 120px !important; /* Larger to compensate for white space in logo.jpeg */
-    width: auto !important;
-    margin: -20px 0 !important; /* Pull it in to avoid pushing the header height too much */
-}
-
-/* Navigation - Center and Force Horizontal */
 header .wp-block-navigation {
+    flex-grow: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+header .wp-block-navigation-item__content {
+    color: var(--white) !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.25em !important;
+    text-transform: uppercase !important;
+}
+
+header .header-actions {
+    display: flex !important;
+    gap: 1.5rem !important;
+    color: var(--white) !important;
+}
+
+header .wp-block-woocommerce-customer-account,
+header .wc-block-mini-cart {
+    color: var(--white) !important;
+}
+
+header .wc-block-mini-cart__button,
+header .wc-block-customer-account__account-link {
+    color: inherit !important;
+}
+
+/* HERO V2 - FULLSCREEN AVANT-GARDE */
+.hero-fullscreen-v2 {
+    position: relative !important;
+    height: 100vh !important;
+    min-height: 900px !important;
+    width: 100% !important;
+    background-image: url('/wp-content/uploads/newopals5.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    flex-grow: 1 !important;
-    margin: 0 1rem !important;
+    overflow: hidden;
+    color: var(--white);
 }
 
-header .wp-block-navigation__responsive-container,
-header .wp-block-navigation__responsive-container-content,
-header .wp-block-navigation__container {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 1.2rem !important; /* Reduced gap to fit on one line */
-    list-style: none !important;
+.hero-fullscreen-v2::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%) !important;
+    z-index: 1;
+}
+
+.hero-v2-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 1200px;
+    width: 90%;
+    height: 80vh; /* Set height to distribute content */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push items apart */
+    padding: 10vh 0 5vh 0; /* Add top/bottom padding */
+}
+
+.hero-v2-top-group {
+    margin-top: 5vh;
+}
+
+.hero-v2-main-group {
+    margin-top: auto; /* Push down to the bottom area */
+    margin-bottom: 2rem;
+}
+
+.hero-v2-brand {
+    font-family: var(--font-display) !important;
+    font-size: clamp(5rem, 12vw, 10rem) !important;
+    font-weight: 400 !important;
     margin: 0 !important;
-    padding: 0 !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: static !important;
-    flex-wrap: nowrap !important; /* Prevent wrapping */
+    line-height: 0.8 !important;
+    background: linear-gradient(
+        to right, 
+        #ff99f5 0%, 
+        #515ada 20%, 
+        #99fffe 40%, 
+        #ff99f5 60%, 
+        #515ada 80%,
+        #99fffe 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 8s linear infinite;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
 }
 
-/* Link Styling */
-header .wp-block-navigation-item__content {
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+.hero-v2-sub-brand {
+    font-family: var(--font-body) !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.8em !important;
+    text-transform: uppercase !important;
+    color: rgba(255,255,255,0.7) !important;
+    margin: 1rem 0 0 0 !important;
+}
+
+.hero-v2-title {
+    font-family: var(--font-display) !important;
+    font-size: clamp(2.5rem, 5vw, 4.5rem) !important;
+    font-style: italic !important;
+    font-weight: 300 !important;
+    margin: 0 0 1rem 0 !important;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    color: #ffffff !important;
+}
+
+.hero-v2-tagline {
     font-family: var(--font-body) !important;
     font-size: 0.7rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.15em !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5em !important;
     text-transform: uppercase !important;
-    color: var(--slate) !important;
-    text-decoration: none !important;
-    white-space: nowrap !important;
-}
-
-/* Header Actions Area */
-header .wc-block-mini-cart,
-header .wp-block-woocommerce-customer-account,
-header .wp-block-group.header-actions {
-    display: flex !important;
-    align-items: center !important;
-    gap: 1.2rem !important;
+    color: rgba(255,255,255,0.8) !important;
     margin: 0 !important;
-    padding: 0 !important;
-    flex-shrink: 0 !important;
 }
 
-/* Hide Hamburger */
-header button[aria-label="Open menu"],
-header button[aria-label="Close menu"],
-header .wp-block-navigation__responsive-container-open,
-header .wp-block-navigation__responsive-container-close {
-    display: none !important;
+.hero-v2-buttons {
+    margin-top: 1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.hero-v2-buttons .wp-block-button__link {
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    padding: 1rem 3.5rem !important;
+    font-size: 0.7rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3em !important;
+    text-transform: uppercase !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(5px);
+    transition: all 0.4s ease !important;
+    border-radius: 0 !important;
+}
+
+.hero-v2-buttons .wp-block-button__link:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    transform: translateY(-2px);
 }
 
 .home .entry-title, .home .entry-header, .home .wp-block-post-title { display: none !important; }
@@ -601,6 +690,10 @@ body.woocommerce-shop .has-base-background-color {
 }
 
 /* Shop title styling */
+body.woocommerce-shop .wp-block-query-title {
+    display: none !important; /* Hide the random "Shop" title */
+}
+
 body.woocommerce-shop .wc-block-breadcrumbs {
     text-align: center !important;
     padding: 3rem 0 1rem !important;

@@ -55,16 +55,7 @@ header nav a { font-family: var(--font-body) !important; font-size: 0.7rem !impo
 
 /* HERO */
 .hero-fullscreen {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    align-items: stretch !important;
-    justify-content: stretch !important;
-    overflow: hidden;
-    background: var(--black);
-    padding: 0 !important;
+    display: none !important;
 }
 
 .hero-split {
@@ -93,7 +84,8 @@ header nav a { font-family: var(--font-body) !important; font-size: 0.7rem !impo
 .hero-split-image img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+    object-fit: contain !important;
+    background: #000 !important;
     transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1) !important;
 }
 

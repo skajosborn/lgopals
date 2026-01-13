@@ -269,3 +269,25 @@ footer .wp-block-site-title a { font-family: var(--font-display) !important; fon
         max-width: 350px !important;
     }
 }
+
+/* SHOP PAGE - DARK BACKGROUND */
+body.woocommerce-shop,
+body.post-type-archive-product {
+    background: #1a1a1a !important;
+}
+
+body.woocommerce-shop .wp-site-blocks,
+body.woocommerce-shop .has-background,
+body.woocommerce-shop .has-base-background-color {
+    background: #1a1a1a !important;
+}
+
+body.woocommerce-shop .woocommerce-result-count {
+    color: #b8b8b8 !important;
+}
+
+body.woocommerce-shop .woocommerce-ordering select {
+    background: #2d2d2d !important;
+    color: #fff !important;
+    border: 1px solid #4a4a4a !important;
+}

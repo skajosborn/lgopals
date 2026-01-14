@@ -45,7 +45,7 @@ p { margin: 0 0 1.5rem 0; font-size: 0.95rem; color: var(--slate); }
 
 /* AGGRESSIVE HEADER RESET - FINAL FORM */
 header.wp-block-template-part {
-    height: 80px !important;
+    height: 100px !important;
     padding: 0 5vw !important;
     display: flex !important;
     flex-direction: row !important;
@@ -60,15 +60,39 @@ header.wp-block-template-part {
     border-bottom: 1px solid rgba(255,255,255,0.1) !important;
 }
 
-header .wp-block-site-logo,
-header .wp-block-site-title {
-    display: none !important;
+/* Force horizontal layout and kill mobile overlay */
+header .wp-block-navigation {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-grow: 1 !important;
+    height: 100% !important;
+    position: static !important;
 }
 
-header .wp-block-navigation {
-    flex-grow: 1 !important;
+header .wp-block-navigation__responsive-container,
+header .wp-block-navigation__responsive-container-content,
+header .wp-block-navigation__container {
     display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
     justify-content: center !important;
+    gap: 3rem !important;
+    list-style: none !important;
+    height: 100% !important;
+    width: auto !important;
+    position: static !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+header .wp-block-navigation-item {
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
 }
 
 header .wp-block-navigation-item__content {
@@ -77,12 +101,34 @@ header .wp-block-navigation-item__content {
     font-weight: 500 !important;
     letter-spacing: 0.25em !important;
     text-transform: uppercase !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+    padding: 0 !important;
 }
 
-header .header-actions {
+header button[aria-label*="menu"],
+header .wp-block-navigation__responsive-container-open,
+header .wp-block-navigation__responsive-container-close {
+    display: none !important;
+}
+
+/* Ensure actions are also centered vertically */
+header .header-actions,
+header .wp-block-woocommerce-customer-account,
+header .wc-block-mini-cart {
     display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
     gap: 1.5rem !important;
     color: var(--white) !important;
+}
+
+header .wp-block-site-logo,
+header .wp-block-site-title {
+    display: none !important;
 }
 
 header .wp-block-woocommerce-customer-account,
@@ -109,6 +155,7 @@ header .wc-block-customer-account__account-link {
     justify-content: center !important;
     overflow: hidden;
     color: var(--white);
+    margin-top: 0 !important;
 }
 
 .hero-fullscreen-v2::before {
@@ -125,15 +172,15 @@ header .wc-block-customer-account__account-link {
     text-align: center;
     max-width: 1200px;
     width: 90%;
-    height: 80vh; /* Set height to distribute content */
+    height: 85vh; /* Increased height to push content further to edges */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Push items apart */
-    padding: 10vh 0 5vh 0; /* Add top/bottom padding */
+    justify-content: space-between;
+    padding: 2vh 0 5vh 0; /* Minimal top padding to move "Opals" up */
 }
 
 .hero-v2-top-group {
-    margin-top: 5vh;
+    margin-top: 0; /* Remove top margin */
 }
 
 .hero-v2-main-group {
@@ -143,25 +190,27 @@ header .wc-block-customer-account__account-link {
 
 .hero-v2-brand {
     font-family: var(--font-display) !important;
-    font-size: clamp(5rem, 12vw, 10rem) !important;
+    font-size: clamp(5rem, 15vw, 11rem) !important;
     font-weight: 400 !important;
+    font-style: italic !important;
     margin: 0 !important;
-    line-height: 0.8 !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.01em !important;
     background: linear-gradient(
         to right, 
-        #ff99f5 0%, 
-        #515ada 20%, 
-        #99fffe 40%, 
-        #ff99f5 60%, 
-        #515ada 80%,
-        #99fffe 100%
+        #ff8df2 0%, 
+        #7856ff 20%, 
+        #4ecfff 40%, 
+        #fff05e 60%, 
+        #ff8df2 80%,
+        #7856ff 100%
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shine 8s linear infinite;
-    filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
+    animation: shine 6s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));
 }
 
 @keyframes shine {
@@ -171,57 +220,58 @@ header .wc-block-customer-account__account-link {
 .hero-v2-sub-brand {
     font-family: var(--font-body) !important;
     font-size: 0.75rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.8em !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.6em !important;
     text-transform: uppercase !important;
-    color: rgba(255,255,255,0.7) !important;
-    margin: 1rem 0 0 0 !important;
+    color: rgba(255,255,255,0.9) !important;
+    margin: 0.5rem 0 0 0 !important;
 }
 
 .hero-v2-title {
     font-family: var(--font-display) !important;
-    font-size: clamp(2.5rem, 5vw, 4.5rem) !important;
+    font-size: clamp(2.5rem, 6vw, 5rem) !important;
     font-style: italic !important;
     font-weight: 300 !important;
-    margin: 0 0 1rem 0 !important;
+    margin: 0 0 1.5rem 0 !important;
     text-shadow: 0 5px 15px rgba(0,0,0,0.5);
     color: #ffffff !important;
 }
 
 .hero-v2-tagline {
     font-family: var(--font-body) !important;
-    font-size: 0.7rem !important;
+    font-size: 0.75rem !important;
     font-weight: 500 !important;
-    letter-spacing: 0.5em !important;
+    letter-spacing: 0.4em !important;
     text-transform: uppercase !important;
     color: rgba(255,255,255,0.8) !important;
     margin: 0 !important;
 }
 
 .hero-v2-buttons {
-    margin-top: 1rem !important;
+    margin-top: 2rem !important;
     display: flex !important;
     justify-content: center !important;
 }
 
 .hero-v2-buttons .wp-block-button__link {
-    background: transparent !important;
-    border: 1px solid rgba(255,255,255,0.3) !important;
-    padding: 1rem 3.5rem !important;
-    font-size: 0.7rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.3em !important;
+    background: rgba(0,0,0,0.4) !important;
+    border: 1px solid transparent !important;
+    border-image: linear-gradient(to right, #4ecfff, #fff05e) 1 !important;
+    padding: 1.2rem 4.5rem !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
-    color: #ffffff !important;
-    backdrop-filter: blur(5px);
+    color: #dfba82 !important;
+    backdrop-filter: blur(10px);
     transition: all 0.4s ease !important;
     border-radius: 0 !important;
 }
 
 .hero-v2-buttons .wp-block-button__link:hover {
-    background: #ffffff !important;
-    color: #000000 !important;
-    border-color: #ffffff !important;
+    background: rgba(255,255,255,0.1) !important;
+    color: #ffffff !important;
     transform: translateY(-2px);
 }
 
@@ -494,9 +544,9 @@ header .wc-block-customer-account__account-link {
 .woocommerce ul.products.columns-2,
 .woocommerce ul.products.columns-3,
 .woocommerce ul.products.columns-4,
-ul.products,
-ul.products.columns-2,
-ul.products.columns-4 {
+|ul.products,
+|ul.products.columns-2,
+|ul.products.columns-4 {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 1.5rem !important;

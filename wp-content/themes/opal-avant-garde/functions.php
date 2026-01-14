@@ -8,7 +8,7 @@ function opal_enqueue_styles() {
     // Google Fonts - Elegant pairing
     wp_enqueue_style(
         "opal-google-fonts",
-        "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap",
+        "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap",
         array(),
         null
     );
@@ -43,3 +43,20 @@ function opal_preconnect_fonts() {
     echo "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n";
 }
 add_action("wp_head", "opal_preconnect_fonts", 1);
+
+// Replace text and images in content
+function opal_replace_content_text($content) {
+    if (is_front_page()) {
+        // Text replacements
+        $content = str_replace('Ethereal Fire', 'The Future of Luxury', $content);
+        $content = str_replace('The Future of Fire', 'The Future of Luxury', $content);
+        
+        // Image replacements
+        // Switch the image for Ethical Origins with opalearth.png
+        $old_img = 'wp-content/uploads/2025/01/earth-opals.png';
+        $new_img = 'wp-content/uploads/opalearth.png';
+        $content = str_replace($old_img, $new_img, $content);
+    }
+    return $content;
+}
+add_filter('the_content', 'opal_replace_content_text');

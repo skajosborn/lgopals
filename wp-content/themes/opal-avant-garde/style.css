@@ -16,6 +16,12 @@ Template: twentytwentyfour
     --ivory: #f8f6f3;
     --white: #ffffff;
     --gold: #c9a962;
+    --ink: #111111;
+    --ink-soft: #4a4a4a;
+    --surface: #ffffff;
+    --surface-muted: #f2f2f2;
+    --surface-strong: #e1e1e1;
+    --line: rgba(0,0,0,0.08);
     --font-display: "Cormorant Garamond", Georgia, serif;
     --font-body: "Montserrat", -apple-system, sans-serif;
 }
@@ -27,8 +33,8 @@ body {
     font-family: var(--font-body);
     font-size: 15px;
     line-height: 1.8;
-    color: var(--charcoal);
-    background: var(--white);
+    color: var(--ink);
+    background: var(--surface-muted);
     width: 100% !important;
 }
 
@@ -54,19 +60,19 @@ p { margin: 0 0 1.5rem 0; font-size: 0.95rem; color: var(--slate); }
 /* AGGRESSIVE HEADER RESET - FINAL FORM */
 header.wp-block-template-part {
     height: 100px !important;
-    padding: 20px 5vw 0 !important; /* Top padding added */
+    padding: 30px 5vw 0 !important; /* Shifting more padding to the top */
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    background: rgba(0,0,0,0.5) !important;
+    background: rgba(245, 245, 245, 0.98) !important;
     backdrop-filter: blur(10px);
     position: absolute !important;
     top: 0;
     left: 0;
     width: 100% !important;
     z-index: 1000 !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    border-bottom: 1px solid var(--line) !important;
 }
 
 /* Force ALL header children into a single row */
@@ -123,9 +129,9 @@ header .wp-block-navigation-item {
 }
 
 header .wp-block-navigation-item__content {
-    color: var(--white) !important;
+    color: #000000 !important;
     font-size: 0.75rem !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     letter-spacing: 0.25em !important;
     text-transform: uppercase !important;
     text-decoration: none !important;
@@ -133,7 +139,7 @@ header .wp-block-navigation-item__content {
     display: flex !important;
     align-items: center !important;
     height: 100% !important;
-    padding: 0 !important;
+    padding: 10px 0 25px !important; /* Swapped padding: more top, less bottom */
 }
 
 header button[aria-label*="menu"],
@@ -150,8 +156,10 @@ header .wp-block-woocommerce-customer-account {
     transform: translateY(-50%) !important;
     display: flex !important;
     align-items: center !important;
-    color: var(--white) !important;
+    color: #000000 !important;
     z-index: 100 !important;
+    padding-top: 10px !important; /* Added top padding */
+    padding-bottom: 0 !important; /* Decreased bottom padding */
 }
 
 header .wc-block-mini-cart {
@@ -161,8 +169,10 @@ header .wc-block-mini-cart {
     transform: translateY(-50%) !important;
     display: flex !important;
     align-items: center !important;
-    color: var(--white) !important;
+    color: #000000 !important;
     z-index: 100 !important;
+    padding-top: 10px !important; /* Added top padding */
+    padding-bottom: 0 !important; /* Decreased bottom padding */
 }
 
 /* Give nav items room so they don't overlap with icons */
@@ -177,7 +187,7 @@ header .wp-block-site-title {
 
 header .wp-block-woocommerce-customer-account,
 header .wc-block-mini-cart {
-    color: var(--white) !important;
+    color: var(--ink) !important;
 }
 
 header .wc-block-mini-cart__button,
@@ -199,7 +209,7 @@ header .wc-block-customer-account__account-link {
     justify-content: flex-start !important; 
     padding-top: 150px !important; /* Increased padding to safely clear the 100px navbar */
     overflow: hidden;
-    color: var(--white);
+    color: var(--black); /* Switched to black text for the light filter */
     margin-top: 0 !important;
 }
 
@@ -207,7 +217,8 @@ header .wc-block-customer-account__account-link {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, transparent 100%) !important; /* Linear for left alignment readability */
+    background: rgba(255, 255, 255, 0.45) !important; /* Light filter over the whole section */
+    backdrop-filter: brightness(1.1) contrast(0.9); /* Enhancing the light effect */
     z-index: 1;
 }
 
@@ -234,9 +245,10 @@ header .wc-block-customer-account__account-link {
     font-weight: 700 !important;
     letter-spacing: 0.5em !important; /* Wide tracking for technical feel */
     text-transform: uppercase !important;
-    color: var(--white) !important;
+    color: #ffffff !important; /* Forced white for readability */
     margin: 0 !important;
-    opacity: 0.8;
+    opacity: 1; /* Increased from 0.8 for clarity */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow added for readability */
 }
 
 .iridescent-text {
@@ -276,11 +288,12 @@ header .wc-block-customer-account__account-link {
     font-size: 1rem !important; /* Balanced with pretitle */
     line-height: 1.8 !important;
     font-weight: 500 !important;
-    color: rgba(255,255,255,0.7) !important;
+    color: #ffffff !important; /* Forced white for readability */
     margin: 0 !important;
     max-width: 800px;
     letter-spacing: 0.15em !important; /* Tracking added to balance the top line */
     text-transform: uppercase; /* Matching the pretitle style for architectural balance */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow added for readability */
 }
 
 .hero-v3-buttons {
@@ -322,7 +335,7 @@ header .wc-block-customer-account__account-link {
     grid-template-columns: 1fr 1fr !important;
     height: 100vh !important;
     min-height: 700px !important;
-    background: var(--black);
+    background: var(--surface-muted);
     overflow: hidden;
     position: relative;
 }
@@ -344,7 +357,7 @@ header .wc-block-customer-account__account-link {
     width: 100% !important;
     height: 100% !important;
     object-fit: contain !important;
-    background: #000 !important;
+    background: var(--surface-muted) !important;
     transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1) !important;
 }
 
@@ -357,8 +370,8 @@ header .wc-block-customer-account__account-link {
     flex-direction: column !important;
     justify-content: center !important;
     padding: 8vw !important;
-    background: #2a2a2a !important; /* Lighter gray */
-    color: var(--white);
+    background: var(--surface) !important;
+    color: var(--ink);
     position: relative;
     height: 100% !important;
 }
@@ -375,7 +388,7 @@ header .wc-block-customer-account__account-link {
     line-height: 1.1 !important;
     margin-bottom: 2rem !important;
     font-style: italic !important;
-    color: var(--white) !important;
+    color: var(--ink) !important;
     font-weight: 300 !important;
 }
 
@@ -383,7 +396,7 @@ header .wc-block-customer-account__account-link {
     font-size: 0.8rem !important;
     letter-spacing: 0.4em !important;
     text-transform: uppercase !important;
-    color: #888 !important;
+    color: #666 !important;
     margin-bottom: 3.5rem !important;
     font-weight: 500 !important;
 }
@@ -443,12 +456,12 @@ header .wc-block-customer-account__account-link {
     justify-content: center !important;
     text-align: left !important;
     padding: 8vw !important;
-    background: #2a2a2a !important; /* Lighter gray */
+    background: var(--surface) !important;
     max-width: none !important;
     margin: 0 !important;
 }
 .hero-content-center h1 {
-    color: var(--white) !important;
+    color: var(--ink) !important;
     font-size: clamp(2.5rem, 5vw, 4rem) !important;
     font-weight: 300 !important;
     margin-bottom: 2rem !important;
@@ -458,7 +471,7 @@ header .wc-block-customer-account__account-link {
 }
 
 .hero-content-center p {
-    color: #888 !important;
+    color: #666 !important;
     font-size: 0.8rem !important;
     font-weight: 500 !important;
     letter-spacing: 0.4em !important;
@@ -470,17 +483,23 @@ header .wc-block-customer-account__account-link {
 .scroll-indicator { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 10; color: var(--white); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; }
 
 /* BUTTONS */
-.wp-block-button__link { font-family: var(--font-body) !important; font-size: 0.7rem !important; font-weight: 500 !important; letter-spacing: 0.25em; text-transform: uppercase; padding: 1.2rem 3rem !important; border-radius: 0 !important; border: 1px solid var(--white) !important; background: rgba(0,0,0,0.3) !important; color: var(--white) !important; backdrop-filter: blur(10px); transition: all 0.5s ease; }
-.wp-block-button__link:hover { background: var(--white) !important; color: var(--charcoal) !important; }
+.wp-block-button__link { font-family: var(--font-body) !important; font-size: 0.7rem !important; font-weight: 500 !important; letter-spacing: 0.25em; text-transform: uppercase; padding: 1.2rem 3rem !important; border-radius: 0 !important; border: 1px solid var(--ink) !important; background: var(--ink) !important; color: var(--white) !important; backdrop-filter: blur(10px); transition: all 0.5s ease; }
+.wp-block-button__link:hover { background: var(--white) !important; color: var(--ink) !important; }
 
-.section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--white) !important; background: transparent !important; color: var(--white) !important; }
-.section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--white) !important; color: var(--charcoal) !important; }
+.section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--ink) !important; background: transparent !important; color: var(--ink) !important; }
+.section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--ink) !important; color: var(--white) !important; }
 
-/* MANIFESTO SECTION V2 - Molecular Standard */
+/* MANIFESTO SECTION V2 - Molecular Standard - Slightly darker gray background */
 .manifesto-section-v2 {
     padding: 15vh 10vw !important;
     text-align: left !important;
-    background: #1a1a1a !important;
+    background: #f0f0f0 !important;
+}
+
+/* Section immediately below the manifesto */
+.manifesto-section-v2 + .wp-block-group,
+.home main .wp-block-group:has(h2:contains("Curated Selection")) {
+    background: #f0f0f0 !important;
 }
 
 .manifesto-v2-container {
@@ -495,7 +514,7 @@ header .wc-block-customer-account__account-link {
     text-transform: uppercase !important;
     letter-spacing: 0.35em !important;
     font-style: normal !important;
-    color: #ffffff !important;
+    color: var(--ink) !important;
     margin-bottom: 3rem !important;
     line-height: 1.2 !important;
     text-align: left !important;
@@ -505,7 +524,7 @@ header .wc-block-customer-account__account-link {
     font-family: var(--font-body) !important;
     font-size: 1.15rem !important;
     line-height: 1.9 !important;
-    color: var(--silver) !important;
+    color: var(--ink-soft) !important;
     font-style: normal !important;
     margin: 0 0 2rem 0 !important;
     max-width: 900px;
@@ -523,13 +542,13 @@ header .wc-block-customer-account__account-link {
     font-size: clamp(1.2rem, 2.5vw, 1.5rem) !important;
     text-transform: uppercase !important;
     letter-spacing: 0.35em !important;
-    color: var(--white) !important;
+    color: var(--ink) !important;
     margin-bottom: 3rem !important;
     text-align: left !important;
 }
 
 .home main p {
-    color: #a0a0a0 !important;
+    color: var(--ink-soft) !important;
     font-size: 1.1rem !important;
     line-height: 1.9 !important;
     text-align: left !important;
@@ -565,25 +584,25 @@ header .wc-block-customer-account__account-link {
 }
 
 .section-dark { 
-    background: #2a2a2a !important; 
-    color: var(--white) !important; 
+    background: var(--surface) !important; 
+    color: var(--ink) !important; 
     padding: 12vh 6vw !important; 
     width: 100% !important;
     max-width: none !important;
     box-sizing: border-box !important;
 }
-.section-dark h1, .section-dark h2, .section-dark h3 { color: var(--white) !important; }
-.section-dark p { color: var(--silver) !important; }
+.section-dark h1, .section-dark h2, .section-dark h3 { color: var(--ink) !important; }
+.section-dark p { color: var(--ink-soft) !important; }
 
-.section-graphite { background: var(--graphite) !important; color: var(--white) !important; padding: 12vh 8vw !important; }
+.section-graphite { background: var(--surface-muted) !important; color: var(--ink) !important; padding: 12vh 8vw !important; }
 
 .section-light {
-    background: #2a2a2a !important;
+    background: var(--surface-muted) !important;
     padding: 10vh 6vw !important;
 }
 
-.section-light h2 { color: #ffffff !important; }
-.section-light > p, .section-light .has-text-align-center { color: #b0b0b0 !important; }
+.section-light h2 { color: var(--ink) !important; }
+.section-light > p, .section-light .has-text-align-center { color: var(--ink-soft) !important; }
 
 .section-light *,
 .section-light .wp-block-group,
@@ -636,24 +655,24 @@ header .wc-block-customer-account__account-link {
     width: 100% !important;
     max-width: none !important;
 }
-.section-light h2 { color: var(--white) !important; }
-.section-light > p, .section-light .has-text-align-center { color: var(--silver) !important; }
+.section-light h2 { color: var(--ink) !important; }
+.section-light > p, .section-light .has-text-align-center { color: var(--ink-soft) !important; }
 
 .section-white { background: var(--white) !important; padding: 12vh 8vw !important; }
 
-.manifesto-section { text-align: center; max-width: 1400px !important; margin: 0 auto; background: #2a2a2a; color: #e0e0e0; }
-.manifesto-section h2 { font-size: clamp(3rem, 6vw, 4.5rem); font-style: italic; margin-bottom: 2.5rem; color: #ffffff !important; }
-.manifesto-section p { font-size: 1.25rem; line-height: 2.1; font-weight: 300; color: #b0b0b0 !important; max-width: 1400px; margin: 0 auto 1.5rem auto; }
+.manifesto-section { text-align: center; max-width: 1400px !important; margin: 0 auto; background: var(--surface-muted); color: var(--ink); }
+.manifesto-section h2 { font-size: clamp(3rem, 6vw, 4.5rem); font-style: italic; margin-bottom: 2.5rem; color: var(--ink) !important; }
+.manifesto-section p { font-size: 1.25rem; line-height: 2.1; font-weight: 300; color: var(--ink-soft) !important; max-width: 1400px; margin: 0 auto 1.5rem auto; }
 
 /* FEATURE GRID */
 .feature-grid-images { display: flex !important; flex-direction: column !important; gap: 3rem; max-width: 1400px !important; margin: 0 auto; }
-.feature-item-image { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; text-align: left; background: #333333; padding: 3rem; border-radius: 4px; }
+.feature-item-image { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; text-align: left; background: var(--surface); padding: 3rem; border-radius: 4px; border: 1px solid var(--line); }
 .feature-item-image:nth-child(even) { direction: rtl; }
 .feature-item-image:nth-child(even) > * { direction: ltr; }
 .feature-item-image .feature-image img { width: 100%; height: 450px; object-fit: cover; transition: transform 0.8s ease; }
 .feature-item-image:hover .feature-image img { transform: scale(1.03); }
 .feature-item-image h3 { font-size: 1rem; letter-spacing: 0.3em; margin-bottom: 1.2rem; color: #c9a962 !important; }
-.feature-item-image p { font-size: 1.15rem; line-height: 1.9; color: #cccccc !important; margin-bottom: 0; }
+.feature-item-image p { font-size: 1.15rem; line-height: 1.9; color: var(--ink-soft) !important; margin-bottom: 0; }
 
 @media (max-width: 768px) {
     .feature-item-image { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
@@ -796,16 +815,16 @@ ul.products li.product .button:hover {
 
 /* TESTIMONIAL */
 .testimonial-section { text-align: center; max-width: 900px; margin: 0 auto; }
-.testimonial-section blockquote { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2.2rem); font-style: italic; line-height: 1.7; color: var(--white); }
-.testimonial-section cite { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pewter); }
+.testimonial-section blockquote { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2.2rem); font-style: italic; line-height: 1.7; color: var(--ink); }
+.testimonial-section cite { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* FOOTER - TECHNICAL REFINEMENT */
 footer.wp-block-template-part { 
     position: relative !important;
-    background: #000000 !important;
-    color: var(--white) !important; 
+    background: var(--surface-strong) !important;
+    color: var(--ink) !important; 
     padding: 10vh 8vw !important; 
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid var(--line);
 }
 
 footer .wp-block-columns {
@@ -820,7 +839,7 @@ footer .wp-block-heading {
     font-size: 0.8rem !important;
     letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
-    color: var(--white) !important;
+    color: var(--ink) !important;
     margin-bottom: 2rem !important;
     text-align: left !important;
 }
@@ -828,7 +847,7 @@ footer .wp-block-heading {
 footer .wp-block-navigation-item__content {
     font-family: var(--font-body) !important;
     font-size: 0.85rem !important;
-    color: #888888 !important;
+    color: var(--ink-soft) !important;
     text-transform: none !important;
     letter-spacing: normal !important;
     text-decoration: none !important;
@@ -845,7 +864,7 @@ footer .wp-block-site-title a {
     font-size: 1.2rem !important; 
     letter-spacing: 0.1em; 
     text-transform: uppercase; 
-    color: var(--white) !important; 
+    color: var(--ink) !important; 
 }
 
 /* RESPONSIVE */
@@ -861,23 +880,23 @@ footer .wp-block-site-title a {
 /* SHOP PAGE - DARK BACKGROUND */
 body.woocommerce-shop,
 body.post-type-archive-product {
-    background: #4a4a4a !important;
+    background: var(--surface-muted) !important;
 }
 
 body.woocommerce-shop .wp-site-blocks,
 body.woocommerce-shop .has-background,
 body.woocommerce-shop .has-base-background-color {
-    background: #4a4a4a !important;
+    background: var(--surface-muted) !important;
 }
 
 body.woocommerce-shop .woocommerce-result-count {
-    color: #b8b8b8 !important;
+    color: #666666 !important;
 }
 
 body.woocommerce-shop .woocommerce-ordering select {
-    background: #2d2d2d !important;
-    color: #fff !important;
-    border: 1px solid #4a4a4a !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    border: 1px solid #d0d0d0 !important;
 }
 
 /* Shop page header - keep white */
@@ -885,13 +904,13 @@ body.woocommerce-shop header.wp-block-template-part,
 body.woocommerce-shop header.wp-block-template-part .has-background,
 body.woocommerce-shop header.wp-block-template-part .wp-block-group,
 body.woocommerce-shop header.wp-block-template-part > div {
-    background: #fff !important;
-    background-color: #fff !important;
+    background: var(--surface-strong) !important;
+    background-color: var(--surface-strong) !important;
 }
 
 body.woocommerce-shop header.wp-block-template-part a,
 body.woocommerce-shop header.wp-block-template-part nav a {
-    color: #4a4a4a !important;
+    color: #111111 !important;
 }
 
 /* ========================================
@@ -903,7 +922,7 @@ body.woocommerce-shop,
 body.woocommerce-shop .wp-site-blocks,
 body.woocommerce-shop .has-background,
 body.woocommerce-shop .has-base-background-color {
-    background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%) !important;
+    background: var(--surface-muted) !important;
 }
 
 /* Shop title styling */
@@ -917,11 +936,11 @@ body.woocommerce-shop .wc-block-breadcrumbs {
     font-size: 0.7rem !important;
     letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
-    color: #888 !important;
+    color: #666 !important;
 }
 
 body.woocommerce-shop .wc-block-breadcrumbs a {
-    color: #aaa !important;
+    color: #666 !important;
     text-decoration: none !important;
 }
 
@@ -1253,10 +1272,6 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     background: linear-gradient(90deg, transparent 0%, rgba(201,169,98,0.3) 50%, transparent 100%);
 }
 
-.section-light h2 { 
-    /* Inherit from masculine refinement rule at line 430 */
-}
-
 .section-light .has-text-align-center {
     font-size: 0.9rem !important;
     color: #888 !important;
@@ -1269,128 +1284,40 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 */
 .home .wp-site-blocks,
 .home main.wp-block-group {
-    background: #1a1a1a !important;
+    background: var(--white) !important;
 }
 
-/* Fix the 'Begin Your Collection' and similar sections that appear white */
+/* Fix sections that should appear white or very light gray */
 .home main .wp-block-group:not(.hero-fullscreen-v2) {
-    background: #1a1a1a !important;
-    color: var(--white) !important;
+    background: var(--white) !important;
+    color: var(--black) !important;
 }
 
-/* GLOBAL SECTION ALIGNMENT & SCALING */
-.home main h2, 
-.home main .wp-block-heading,
-.home main .manifesto-v2-title,
-.section-light h2,
-.section-dark h2,
-.section-graphite h2 {
-    font-family: var(--font-body) !important;
-    font-weight: 800 !important;
-    font-size: clamp(1.5rem, 3vw, 2rem) !important; /* SIGNIFICANTLY INCREASED */
-    text-transform: uppercase !important;
-    letter-spacing: 0.35em !important;
-    color: var(--white) !important;
-    margin-bottom: 3rem !important;
-    text-align: left !important; /* LEFT ALIGN */
-    width: 100% !important;
-    max-width: 1000px !important;
+/* Alternate section backgrounds for depth */
+.home main .wp-block-group:nth-of-type(even):not(.hero-fullscreen-v2) {
+    background: #f7f7f7 !important; /* Very subtle gray */
 }
 
-.home main p,
-.home main .manifesto-v2-text,
-.section-light p,
-.section-dark p {
-    color: #b0b0b0 !important;
-    font-size: 1.25rem !important; /* SIGNIFICANTLY INCREASED */
-    line-height: 1.9 !important;
-    text-align: left !important; /* LEFT ALIGN */
-    margin-left: 0 !important;
-    margin-right: auto !important;
-    max-width: 800px !important;
-}
-
-/* Ensure container allows left alignment */
-.home main .wp-block-group,
-.home main .manifesto-v2-container,
-.home main .wp-block-columns {
-    text-align: left !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    margin-left: 0 !important;
-    padding-left: 10vw !important;
-}
-
-/* ========================================
-   WHY LAB-GROWN SECTION - Technical Grid
-   ======================================== */
+/* Specific fix for the "Science" section shown in screenshot */
 .why-lab-grown-section {
-    background: #0d0d0d !important;
+    background: #f0f0f0 !important; /* Light gray background */
     padding: 12vh 10vw !important;
-    border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-.why-lab-grown-container {
-    max-width: 1400px;
-    margin: 0;
-}
-
-.why-lab-grown-header {
-    margin-bottom: 6rem;
-}
-
-.why-lab-grown-section .section-label {
-    font-family: var(--font-body) !important;
-    font-size: 0.75rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.5em !important;
-    text-transform: uppercase !important;
-    color: var(--gold) !important;
-    margin-bottom: 1.5rem !important;
-}
-
-.why-lab-grown-title {
-    font-family: var(--font-body) !important;
-    font-size: clamp(2rem, 4vw, 3rem) !important;
-    font-weight: 800 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.2em !important;
-    color: var(--white) !important;
-    margin: 0 0 2rem 0 !important;
-}
-
-.why-lab-grown-intro {
-    font-size: 1.15rem !important;
-    line-height: 1.9 !important;
-    color: #999 !important;
-    max-width: 700px !important;
-    margin: 0 !important;
-}
-
-.why-lab-grown-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 3rem !important;
-    margin-bottom: 6rem;
-}
-
-@media (max-width: 900px) {
-    .why-lab-grown-grid {
-        grid-template-columns: 1fr !important;
-    }
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .advantage-card {
-    background: rgba(255,255,255,0.02) !important;
-    border: 1px solid rgba(255,255,255,0.06) !important;
+    background: var(--white) !important; /* White cards on gray background for contrast */
+    border: 1px solid rgba(0,0,0,0.05) !important;
     padding: 2.5rem !important;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
 }
 
 .advantage-card:hover {
-    background: rgba(255,255,255,0.04) !important;
-    border-color: rgba(201, 169, 98, 0.2) !important;
+    background: var(--white) !important;
+    border-color: var(--gold) !important;
     transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
 }
 
 .advantage-icon {
@@ -1408,16 +1335,46 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.2em !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     margin: 0 0 1.25rem 0 !important;
 }
 
 .advantage-card p {
     font-size: 0.95rem !important;
     line-height: 1.8 !important;
-    color: #888 !important;
+    color: #555555 !important;
     margin: 0 !important;
     max-width: none !important;
+}
+
+/* Ensure all content titles on homepage are solid black, but exclude hero */
+.home main .wp-block-group:not(.hero-fullscreen-v2) h1,
+.home main .wp-block-group:not(.hero-fullscreen-v2) h2,
+.home main .wp-block-group:not(.hero-fullscreen-v2) h3,
+.home main .wp-block-group:not(.hero-fullscreen-v2) .wp-block-heading {
+    color: #000000 !important;
+}
+
+/* Specific Hero Title Color */
+.hero-v3-title {
+    color: var(--white) !important;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3); /* Add shadow for extra legibility */
+}
+
+.hero-v3-pretitle {
+    color: var(--white) !important;
+}
+
+.hero-v3-tagline {
+    color: rgba(255,255,255,0.9) !important; /* Lighter tagline */
+}
+
+.home main p,
+.home main .manifesto-v2-text,
+.why-lab-grown-intro {
+    color: #333333 !important;
+    font-size: 1.25rem !important;
+    line-height: 1.9 !important;
 }
 
 .why-lab-grown-cta {
@@ -1456,7 +1413,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
    FAQ SECTION - Technical Brief
    ======================================== */
 .faq-section {
-    background: #141414 !important;
+    background: #8f8f8f !important;
     padding: 12vh 10vw !important;
     border-top: 1px solid rgba(255,255,255,0.05);
 }
@@ -1530,7 +1487,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 .section-graphite,
 .testimonial-section,
 .wp-block-group.testimonial-section {
-    background: #111111 !important;
+    background: #8f8f8f !important;
     padding: 15vh 10vw !important;
     border-top: 1px solid rgba(255,255,255,0.05);
     border-bottom: 1px solid rgba(255,255,255,0.05);

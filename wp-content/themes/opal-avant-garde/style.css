@@ -245,10 +245,9 @@ header .wc-block-customer-account__account-link {
     font-weight: 700 !important;
     letter-spacing: 0.5em !important; /* Wide tracking for technical feel */
     text-transform: uppercase !important;
-    color: #ffffff !important; /* Forced white for readability */
+    color: var(--ink) !important; /* Dark text for light filter */
     margin: 0 !important;
-    opacity: 1; /* Increased from 0.8 for clarity */
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow added for readability */
+    opacity: 0.9;
 }
 
 .iridescent-text {
@@ -279,7 +278,7 @@ header .wc-block-customer-account__account-link {
     line-height: 0.95 !important;
     text-transform: uppercase !important;
     margin: 0 !important;
-    color: var(--white) !important;
+    color: var(--ink) !important; /* Dark text for light filter */
     letter-spacing: -0.04em !important; /* Tighter for the impact */
 }
 
@@ -287,13 +286,12 @@ header .wc-block-customer-account__account-link {
     font-family: var(--font-body) !important;
     font-size: 1rem !important; /* Balanced with pretitle */
     line-height: 1.8 !important;
-    font-weight: 500 !important;
-    color: #ffffff !important; /* Forced white for readability */
+    font-weight: 600 !important;
+    color: var(--ink-soft) !important; /* Dark text for light filter */
     margin: 0 !important;
     max-width: 800px;
     letter-spacing: 0.15em !important; /* Tracking added to balance the top line */
     text-transform: uppercase; /* Matching the pretitle style for architectural balance */
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow added for readability */
 }
 
 .hero-v3-buttons {
@@ -303,24 +301,24 @@ header .wc-block-customer-account__account-link {
 }
 
 .hero-v3-buttons .wp-block-button__link {
-    background: rgba(0,0,0,0.4) !important;
-    border: 1px solid transparent !important;
-    border-image: linear-gradient(to right, #dfba82, #f9e1b5) 1 !important; /* Gold border */
+    background: var(--ink) !important; /* Solid dark button for maximum contrast */
+    border: 1px solid var(--ink) !important;
     padding: 1.2rem 3.5rem !important;
     font-family: var(--font-body) !important;
     font-size: 0.8rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
-    color: #dfba82 !important; /* Gold text */
+    color: var(--white) !important; /* White text on dark button */
     backdrop-filter: blur(10px);
     transition: all 0.4s ease !important;
     border-radius: 0 !important;
 }
 
 .hero-v3-buttons .wp-block-button__link:hover {
-    background: rgba(223, 186, 130, 0.1) !important;
-    transform: translateY(-2px);
+    background: var(--white) !important;
+    color: var(--ink) !important;
+    border-color: var(--ink) !important;
 }
 
 .home .entry-title, .home .entry-header, .home .wp-block-post-title { display: none !important; }

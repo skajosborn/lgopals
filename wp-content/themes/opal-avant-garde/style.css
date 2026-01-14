@@ -53,22 +53,22 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
 h3 { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--font-body); }
 p { margin: 0 0 1.5rem 0; font-size: 0.95rem; color: var(--slate); }
 
-/* AGGRESSIVE HEADER RESET - FINAL FORM */
+/* HEADER - STICKY SOLID GRAY */
 header.wp-block-template-part {
     height: 100px !important;
-    padding: 20px 5vw 0 !important; /* Top padding added */
+    padding: 16px 5vw 16px !important; /* even top/bottom padding */
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    background: rgba(255,255,255,0.8) !important; /* Semi-transparent white */
-    backdrop-filter: blur(15px);
-    position: absolute !important;
+    background: #3a3a3a !important; /* Solid gray */
+    color: #ffffff !important;
+    position: sticky !important;
     top: 0;
     left: 0;
     width: 100% !important;
-    z-index: 1000 !important;
-    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+    z-index: 1100 !important;
+    border-bottom: 1px solid rgba(0,0,0,0.12) !important;
 }
 
 /* Force ALL header children into a single row */
@@ -125,7 +125,7 @@ header .wp-block-navigation-item {
 }
 
 header .wp-block-navigation-item__content {
-    color: var(--black) !important;
+    color: #ffffff !important;
     font-size: 0.75rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.25em !important;
@@ -179,7 +179,7 @@ header .wp-block-site-title {
 
 header .wp-block-woocommerce-customer-account,
 header .wc-block-mini-cart {
-    color: var(--black) !important;
+    color: #ffffff !important;
 }
 
 header .wc-block-mini-cart__button,
@@ -341,7 +341,7 @@ header .wc-block-customer-account__account-link {
     min-height: 800px !important;
     overflow: hidden;
     position: relative;
-    padding-top: 100px !important; /* Header clearance */
+    padding-top: 140px !important; /* Extra clearance below fixed header */
     align-items: stretch !important;
 }
 
@@ -382,6 +382,49 @@ header .wc-block-customer-account__account-link {
     letter-spacing: 0.25em !important;
     margin-bottom: 3rem !important;
     max-width: 500px !important;
+}
+
+/* RESPONSIVE HERO */
+@media (max-width: 1024px) {
+    .hero-split {
+        grid-template-columns: 1fr !important;
+        padding-top: 120px !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+    .hero-split-image {
+        height: auto !important;
+    }
+    .hero-split-image img {
+        max-height: 70vh !important;
+        object-fit: contain !important;
+    }
+    .hero-split-content {
+        padding: 8vw !important;
+        align-items: flex-start !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-split {
+        padding-top: 110px !important;
+    }
+    .hero-split-image img {
+        max-height: 60vh !important;
+    }
+    .hero-split-content .hero-v3-title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+        line-height: 1.15 !important;
+    }
+    .hero-split-content .hero-v3-tagline {
+        font-size: 0.85rem !important;
+        letter-spacing: 0.18em !important;
+        margin-bottom: 2rem !important;
+    }
+    .hero-split-content .hero-v3-pretitle {
+        font-size: 0.7rem !important;
+        letter-spacing: 0.32em !important;
+    }
 }
 
 .hero-split-image {

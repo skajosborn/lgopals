@@ -86,6 +86,51 @@ function opal_replace_content_text($content) {
         $old_img = 'wp-content/uploads/2025/01/earth-opals.png';
         $new_img = 'wp-content/uploads/opalearth.png';
         $content = str_replace($old_img, $new_img, $content);
+
+        // --- APPEND FAQ SECTION ---
+        $faq_section = '
+        <section class="faq-section">
+            <div class="faq-container">
+                <div class="faq-header">
+                    <p class="section-label">TECHNICAL BRIEF</p>
+                    <h2 class="faq-title">Common Questions</h2>
+                </div>
+                
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3 class="faq-question">Is lab-grown opal structurally identical to mined opal?</h3>
+                        <p class="faq-answer">Synthetic opal shares the same SiO2 silica composition and crystal lattice as geological opal. The play-of-color phenomenon occurs through identical Bragg Diffraction physics. The distinction: our material incorporates a polymer stabilizer in place of the water content found in natural specimens—eliminating the primary failure mechanism.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">How do professionals distinguish synthetic from natural?</h3>
+                        <p class="faq-answer">Under 10x magnification, synthetic opal exhibits a characteristic columnar structure—sometimes called "lizard skin"—resulting from the controlled growth process. Natural opal displays more irregular internal architecture. To the naked eye, high-grade synthetic is virtually indistinguishable from premium natural material.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">What is the failure rate compared to mined material?</h3>
+                        <p class="faq-answer">Natural opal\'s 5-10% water content makes it vulnerable to dehydration crazing, thermal shock fracturing, and impact failure. Lab-grown opal contains zero water. The polymer matrix permanently stabilizes the silica structure. Material produced today will maintain identical optical and structural properties decades from now.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">What are the machining considerations?</h3>
+                        <p class="faq-answer">Lab-grown opal machines predictably. Standard lapidary equipment, diamond tooling for cutting and drilling, standard polishing compounds. No special humidity storage required. No temperature acclimation period. The material behaves consistently across batches—critical for production workflows.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">How does pricing compare to premium natural opal?</h3>
+                        <p class="faq-answer">High-grade Australian black opal commands $500-1000+ per carat with significant quality variance. Our blocks deliver consistent, vibrant play-of-color at a fraction of that cost. You pay for performance and reliability rather than geological scarcity.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">What is the environmental differential?</h3>
+                        <p class="faq-answer">Traditional opal extraction involves open-pit excavation, aquifer depletion, diesel-powered heavy machinery, and tons of waste rock per carat recovered. Controlled synthesis eliminates habitat destruction, reduces water consumption by orders of magnitude, and produces zero mining waste. Same optical properties. Drastically reduced footprint.</p>
+                    </div>
+                </div>
+            </div>
+        </section>';
+        
+        $content .= $faq_section;
     }
     return $content;
 }

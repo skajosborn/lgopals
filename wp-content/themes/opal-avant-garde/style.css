@@ -1321,6 +1321,211 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     padding-left: 10vw !important;
 }
 
+/* ========================================
+   WHY LAB-GROWN SECTION - Technical Grid
+   ======================================== */
+.why-lab-grown-section {
+    background: #0d0d0d !important;
+    padding: 12vh 10vw !important;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.why-lab-grown-container {
+    max-width: 1400px;
+    margin: 0;
+}
+
+.why-lab-grown-header {
+    margin-bottom: 6rem;
+}
+
+.why-lab-grown-section .section-label {
+    font-family: var(--font-body) !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5em !important;
+    text-transform: uppercase !important;
+    color: var(--gold) !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.why-lab-grown-title {
+    font-family: var(--font-body) !important;
+    font-size: clamp(2rem, 4vw, 3rem) !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    color: var(--white) !important;
+    margin: 0 0 2rem 0 !important;
+}
+
+.why-lab-grown-intro {
+    font-size: 1.15rem !important;
+    line-height: 1.9 !important;
+    color: #999 !important;
+    max-width: 700px !important;
+    margin: 0 !important;
+}
+
+.why-lab-grown-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 3rem !important;
+    margin-bottom: 6rem;
+}
+
+@media (max-width: 900px) {
+    .why-lab-grown-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.advantage-card {
+    background: rgba(255,255,255,0.02) !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+    padding: 2.5rem !important;
+    transition: all 0.3s ease;
+}
+
+.advantage-card:hover {
+    background: rgba(255,255,255,0.04) !important;
+    border-color: rgba(201, 169, 98, 0.2) !important;
+    transform: translateY(-4px);
+}
+
+.advantage-icon {
+    font-family: var(--font-body) !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.3em !important;
+    color: var(--gold) !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.advantage-card h3 {
+    font-family: var(--font-body) !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    color: var(--white) !important;
+    margin: 0 0 1.25rem 0 !important;
+}
+
+.advantage-card p {
+    font-size: 0.95rem !important;
+    line-height: 1.8 !important;
+    color: #888 !important;
+    margin: 0 !important;
+    max-width: none !important;
+}
+
+.why-lab-grown-cta {
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.why-lab-grown-cta .cta-text {
+    font-family: var(--font-body) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    color: #666 !important;
+    margin-bottom: 2rem !important;
+    text-transform: uppercase !important;
+}
+
+.why-lab-grown-section .wp-block-button__link {
+    background: transparent !important;
+    border: 2px solid var(--gold) !important;
+    color: var(--gold) !important;
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    padding: 1rem 2.5rem !important;
+    transition: all 0.3s ease;
+}
+
+.why-lab-grown-section .wp-block-button__link:hover {
+    background: var(--gold) !important;
+    color: #0d0d0d !important;
+}
+
+/* ========================================
+   FAQ SECTION - Technical Brief
+   ======================================== */
+.faq-section {
+    background: #141414 !important;
+    padding: 12vh 10vw !important;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.faq-container {
+    max-width: 1400px;
+    margin: 0;
+}
+
+.faq-header {
+    margin-bottom: 5rem;
+}
+
+.faq-section .section-label {
+    font-family: var(--font-body) !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5em !important;
+    text-transform: uppercase !important;
+    color: var(--gold) !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.faq-title {
+    font-family: var(--font-body) !important;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem) !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    color: var(--white) !important;
+    margin: 0 !important;
+}
+
+.faq-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 3rem !important;
+}
+
+@media (max-width: 900px) {
+    .faq-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.faq-item {
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.faq-question {
+    font-family: var(--font-body) !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    color: var(--white) !important;
+    margin: 0 0 1.25rem 0 !important;
+    line-height: 1.5 !important;
+}
+
+.faq-answer {
+    font-size: 0.95rem !important;
+    line-height: 1.85 !important;
+    color: #888 !important;
+    margin: 0 !important;
+    max-width: none !important;
+}
+
 /* Testimonial refinement - Sharp, Technical, Authoritative */
 .section-graphite,
 .testimonial-section,

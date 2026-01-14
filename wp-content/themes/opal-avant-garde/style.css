@@ -32,9 +32,17 @@ body {
     width: 100% !important;
 }
 
-.wp-site-blocks, .wp-block-group, .entry-content {
+/* Global structural resets - restricted to main content to protect footer/header columns */
+.wp-site-blocks > main.wp-block-group,
+.entry-content > .wp-block-group {
     width: 100% !important;
     max-width: none !important;
+}
+
+/* Ensure footer columns can sit side-by-side */
+footer.wp-block-template-part .wp-block-group {
+    width: auto !important;
+    max-width: 100% !important;
 }
 
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 400; line-height: 1.2; margin: 0 0 1.5rem 0; }
@@ -152,7 +160,7 @@ header .wc-block-customer-account__account-link {
     background-position: center !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important; /* Left aligned content */
+    justify-content: flex-start !important; /* Back to left aligned */
     overflow: hidden;
     color: var(--white);
     margin-top: 0 !important;
@@ -162,33 +170,35 @@ header .wc-block-customer-account__account-link {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%) !important;
+    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, transparent 100%) !important; /* Linear for left alignment readability */
     z-index: 1;
 }
 
 .hero-v3-container {
     position: relative;
     z-index: 10;
-    padding-left: 10vw;
+    padding-left: 10vw; /* Back to left padding */
     width: 100%;
 }
 
 .hero-v3-content {
-    max-width: 800px;
-    text-align: left;
+    max-width: 1000px;
+    text-align: left; /* Back to left align */
     display: flex;
     flex-direction: column;
+    align-items: flex-start; /* Back to left align items */
     gap: 1.5rem;
 }
 
 .hero-v3-pretitle {
     font-family: var(--font-body) !important;
-    font-size: 1.1rem !important;
+    font-size: 0.9rem !important; /* Slightly smaller for precision */
     font-weight: 700 !important;
-    letter-spacing: 0.3em !important;
+    letter-spacing: 0.5em !important; /* Wide tracking for technical feel */
     text-transform: uppercase !important;
     color: var(--white) !important;
     margin: 0 !important;
+    opacity: 0.8;
 }
 
 .iridescent-text {
@@ -213,28 +223,30 @@ header .wc-block-customer-account__account-link {
 }
 
 .hero-v3-title {
-    font-family: var(--font-body) !important; /* Bold sans-serif from mockup */
-    font-size: clamp(3rem, 6vw, 5.5rem) !important;
+    font-family: var(--font-body) !important;
+    font-size: clamp(3rem, 8vw, 6.5rem) !important; /* Massive for perfection */
     font-weight: 900 !important;
-    line-height: 1.05 !important;
+    line-height: 0.95 !important;
     text-transform: uppercase !important;
     margin: 0 !important;
     color: var(--white) !important;
-    letter-spacing: -0.02em !important;
+    letter-spacing: -0.04em !important; /* Tighter for the impact */
 }
 
 .hero-v3-tagline {
     font-family: var(--font-body) !important;
-    font-size: 1.4rem !important;
-    line-height: 1.6 !important;
-    font-weight: 400 !important;
-    color: rgba(255,255,255,0.9) !important;
+    font-size: 1rem !important; /* Balanced with pretitle */
+    line-height: 1.8 !important;
+    font-weight: 500 !important;
+    color: rgba(255,255,255,0.7) !important;
     margin: 0 !important;
-    max-width: 600px;
+    max-width: 800px;
+    letter-spacing: 0.15em !important; /* Tracking added to balance the top line */
+    text-transform: uppercase; /* Matching the pretitle style for architectural balance */
 }
 
 .hero-v3-buttons {
-    margin-top: 1rem !important;
+    margin-top: 1.5rem !important;
     display: flex !important;
     justify-content: flex-start !important;
 }
@@ -426,6 +438,77 @@ header .wc-block-customer-account__account-link {
 .section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--white) !important; background: transparent !important; color: var(--white) !important; }
 .section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--white) !important; color: var(--charcoal) !important; }
 
+/* MANIFESTO SECTION V2 */
+.manifesto-section-v2 {
+    padding: 15vh 10vw !important;
+    text-align: center;
+    background: #1a1a1a !important; /* Slightly darker than section-dark */
+}
+
+.manifesto-v2-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.manifesto-v2-title {
+    font-family: var(--font-body) !important; /* Montserrat */
+    font-weight: 800 !important;
+    font-size: clamp(0.9rem, 2vw, 1.2rem) !important; /* Matches technical scale below */
+    text-transform: uppercase !important;
+    letter-spacing: 0.3em !important;
+    font-style: normal !important;
+    color: #ffffff !important;
+    margin-bottom: 2.5rem !important;
+    line-height: 1.2 !important;
+}
+
+.manifesto-v2-text {
+    font-family: var(--font-body) !important;
+    font-size: 0.95rem !important; /* Standard technical body scale */
+    line-height: 1.8 !important;
+    color: var(--silver) !important;
+    font-style: normal !important;
+    margin: 0 auto 1.5rem auto !important;
+    max-width: 800px;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.manifesto-v2-text strong {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.manifesto-v2-subtext {
+    font-family: var(--font-body) !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.2em !important;
+    color: #666666 !important;
+    max-width: 600px;
+    margin: 0 auto !important;
+    line-height: 1.8 !important;
+    text-transform: uppercase;
+    font-weight: 600 !important;
+}
+
+.manifesto-v2-text strong {
+    font-weight: 900;
+    color: #ffffff; /* Highlight 'Evolution' in white */
+}
+
+.manifesto-v2-subtext {
+    font-family: var(--font-body) !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.2em !important;
+    color: #888888 !important;
+    max-width: 800px;
+    margin: 0 auto !important;
+    line-height: 1.8 !important;
+    text-transform: uppercase;
+    font-weight: 600 !important;
+}
+
 /* SECTIONS HEADINGS - MASCULINE REFINEMENT */
 .section-dark h1, .section-dark h2, .section-dark h3,
 .section-light h1, .section-light h2, .section-light h3,
@@ -434,9 +517,11 @@ header .wc-block-customer-account__account-link {
 .wp-block-heading {
     font-family: var(--font-body) !important; /* Montserrat */
     font-weight: 800 !important;
+    font-size: clamp(0.9rem, 2vw, 1.2rem) !important; /* Minimalist, high-end technical scale */
     text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
+    letter-spacing: 0.3em !important; /* Extra wide tracking for luxury feel at small size */
     font-style: normal !important;
+    margin-bottom: 2.5rem !important;
 }
 
 .section-dark { 
@@ -674,9 +759,54 @@ ul.products li.product .button:hover {
 .testimonial-section blockquote { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2.2rem); font-style: italic; line-height: 1.7; color: var(--white); }
 .testimonial-section cite { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pewter); }
 
-/* FOOTER */
-footer.wp-block-template-part { background: var(--black) !important; color: var(--white) !important; padding: 10vh 8vw 5vh !important; }
-footer .wp-block-site-title a { font-family: var(--font-display) !important; font-size: 1.5rem !important; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white) !important; }
+/* FOOTER - TECHNICAL REFINEMENT */
+footer.wp-block-template-part { 
+    position: relative !important;
+    background: #000000 !important;
+    color: var(--white) !important; 
+    padding: 10vh 8vw !important; 
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+footer .wp-block-columns {
+    gap: 4rem !important;
+}
+
+/* Typography for footer headings */
+footer h2, 
+footer .wp-block-heading {
+    font-family: var(--font-body) !important;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    color: var(--white) !important;
+    margin-bottom: 2rem !important;
+    text-align: left !important;
+}
+
+footer .wp-block-navigation-item__content {
+    font-family: var(--font-body) !important;
+    font-size: 0.85rem !important;
+    color: #888888 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease;
+}
+
+footer .wp-block-navigation-item__content:hover {
+    color: var(--gold) !important;
+}
+
+footer .wp-block-site-title a { 
+    font-family: var(--font-body) !important; 
+    font-weight: 900 !important;
+    font-size: 1.2rem !important; 
+    letter-spacing: 0.1em; 
+    text-transform: uppercase; 
+    color: var(--white) !important; 
+}
 
 /* RESPONSIVE */
 @media (max-width: 600px) {
@@ -743,7 +873,7 @@ body.woocommerce-shop .wp-block-query-title {
 
 body.woocommerce-shop .wc-block-breadcrumbs {
     text-align: center !important;
-    padding: 3rem 0 1rem !important;
+    padding: 140px 0 1rem !important; /* Increased top padding to clear the 100px header */
     font-size: 0.7rem !important;
     letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
@@ -1019,8 +1149,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 }
 
 .manifesto-section h2 {
-    font-size: clamp(4rem, 10vw, 6rem) !important;
-    line-height: 1.1 !important;
+    /* Inherit from masculine refinement rule at line 430 */
     margin-bottom: 3.5rem !important;
 }
 
@@ -1084,11 +1213,8 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     background: linear-gradient(90deg, transparent 0%, rgba(201,169,98,0.3) 50%, transparent 100%);
 }
 
-.section-light h2 {
-    font-size: clamp(2rem, 4vw, 3rem) !important;
-    font-weight: 300 !important;
-    letter-spacing: 0.02em !important;
-    margin-bottom: 0.5rem !important;
+.section-light h2 { 
+    /* Inherit from masculine refinement rule at line 430 */
 }
 
 .section-light .has-text-align-center {
@@ -1097,69 +1223,99 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     margin-bottom: 4rem !important;
 }
 
-/* Testimonial section */
-.section-graphite {
-    position: relative;
-    background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%) !important;
-    padding: 14vh 8vw !important;
+/* 
+   TECHNICAL THEME OVERRIDES FOR FRONT PAGE
+   Ensures all sections follow the masculine/technical dark aesthetic
+*/
+.home .wp-site-blocks,
+.home main.wp-block-group {
+    background: #1a1a1a !important;
 }
 
-.section-graphite::before,
-.section-graphite::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, transparent, rgba(201,169,98,0.4), transparent);
+/* Fix the 'Begin Your Collection' and similar sections that appear white */
+/* Scoped to main to avoid affecting the footer */
+.home main .wp-block-group:not(.hero-fullscreen-v2) {
+    background: #1a1a1a !important;
+    color: var(--white) !important;
 }
 
-.section-graphite::before { top: 0; }
-.section-graphite::after { bottom: 0; }
+/* Specific styling for the section containing 'Begin Your Collection' */
+.home main .wp-block-group:has(h2) {
+    padding: 10vh 8vw !important;
+}
 
-.testimonial-section blockquote {
-    font-size: clamp(1.3rem, 3vw, 2rem) !important;
-    font-weight: 300 !important;
+/* Testimonial refinement - Sharp, Technical, Authoritative */
+.section-graphite,
+.testimonial-section,
+.wp-block-group.testimonial-section {
+    background: #111111 !important;
+    padding: 15vh 10vw !important;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.testimonial-section blockquote,
+.wp-block-quote.testimonial-section blockquote {
+    font-family: var(--font-body) !important;
+    font-size: clamp(1.1rem, 2.2vw, 1.4rem) !important;
+    font-weight: 500 !important;
     line-height: 1.8 !important;
-    color: #ddd !important;
-    position: relative;
-    padding: 0 2rem;
+    color: #e0e0e0 !important;
+    font-style: normal !important;
+    max-width: 900px;
+    margin: 0 auto !important;
+    text-align: center;
+    border: none !important;
+    padding: 0 !important;
 }
 
-.testimonial-section blockquote::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: -10px;
-    font-size: 4rem;
-    color: #c9a962;
-    opacity: 0.3;
-    font-family: Georgia, serif;
-}
-
-.testimonial-section cite {
+.testimonial-section cite,
+.wp-block-quote.testimonial-section cite {
     display: block;
-    margin-top: 2rem;
-    font-size: 0.7rem !important;
-    letter-spacing: 0.2em;
-    color: #c9a962 !important;
+    margin-top: 3rem !important;
+    font-family: var(--font-body) !important;
+    font-size: 0.75rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.4em !important;
+    text-transform: uppercase !important;
+    color: var(--gold) !important;
+    font-style: normal !important;
+    text-align: center;
 }
 
-/* Footer transition */
-footer.wp-block-template-part {
-    position: relative;
-    background: linear-gradient(180deg, #1a1a1a 0%, #000 100%) !important;
+/* 'Begin Your Collection' - Contact Section Technical Style */
+/* Scoped to main to avoid affecting the footer */
+.home main h2, 
+.home main .wp-block-heading {
+    font-family: var(--font-body) !important;
+    font-weight: 800 !important;
+    font-size: clamp(0.9rem, 2vw, 1.1rem) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.35em !important;
+    color: var(--white) !important;
+    margin-bottom: 2.5rem !important;
+    text-align: center !important;
 }
 
-footer.wp-block-template-part::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+.home main p {
+    color: #a0a0a0 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.8 !important;
+    text-align: center !important;
+}
+
+/* Ensure buttons in these sections match the gold technical style */
+.home main .wp-block-group:not(.hero-fullscreen-v2) .wp-block-button__link {
+    border-color: var(--gold) !important;
+    color: var(--gold) !important;
+    background: transparent !important;
+    font-weight: 700 !important;
+    transition: all 0.3s ease;
+}
+
+.home main .wp-block-group:not(.hero-fullscreen-v2) .wp-block-button__link:hover {
+    background: rgba(201, 169, 98, 0.1) !important;
+    transform: translateY(-2px);
 }
 
 /* Smooth scroll behavior */

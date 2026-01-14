@@ -4,7 +4,7 @@ Version: 4.0.1
 Template: twentytwentyfour
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
 
 :root {
     --black: #000000;
@@ -141,18 +141,18 @@ header .wc-block-customer-account__account-link {
     color: inherit !important;
 }
 
-/* HERO V2 - FULLSCREEN AVANT-GARDE */
+/* HERO V3 - LEFT ALIGNED CRAFTSMAN STYLE */
 .hero-fullscreen-v2 {
     position: relative !important;
     height: 100vh !important;
-    min-height: 900px !important;
+    min-height: 800px !important;
     width: 100% !important;
-    background-image: url('/wp-content/uploads/newopals5.png') !important;
+    background-image: url('/wp-content/uploads/manopals3.png') !important;
     background-size: cover !important;
     background-position: center !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important; /* Left aligned content */
     overflow: hidden;
     color: var(--white);
     margin-top: 0 !important;
@@ -162,116 +162,101 @@ header .wc-block-customer-account__account-link {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%) !important;
+    background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%) !important;
     z-index: 1;
 }
 
-.hero-v2-content {
+.hero-v3-container {
     position: relative;
     z-index: 10;
-    text-align: center;
-    max-width: 1200px;
-    width: 90%;
-    height: 85vh; /* Increased height to push content further to edges */
+    padding-left: 10vw;
+    width: 100%;
+}
+
+.hero-v3-content {
+    max-width: 800px;
+    text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 2vh 0 5vh 0; /* Minimal top padding to move "Opals" up */
+    gap: 1.5rem;
 }
 
-.hero-v2-top-group {
-    margin-top: 0; /* Remove top margin */
-}
-
-.hero-v2-main-group {
-    margin-top: auto; /* Push down to the bottom area */
-    margin-bottom: 2rem;
-}
-
-.hero-v2-brand {
-    font-family: var(--font-display) !important;
-    font-size: clamp(5rem, 15vw, 11rem) !important;
-    font-weight: 400 !important;
-    font-style: italic !important;
+.hero-v3-pretitle {
+    font-family: var(--font-body) !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3em !important;
+    text-transform: uppercase !important;
+    color: var(--white) !important;
     margin: 0 !important;
-    line-height: 0.9 !important;
-    letter-spacing: -0.01em !important;
+}
+
+.iridescent-text {
     background: linear-gradient(
         to right, 
         #ff8df2 0%, 
-        #7856ff 20%, 
-        #4ecfff 40%, 
-        #fff05e 60%, 
-        #ff8df2 80%,
-        #7856ff 100%
+        #7856ff 25%, 
+        #4ecfff 50%, 
+        #fff05e 75%, 
+        #ff8df2 100%
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shine 6s linear infinite;
-    filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));
+    display: inline-block;
 }
 
 @keyframes shine {
     to { background-position: 200% center; }
 }
 
-.hero-v2-sub-brand {
-    font-family: var(--font-body) !important;
-    font-size: 0.75rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.6em !important;
+.hero-v3-title {
+    font-family: var(--font-body) !important; /* Bold sans-serif from mockup */
+    font-size: clamp(3rem, 6vw, 5.5rem) !important;
+    font-weight: 900 !important;
+    line-height: 1.05 !important;
     text-transform: uppercase !important;
-    color: rgba(255,255,255,0.9) !important;
-    margin: 0.5rem 0 0 0 !important;
-}
-
-.hero-v2-title {
-    font-family: var(--font-display) !important;
-    font-size: clamp(2.5rem, 6vw, 5rem) !important;
-    font-style: italic !important;
-    font-weight: 300 !important;
-    margin: 0 0 1.5rem 0 !important;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    color: #ffffff !important;
-}
-
-.hero-v2-tagline {
-    font-family: var(--font-body) !important;
-    font-size: 0.75rem !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.4em !important;
-    text-transform: uppercase !important;
-    color: rgba(255,255,255,0.8) !important;
     margin: 0 !important;
+    color: var(--white) !important;
+    letter-spacing: -0.02em !important;
 }
 
-.hero-v2-buttons {
-    margin-top: 2rem !important;
+.hero-v3-tagline {
+    font-family: var(--font-body) !important;
+    font-size: 1.4rem !important;
+    line-height: 1.6 !important;
+    font-weight: 400 !important;
+    color: rgba(255,255,255,0.9) !important;
+    margin: 0 !important;
+    max-width: 600px;
+}
+
+.hero-v3-buttons {
+    margin-top: 1rem !important;
     display: flex !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
 }
 
-.hero-v2-buttons .wp-block-button__link {
+.hero-v3-buttons .wp-block-button__link {
     background: rgba(0,0,0,0.4) !important;
     border: 1px solid transparent !important;
-    border-image: linear-gradient(to right, #4ecfff, #fff05e) 1 !important;
-    padding: 1.2rem 4.5rem !important;
-    font-family: "Montserrat", sans-serif !important;
-    font-size: 0.75rem !important;
-    font-weight: 600 !important;
+    border-image: linear-gradient(to right, #dfba82, #f9e1b5) 1 !important; /* Gold border */
+    padding: 1.2rem 3.5rem !important;
+    font-family: var(--font-body) !important;
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
     letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
-    color: #dfba82 !important;
+    color: #dfba82 !important; /* Gold text */
     backdrop-filter: blur(10px);
     transition: all 0.4s ease !important;
     border-radius: 0 !important;
 }
 
-.hero-v2-buttons .wp-block-button__link:hover {
-    background: rgba(255,255,255,0.1) !important;
-    color: #ffffff !important;
+.hero-v3-buttons .wp-block-button__link:hover {
+    background: rgba(223, 186, 130, 0.1) !important;
     transform: translateY(-2px);
 }
 
@@ -441,7 +426,19 @@ header .wc-block-customer-account__account-link {
 .section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--white) !important; background: transparent !important; color: var(--white) !important; }
 .section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--white) !important; color: var(--charcoal) !important; }
 
-/* SECTIONS */
+/* SECTIONS HEADINGS - MASCULINE REFINEMENT */
+.section-dark h1, .section-dark h2, .section-dark h3,
+.section-light h1, .section-light h2, .section-light h3,
+.section-graphite h1, .section-graphite h2, .section-graphite h3,
+.manifesto-section h2,
+.wp-block-heading {
+    font-family: var(--font-body) !important; /* Montserrat */
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    font-style: normal !important;
+}
+
 .section-dark { 
     background: #2a2a2a !important; 
     color: var(--white) !important; 
@@ -544,9 +541,9 @@ header .wc-block-customer-account__account-link {
 .woocommerce ul.products.columns-2,
 .woocommerce ul.products.columns-3,
 .woocommerce ul.products.columns-4,
-|ul.products,
-|ul.products.columns-2,
-|ul.products.columns-4 {
+ul.products,
+ul.products.columns-2,
+ul.products.columns-4 {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 1.5rem !important;

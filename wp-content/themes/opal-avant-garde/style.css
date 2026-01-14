@@ -8,14 +8,16 @@ Template: twentytwentyfour
 
 :root {
     --black: #000000;
-    --charcoal: #4a4a4a;
-    --graphite: #2d2d2d;
-    --slate: #4a4a4a;
+    --charcoal: #333333;
+    --graphite: #4a4a4a;
+    --slate: #666666;
     --pewter: #888888;
     --silver: #b8b8b8;
     --ivory: #f8f6f3;
     --white: #ffffff;
-    --gold: #c9a962;
+    --light-gray: #fdfdfd; /* Even lighter for a cleaner white feel */
+    --mid-gray: #f4f4f4;
+    --gold: #b58e4f;
     --font-display: "Cormorant Garamond", Georgia, serif;
     --font-body: "Montserrat", -apple-system, sans-serif;
 }
@@ -59,14 +61,14 @@ header.wp-block-template-part {
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    background: rgba(0,0,0,0.5) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.8) !important; /* Semi-transparent white */
+    backdrop-filter: blur(15px);
     position: absolute !important;
     top: 0;
     left: 0;
     width: 100% !important;
     z-index: 1000 !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
 }
 
 /* Force ALL header children into a single row */
@@ -123,9 +125,9 @@ header .wp-block-navigation-item {
 }
 
 header .wp-block-navigation-item__content {
-    color: var(--white) !important;
+    color: var(--black) !important;
     font-size: 0.75rem !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     letter-spacing: 0.25em !important;
     text-transform: uppercase !important;
     text-decoration: none !important;
@@ -150,7 +152,7 @@ header .wp-block-woocommerce-customer-account {
     transform: translateY(-50%) !important;
     display: flex !important;
     align-items: center !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     z-index: 100 !important;
 }
 
@@ -161,7 +163,7 @@ header .wc-block-mini-cart {
     transform: translateY(-50%) !important;
     display: flex !important;
     align-items: center !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     z-index: 100 !important;
 }
 
@@ -177,7 +179,7 @@ header .wp-block-site-title {
 
 header .wp-block-woocommerce-customer-account,
 header .wc-block-mini-cart {
-    color: var(--white) !important;
+    color: var(--black) !important;
 }
 
 header .wc-block-mini-cart__button,
@@ -189,34 +191,26 @@ header .wc-block-customer-account__account-link {
 .hero-fullscreen-v2 {
     position: relative !important;
     height: 100vh !important;
-    min-height: 850px !important; /* Increased min-height */
+    min-height: 850px !important;
     width: 100% !important;
-    background-image: url('/wp-content/uploads/manopals3.png') !important;
-    background-size: cover !important;
-    background-position: center !important;
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important; 
-    padding-top: 150px !important; /* Increased padding to safely clear the 100px navbar */
+    padding-top: 150px !important;
     overflow: hidden;
-    color: var(--white);
     margin-top: 0 !important;
+    z-index: 1 !important;
 }
 
 .hero-fullscreen-v2::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, transparent 100%) !important; /* Linear for left alignment readability */
-    z-index: 1;
+    display: none !important;
 }
 
 .hero-v3-container {
-    position: relative;
-    z-index: 10;
-    padding-left: 10vw; 
-    width: 100%;
-    margin-top: 50px; /* Extra margin to ensure no overlap with nav */
+    position: relative !important;
+    z-index: 10 !important;
+    padding-left: 10vw !important; 
+    width: 100% !important;
 }
 
 .hero-v3-content {
@@ -230,9 +224,9 @@ header .wc-block-customer-account__account-link {
 
 .hero-v3-pretitle {
     font-family: var(--font-body) !important;
-    font-size: 0.9rem !important; /* Slightly smaller for precision */
+    font-size: 0.9rem !important;
     font-weight: 700 !important;
-    letter-spacing: 0.5em !important; /* Wide tracking for technical feel */
+    letter-spacing: 0.5em !important;
     text-transform: uppercase !important;
     color: var(--white) !important;
     margin: 0 !important;
@@ -273,14 +267,14 @@ header .wc-block-customer-account__account-link {
 
 .hero-v3-tagline {
     font-family: var(--font-body) !important;
-    font-size: 1rem !important; /* Balanced with pretitle */
+    font-size: 1rem !important;
     line-height: 1.8 !important;
     font-weight: 500 !important;
     color: rgba(255,255,255,0.7) !important;
     margin: 0 !important;
-    max-width: 800px;
-    letter-spacing: 0.15em !important; /* Tracking added to balance the top line */
-    text-transform: uppercase; /* Matching the pretitle style for architectural balance */
+    max-width: 800px !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
 }
 
 .hero-v3-buttons {
@@ -290,17 +284,16 @@ header .wc-block-customer-account__account-link {
 }
 
 .hero-v3-buttons .wp-block-button__link {
-    background: rgba(0,0,0,0.4) !important;
-    border: 1px solid transparent !important;
-    border-image: linear-gradient(to right, #dfba82, #f9e1b5) 1 !important; /* Gold border */
+    background: transparent !important;
+    border: 1px solid #dfba82 !important;
     padding: 1.2rem 3.5rem !important;
     font-family: var(--font-body) !important;
     font-size: 0.8rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
-    color: #dfba82 !important; /* Gold text */
-    backdrop-filter: blur(10px);
+    color: #dfba82 !important;
+    backdrop-filter: blur(10px) !important;
     transition: all 0.4s ease !important;
     border-radius: 0 !important;
 }
@@ -310,6 +303,20 @@ header .wc-block-customer-account__account-link {
     transform: translateY(-2px);
 }
 
+/* Fix header on home page specifically for the dark hero look */
+.home header.wp-block-template-part {
+    background: rgba(0,0,0,0.5) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.home header .wp-block-navigation-item__content,
+.home header .wp-block-woocommerce-customer-account,
+.home header .wc-block-mini-cart {
+    color: var(--white) !important;
+}
+
+
 .home .entry-title, .home .entry-header, .home .wp-block-post-title { display: none !important; }
 
 /* HERO */
@@ -317,14 +324,64 @@ header .wc-block-customer-account__account-link {
     display: none !important;
 }
 
+/* THE FIX: EXCLUDE HERO FROM GLOBAL WP-BLOCK-GROUP CONSTRAINTS */
+.home main .hero-split.wp-block-group {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
+    background: #000 !important; /* Black backdrop for the image side */
+}
+
 .hero-split {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    height: 100vh !important;
-    min-height: 700px !important;
-    background: var(--black);
+    grid-template-columns: 60% 40% !important; /* 60/40 Split for better balance */
+    height: auto !important;
+    min-height: 800px !important;
     overflow: hidden;
     position: relative;
+    padding-top: 100px !important; /* Header clearance */
+    align-items: stretch !important;
+}
+
+.hero-split-image {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #000 !important;
+}
+
+.hero-split-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* ENSURE 100% OF IMAGE IS VISIBLE */
+    object-position: left center !important; /* PIN TO LEFT EDGE */
+    display: block !important;
+}
+
+.hero-split-content {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 6vw !important; /* More breathing room */
+    background: var(--white) !important;
+    color: var(--black);
+}
+
+/* TYPOGRAPHY REFINEMENT FOR BALANCED SPLIT */
+.hero-split-content .hero-v3-title {
+    font-size: clamp(2.2rem, 5vw, 4rem) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 2rem !important;
+    font-weight: 800 !important;
+}
+
+.hero-split-content .hero-v3-tagline {
+    font-size: 0.95rem !important;
+    letter-spacing: 0.25em !important;
+    margin-bottom: 3rem !important;
+    max-width: 500px !important;
 }
 
 .hero-split-image {
@@ -343,8 +400,8 @@ header .wc-block-customer-account__account-link {
 .hero-split-image img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important;
-    background: #000 !important;
+    object-fit: cover !important;
+    background: var(--light-gray) !important;
     transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1) !important;
 }
 
@@ -357,8 +414,8 @@ header .wc-block-customer-account__account-link {
     flex-direction: column !important;
     justify-content: center !important;
     padding: 8vw !important;
-    background: #2a2a2a !important; /* Lighter gray */
-    color: var(--white);
+    background: var(--light-gray) !important;
+    color: var(--black);
     position: relative;
     height: 100% !important;
 }
@@ -367,7 +424,7 @@ header .wc-block-customer-account__account-link {
     content: "";
     position: absolute;
     top: 0; left: 0; bottom: 0; width: 1px;
-    background: linear-gradient(to bottom, transparent, rgba(201,169,98,0.3), transparent);
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);
 }
 
 .hero-split-content h1 {
@@ -375,7 +432,7 @@ header .wc-block-customer-account__account-link {
     line-height: 1.1 !important;
     margin-bottom: 2rem !important;
     font-style: italic !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     font-weight: 300 !important;
 }
 
@@ -383,20 +440,20 @@ header .wc-block-customer-account__account-link {
     font-size: 0.8rem !important;
     letter-spacing: 0.4em !important;
     text-transform: uppercase !important;
-    color: #888 !important;
+    color: var(--slate) !important;
     margin-bottom: 3.5rem !important;
     font-weight: 500 !important;
 }
 
 .hero-split .wp-block-button__link {
-    border-color: #c9a962 !important;
-    color: #c9a962 !important;
+    border-color: var(--gold) !important;
+    color: var(--gold) !important;
     background: transparent !important;
 }
 
 .hero-split .wp-block-button__link:hover {
-    background: #c9a962 !important;
-    color: #1a1a1a !important;
+    background: var(--gold) !important;
+    color: var(--white) !important;
 }
 
 @media (max-width: 992px) {
@@ -443,12 +500,12 @@ header .wc-block-customer-account__account-link {
     justify-content: center !important;
     text-align: left !important;
     padding: 8vw !important;
-    background: #2a2a2a !important; /* Lighter gray */
+    background: var(--white) !important;
     max-width: none !important;
     margin: 0 !important;
 }
 .hero-content-center h1 {
-    color: var(--white) !important;
+    color: var(--black) !important;
     font-size: clamp(2.5rem, 5vw, 4rem) !important;
     font-weight: 300 !important;
     margin-bottom: 2rem !important;
@@ -458,7 +515,7 @@ header .wc-block-customer-account__account-link {
 }
 
 .hero-content-center p {
-    color: #888 !important;
+    color: var(--slate) !important;
     font-size: 0.8rem !important;
     font-weight: 500 !important;
     letter-spacing: 0.4em !important;
@@ -467,20 +524,20 @@ header .wc-block-customer-account__account-link {
     text-shadow: none !important;
 }
 
-.scroll-indicator { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 10; color: var(--white); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; }
+.scroll-indicator { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 10; color: var(--black); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; }
 
 /* BUTTONS */
-.wp-block-button__link { font-family: var(--font-body) !important; font-size: 0.7rem !important; font-weight: 500 !important; letter-spacing: 0.25em; text-transform: uppercase; padding: 1.2rem 3rem !important; border-radius: 0 !important; border: 1px solid var(--white) !important; background: rgba(0,0,0,0.3) !important; color: var(--white) !important; backdrop-filter: blur(10px); transition: all 0.5s ease; }
-.wp-block-button__link:hover { background: var(--white) !important; color: var(--charcoal) !important; }
+.wp-block-button__link { font-family: var(--font-body) !important; font-size: 0.7rem !important; font-weight: 500 !important; letter-spacing: 0.25em; text-transform: uppercase; padding: 1.2rem 3rem !important; border-radius: 0 !important; border: 1px solid var(--black) !important; background: rgba(255,255,255,0.3) !important; color: var(--black) !important; backdrop-filter: blur(10px); transition: all 0.5s ease; }
+.wp-block-button__link:hover { background: var(--black) !important; color: var(--white) !important; }
 
-.section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--white) !important; background: transparent !important; color: var(--white) !important; }
-.section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--white) !important; color: var(--charcoal) !important; }
+.section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--black) !important; background: transparent !important; color: var(--black) !important; }
+.section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--black) !important; color: var(--white) !important; }
 
 /* MANIFESTO SECTION V2 - Molecular Standard */
 .manifesto-section-v2 {
     padding: 15vh 10vw !important;
     text-align: left !important;
-    background: #1a1a1a !important;
+    background: var(--white) !important;
 }
 
 .manifesto-v2-container {
@@ -495,7 +552,7 @@ header .wc-block-customer-account__account-link {
     text-transform: uppercase !important;
     letter-spacing: 0.35em !important;
     font-style: normal !important;
-    color: #ffffff !important;
+    color: var(--black) !important;
     margin-bottom: 3rem !important;
     line-height: 1.2 !important;
     text-align: left !important;
@@ -505,7 +562,7 @@ header .wc-block-customer-account__account-link {
     font-family: var(--font-body) !important;
     font-size: 1.15rem !important;
     line-height: 1.9 !important;
-    color: var(--silver) !important;
+    color: var(--charcoal) !important;
     font-style: normal !important;
     margin: 0 0 2rem 0 !important;
     max-width: 900px;
@@ -523,13 +580,13 @@ header .wc-block-customer-account__account-link {
     font-size: clamp(1.2rem, 2.5vw, 1.5rem) !important;
     text-transform: uppercase !important;
     letter-spacing: 0.35em !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     margin-bottom: 3rem !important;
     text-align: left !important;
 }
 
 .home main p {
-    color: #a0a0a0 !important;
+    color: var(--charcoal) !important;
     font-size: 1.1rem !important;
     line-height: 1.9 !important;
     text-align: left !important;
@@ -565,25 +622,25 @@ header .wc-block-customer-account__account-link {
 }
 
 .section-dark { 
-    background: #2a2a2a !important; 
-    color: var(--white) !important; 
-    padding: 12vh 6vw !important; 
+    background: var(--white) !important; 
+    color: var(--black) !important; 
+    padding: 10vh 6vw !important; 
     width: 100% !important;
     max-width: none !important;
     box-sizing: border-box !important;
 }
-.section-dark h1, .section-dark h2, .section-dark h3 { color: var(--white) !important; }
-.section-dark p { color: var(--silver) !important; }
+.section-dark h1, .section-dark h2, .section-dark h3 { color: var(--black) !important; }
+.section-dark p { color: var(--charcoal) !important; }
 
-.section-graphite { background: var(--graphite) !important; color: var(--white) !important; padding: 12vh 8vw !important; }
+.section-graphite { background: var(--light-gray) !important; color: var(--black) !important; padding: 10vh 8vw !important; }
 
 .section-light {
-    background: #2a2a2a !important;
+    background: var(--white) !important;
     padding: 10vh 6vw !important;
 }
 
-.section-light h2 { color: #ffffff !important; }
-.section-light > p, .section-light .has-text-align-center { color: #b0b0b0 !important; }
+.section-light h2 { color: var(--black) !important; }
+.section-light > p, .section-light .has-text-align-center { color: var(--charcoal) !important; }
 
 .section-light *,
 .section-light .wp-block-group,
@@ -641,19 +698,36 @@ header .wc-block-customer-account__account-link {
 
 .section-white { background: var(--white) !important; padding: 12vh 8vw !important; }
 
-.manifesto-section { text-align: center; max-width: 1400px !important; margin: 0 auto; background: #2a2a2a; color: #e0e0e0; }
-.manifesto-section h2 { font-size: clamp(3rem, 6vw, 4.5rem); font-style: italic; margin-bottom: 2.5rem; color: #ffffff !important; }
-.manifesto-section p { font-size: 1.25rem; line-height: 2.1; font-weight: 300; color: #b0b0b0 !important; max-width: 1400px; margin: 0 auto 1.5rem auto; }
+.manifesto-section { text-align: center; max-width: 1400px !important; margin: 0 auto; background: var(--mid-gray); color: var(--charcoal); }
+.manifesto-section h2 { font-size: clamp(3rem, 6vw, 4.5rem); font-style: italic; margin-bottom: 2.5rem; color: var(--black) !important; }
+.manifesto-section p { font-size: 1.25rem; line-height: 2.1; font-weight: 300; color: var(--charcoal) !important; max-width: 1400px; margin: 0 auto 1.5rem auto; }
 
 /* FEATURE GRID */
 .feature-grid-images { display: flex !important; flex-direction: column !important; gap: 3rem; max-width: 1400px !important; margin: 0 auto; }
-.feature-item-image { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; text-align: left; background: #333333; padding: 3rem; border-radius: 4px; }
+
+/* ADJUST V3 TITLES FOR SPLIT HERO (Light Background) */
+.hero-split-content .hero-v3-title {
+    color: var(--black) !important;
+}
+
+.hero-split-content .hero-v3-tagline {
+    color: var(--slate) !important;
+}
+
+.hero-split-content .hero-v3-pretitle {
+    color: var(--gold) !important;
+}
+
+.hero-split-content .hero-v3-title {
+    font-size: clamp(2.5rem, 5vw, 4rem) !important;
+}
+.feature-item-image { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; text-align: left; background: var(--light-gray); padding: 3rem; border-radius: 4px; }
 .feature-item-image:nth-child(even) { direction: rtl; }
 .feature-item-image:nth-child(even) > * { direction: ltr; }
 .feature-item-image .feature-image img { width: 100%; height: 450px; object-fit: cover; transition: transform 0.8s ease; }
 .feature-item-image:hover .feature-image img { transform: scale(1.03); }
-.feature-item-image h3 { font-size: 1rem; letter-spacing: 0.3em; margin-bottom: 1.2rem; color: #c9a962 !important; }
-.feature-item-image p { font-size: 1.15rem; line-height: 1.9; color: #cccccc !important; margin-bottom: 0; }
+.feature-item-image h3 { font-size: 1rem; letter-spacing: 0.3em; margin-bottom: 1.2rem; color: var(--gold) !important; }
+.feature-item-image p { font-size: 1.15rem; line-height: 1.9; color: var(--charcoal) !important; margin-bottom: 0; }
 
 @media (max-width: 768px) {
     .feature-item-image { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
@@ -802,10 +876,10 @@ ul.products li.product .button:hover {
 /* FOOTER - TECHNICAL REFINEMENT */
 footer.wp-block-template-part { 
     position: relative !important;
-    background: #000000 !important;
-    color: var(--white) !important; 
+    background: var(--light-gray) !important;
+    color: var(--black) !important; 
     padding: 10vh 8vw !important; 
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 footer .wp-block-columns {
@@ -820,7 +894,7 @@ footer .wp-block-heading {
     font-size: 0.8rem !important;
     letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     margin-bottom: 2rem !important;
     text-align: left !important;
 }
@@ -828,7 +902,7 @@ footer .wp-block-heading {
 footer .wp-block-navigation-item__content {
     font-family: var(--font-body) !important;
     font-size: 0.85rem !important;
-    color: #888888 !important;
+    color: var(--charcoal) !important;
     text-transform: none !important;
     letter-spacing: normal !important;
     text-decoration: none !important;
@@ -845,7 +919,7 @@ footer .wp-block-site-title a {
     font-size: 1.2rem !important; 
     letter-spacing: 0.1em; 
     text-transform: uppercase; 
-    color: var(--white) !important; 
+    color: var(--black) !important; 
 }
 
 /* RESPONSIVE */
@@ -858,26 +932,26 @@ footer .wp-block-site-title a {
     }
 }
 
-/* SHOP PAGE - DARK BACKGROUND */
+/* SHOP PAGE - LIGHT BACKGROUND */
 body.woocommerce-shop,
 body.post-type-archive-product {
-    background: #4a4a4a !important;
+    background: var(--light-gray) !important;
 }
 
 body.woocommerce-shop .wp-site-blocks,
 body.woocommerce-shop .has-background,
 body.woocommerce-shop .has-base-background-color {
-    background: #4a4a4a !important;
+    background: var(--light-gray) !important;
 }
 
 body.woocommerce-shop .woocommerce-result-count {
-    color: #b8b8b8 !important;
+    color: var(--charcoal) !important;
 }
 
 body.woocommerce-shop .woocommerce-ordering select {
-    background: #2d2d2d !important;
-    color: #fff !important;
-    border: 1px solid #4a4a4a !important;
+    background: var(--white) !important;
+    color: var(--black) !important;
+    border: 1px solid var(--silver) !important;
 }
 
 /* Shop page header - keep white */
@@ -891,19 +965,19 @@ body.woocommerce-shop header.wp-block-template-part > div {
 
 body.woocommerce-shop header.wp-block-template-part a,
 body.woocommerce-shop header.wp-block-template-part nav a {
-    color: #4a4a4a !important;
+    color: var(--black) !important;
 }
 
 /* ========================================
    REFINED SHOP PAGE STYLING
    ======================================== */
 
-/* Elegant gradient background */
+/* Elegant light gradient background */
 body.woocommerce-shop,
 body.woocommerce-shop .wp-site-blocks,
 body.woocommerce-shop .has-background,
 body.woocommerce-shop .has-base-background-color {
-    background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%) !important;
+    background: linear-gradient(180deg, #f9f9f9 0%, #eeeeee 100%) !important;
 }
 
 /* Shop title styling */
@@ -1135,7 +1209,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     left: 0;
     right: 0;
     height: 150px;
-    background: linear-gradient(to bottom, transparent 0%, #1a1a1a 100%);
+    background: linear-gradient(to bottom, transparent 0%, var(--white) 100%);
     z-index: 5;
     pointer-events: none;
 }
@@ -1168,7 +1242,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 /* Section transitions - smooth flow */
 .section-dark {
     position: relative;
-    background: linear-gradient(180deg, #2a2a2a 0%, #353535 50%, #2a2a2a 100%) !important;
+    background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 50%, var(--white) 100%) !important;
 }
 
 .section-dark::before {
@@ -1178,7 +1252,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     left: 0;
     right: 0;
     height: 80px;
-    background: linear-gradient(to bottom, transparent 0%, #2a2a2a 100%);
+    background: linear-gradient(to bottom, transparent 0%, var(--white) 100%);
     pointer-events: none;
 }
 
@@ -1227,7 +1301,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 /* Curated section (products on homepage) */
 .section-light {
     position: relative;
-    background: linear-gradient(180deg, #2a2a2a 0%, #353535 50%, #2a2a2a 100%) !important;
+    background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 50%, var(--white) 100%) !important;
     padding: 12vh 6vw !important;
     width: 100% !important;
     max-width: none !important;
@@ -1267,15 +1341,71 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
    TECHNICAL THEME OVERRIDES FOR FRONT PAGE - FINAL DEFINITIVE FORM
    Ensures all sections follow the masculine/technical dark aesthetic with left alignment
 */
-.home .wp-site-blocks,
-.home main.wp-block-group {
-    background: #1a1a1a !important;
+.home .wp-site-blocks {
+    background: var(--white) !important;
 }
 
-/* Fix the 'Begin Your Collection' and similar sections that appear white */
+/* Fix sections that should appear white */
 .home main .wp-block-group:not(.hero-fullscreen-v2) {
-    background: #1a1a1a !important;
+    background: var(--white) !important;
+    color: var(--black) !important;
+}
+
+/* Refine Media & Text blocks for better balance and white background */
+.home main .wp-block-media-text,
+.home main .wp-block-columns {
+    background: var(--white) !important;
+    padding: 8vh 10vw !important; /* Increased symmetrical padding */
+    gap: 8rem !important; /* Larger gap for technical breathing room */
+    align-items: center !important;
+    max-width: 1600px !important; /* Wider for better balance */
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.home main .wp-block-media-text__content {
+    padding: 0 !important;
+    max-width: 600px !important; /* Wider content for better balance */
+}
+
+.home main .wp-block-media-text__media img {
+    border-radius: 4px !important;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.06) !important;
+}
+
+/* Ensure all content titles on homepage are solid black, but exclude hero */
+.home main .wp-block-group:not(.hero-fullscreen-v2) h1,
+.home main .wp-block-group:not(.hero-fullscreen-v2) h2,
+.home main .wp-block-group:not(.hero-fullscreen-v2) h3,
+.home main .wp-block-group:not(.hero-fullscreen-v2) .wp-block-heading {
+    color: #000000 !important;
+}
+
+/* Specific Hero Title Color */
+.hero-v3-title {
     color: var(--white) !important;
+}
+
+.hero-v3-tagline {
+    color: rgba(255,255,255,0.8) !important;
+}
+
+/* Ensure alternating Media/Text blocks have white backgrounds and balanced spacing */
+.home main .wp-block-media-text {
+    background: var(--white) !important;
+    padding: 8vh 10vw !important;
+    gap: 8rem !important;
+    align-items: center !important;
+}
+
+.home main .wp-block-media-text__content {
+    padding: 0 !important;
+    max-width: 600px !important;
+}
+
+.home main .wp-block-media-text__media img {
+    border-radius: 4px !important;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.06) !important;
 }
 
 /* GLOBAL SECTION ALIGNMENT & SCALING */
@@ -1290,7 +1420,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     font-size: clamp(1.5rem, 3vw, 2rem) !important; /* SIGNIFICANTLY INCREASED */
     text-transform: uppercase !important;
     letter-spacing: 0.35em !important;
-    color: var(--white) !important;
+    color: var(--black) !important; /* Ensure solid black */
     margin-bottom: 3rem !important;
     text-align: left !important; /* LEFT ALIGN */
     width: 100% !important;
@@ -1301,7 +1431,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 .home main .manifesto-v2-text,
 .section-light p,
 .section-dark p {
-    color: #b0b0b0 !important;
+    color: #333333 !important; /* Darker for better contrast on gray */
     font-size: 1.25rem !important; /* SIGNIFICANTLY INCREASED */
     line-height: 1.9 !important;
     text-align: left !important; /* LEFT ALIGN */
@@ -1310,24 +1440,23 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     max-width: 800px !important;
 }
 
-/* Ensure container allows left alignment */
+/* Ensure container allows left alignment with reduced empty space */
 .home main .wp-block-group,
 .home main .manifesto-v2-container,
 .home main .wp-block-columns {
-    text-align: left !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    margin-left: 0 !important;
-    padding-left: 10vw !important;
+    background: var(--white) !important;
+    padding: 8vh 10vw !important;
+    gap: 8rem !important;
+    align-items: center !important;
+    max-width: 1600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
-/* ========================================
-   WHY LAB-GROWN SECTION - Technical Grid
-   ======================================== */
 .why-lab-grown-section {
-    background: #0d0d0d !important;
-    padding: 12vh 10vw !important;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    background: var(--white) !important;
+    padding: 10vh 5vw !important;
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .why-lab-grown-container {
@@ -1355,14 +1484,14 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     font-weight: 800 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.2em !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     margin: 0 0 2rem 0 !important;
 }
 
 .why-lab-grown-intro {
     font-size: 1.15rem !important;
     line-height: 1.9 !important;
-    color: #999 !important;
+    color: #333333 !important;
     max-width: 700px !important;
     margin: 0 !important;
 }
@@ -1381,15 +1510,15 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 }
 
 .advantage-card {
-    background: rgba(255,255,255,0.02) !important;
-    border: 1px solid rgba(255,255,255,0.06) !important;
+    background: var(--light-gray) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
     padding: 2.5rem !important;
     transition: all 0.3s ease;
 }
 
 .advantage-card:hover {
-    background: rgba(255,255,255,0.04) !important;
-    border-color: rgba(201, 169, 98, 0.2) !important;
+    background: var(--mid-gray) !important;
+    border-color: rgba(201, 169, 98, 0.4) !important;
     transform: translateY(-4px);
 }
 
@@ -1408,21 +1537,21 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.2em !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     margin: 0 0 1.25rem 0 !important;
 }
 
 .advantage-card p {
     font-size: 0.95rem !important;
     line-height: 1.8 !important;
-    color: #888 !important;
+    color: #444444 !important;
     margin: 0 !important;
     max-width: none !important;
 }
 
 .why-lab-grown-cta {
     padding-top: 3rem;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .why-lab-grown-cta .cta-text {
@@ -1430,7 +1559,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     font-size: 1rem !important;
     font-weight: 600 !important;
     letter-spacing: 0.1em !important;
-    color: #666 !important;
+    color: #333333 !important;
     margin-bottom: 2rem !important;
     text-transform: uppercase !important;
 }
@@ -1456,9 +1585,10 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
    FAQ SECTION - Technical Brief
    ======================================== */
 .faq-section {
-    background: #141414 !important;
-    padding: 12vh 10vw !important;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    background: var(--white) !important;
+    padding: 8vh 10vw !important;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    margin-top: 4rem;
 }
 
 .faq-container {
@@ -1467,7 +1597,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 }
 
 .faq-header {
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 }
 
 .faq-section .section-label {
@@ -1478,6 +1608,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     text-transform: uppercase !important;
     color: var(--gold) !important;
     margin-bottom: 1.5rem !important;
+    display: block !important;
 }
 
 .faq-title {
@@ -1486,7 +1617,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     font-weight: 800 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.2em !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     margin: 0 !important;
 }
 
@@ -1504,7 +1635,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 
 .faq-item {
     padding-bottom: 2.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .faq-question {
@@ -1513,7 +1644,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.15em !important;
-    color: var(--white) !important;
+    color: var(--black) !important;
     margin: 0 0 1.25rem 0 !important;
     line-height: 1.5 !important;
 }
@@ -1521,7 +1652,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 .faq-answer {
     font-size: 0.95rem !important;
     line-height: 1.85 !important;
-    color: #888 !important;
+    color: var(--charcoal) !important;
     margin: 0 !important;
     max-width: none !important;
 }
@@ -1530,10 +1661,10 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 .section-graphite,
 .testimonial-section,
 .wp-block-group.testimonial-section {
-    background: #111111 !important;
+    background: var(--light-gray) !important;
     padding: 15vh 10vw !important;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
     text-align: left !important;
 }
 
@@ -1543,7 +1674,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     font-size: clamp(1.2rem, 2.5vw, 1.8rem) !important; /* INCREASED */
     font-weight: 500 !important;
     line-height: 1.8 !important;
-    color: #e0e0e0 !important;
+    color: var(--black) !important;
     font-style: normal !important;
     max-width: 900px;
     margin: 0 !important; /* LEFT ALIGN */
@@ -1620,4 +1751,46 @@ html {
 /* Global spacing refinements */
 .wp-block-spacer {
     opacity: 0;
+}
+
+/* ========================================
+   FAQ PAGE - Unified Light Design
+   ======================================== */
+
+/* Make entire FAQ page light */
+.page-id-155,
+body.page-template-default[class*="faq"],
+body[class*="page-faq"] {
+    background: var(--light-gray) !important;
+}
+
+.page-id-155 .wp-site-blocks,
+body[class*="page-faq"] .wp-site-blocks {
+    background: var(--light-gray) !important;
+}
+
+/* Make main content area seamless */
+.page-id-155 main,
+body[class*="page-faq"] main {
+    background: var(--light-gray) !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Style the FAQ section questions */
+.page-id-155 main h3,
+body[class*="page-faq"] main h3 {
+    font-family: var(--font-body) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    color: var(--black) !important;
+}
+
+/* Ensure header stays properly styled on FAQ page */
+.page-id-155 header.wp-block-template-part,
+body[class*="page-faq"] header.wp-block-template-part {
+    background: rgba(255,255,255,0.9) !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
 }

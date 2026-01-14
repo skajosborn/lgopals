@@ -54,12 +54,13 @@ p { margin: 0 0 1.5rem 0; font-size: 0.95rem; color: var(--slate); }
 /* AGGRESSIVE HEADER RESET - FINAL FORM */
 header.wp-block-template-part {
     height: 100px !important;
-    padding: 0 5vw !important;
+    padding: 20px 5vw 0 !important; /* Top padding added */
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
-    background: transparent !important;
+    background: rgba(0,0,0,0.5) !important;
+    backdrop-filter: blur(10px);
     position: absolute !important;
     top: 0;
     left: 0;
@@ -68,14 +69,32 @@ header.wp-block-template-part {
     border-bottom: 1px solid rgba(255,255,255,0.1) !important;
 }
 
+/* Force ALL header children into a single row */
+header.wp-block-template-part > *,
+header.wp-block-template-part > * > *,
+header.wp-block-template-part > * > * > * {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+}
+
+/* The row that contains nav + account + cart */
+header .wp-block-group:has(.wp-block-navigation) {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    justify-content: center !important;
+}
+
 /* Force horizontal layout and kill mobile overlay */
 header .wp-block-navigation {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    flex-grow: 1 !important;
     height: 100% !important;
     position: static !important;
+    flex-shrink: 0 !important;
 }
 
 header .wp-block-navigation__responsive-container,
@@ -123,15 +142,32 @@ header .wp-block-navigation__responsive-container-close {
     display: none !important;
 }
 
-/* Ensure actions are also centered vertically */
-header .header-actions,
-header .wp-block-woocommerce-customer-account,
-header .wc-block-mini-cart {
+/* Position profile and cart on the far right with proper spacing */
+header .wp-block-woocommerce-customer-account {
+    position: absolute !important;
+    right: calc(5vw + 60px) !important; /* Account for cart space */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
     display: flex !important;
     align-items: center !important;
-    height: 100% !important;
-    gap: 1.5rem !important;
     color: var(--white) !important;
+    z-index: 100 !important;
+}
+
+header .wc-block-mini-cart {
+    position: absolute !important;
+    right: 5vw !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    align-items: center !important;
+    color: var(--white) !important;
+    z-index: 100 !important;
+}
+
+/* Give nav items room so they don't overlap with icons */
+header .wp-block-navigation {
+    padding-right: 120px !important;
 }
 
 header .wp-block-site-logo,
@@ -153,14 +189,15 @@ header .wc-block-customer-account__account-link {
 .hero-fullscreen-v2 {
     position: relative !important;
     height: 100vh !important;
-    min-height: 800px !important;
+    min-height: 850px !important; /* Increased min-height */
     width: 100% !important;
     background-image: url('/wp-content/uploads/manopals3.png') !important;
     background-size: cover !important;
     background-position: center !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important; /* Back to left aligned */
+    justify-content: flex-start !important; 
+    padding-top: 150px !important; /* Increased padding to safely clear the 100px navbar */
     overflow: hidden;
     color: var(--white);
     margin-top: 0 !important;
@@ -177,8 +214,9 @@ header .wc-block-customer-account__account-link {
 .hero-v3-container {
     position: relative;
     z-index: 10;
-    padding-left: 10vw; /* Back to left padding */
+    padding-left: 10vw; 
     width: 100%;
+    margin-top: 50px; /* Extra margin to ensure no overlap with nav */
 }
 
 .hero-v3-content {
@@ -438,75 +476,77 @@ header .wc-block-customer-account__account-link {
 .section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--white) !important; background: transparent !important; color: var(--white) !important; }
 .section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--white) !important; color: var(--charcoal) !important; }
 
-/* MANIFESTO SECTION V2 */
+/* MANIFESTO SECTION V2 - Molecular Standard */
 .manifesto-section-v2 {
     padding: 15vh 10vw !important;
-    text-align: center;
-    background: #1a1a1a !important; /* Slightly darker than section-dark */
+    text-align: left !important;
+    background: #1a1a1a !important;
 }
 
 .manifesto-v2-container {
-    max-width: 1000px;
-    margin: 0 auto;
+    max-width: 1200px;
+    margin: 0;
 }
 
 .manifesto-v2-title {
-    font-family: var(--font-body) !important; /* Montserrat */
+    font-family: var(--font-body) !important;
     font-weight: 800 !important;
-    font-size: clamp(0.9rem, 2vw, 1.2rem) !important; /* Matches technical scale below */
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem) !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.3em !important;
+    letter-spacing: 0.35em !important;
     font-style: normal !important;
     color: #ffffff !important;
-    margin-bottom: 2.5rem !important;
+    margin-bottom: 3rem !important;
     line-height: 1.2 !important;
+    text-align: left !important;
 }
 
 .manifesto-v2-text {
     font-family: var(--font-body) !important;
-    font-size: 0.95rem !important; /* Standard technical body scale */
-    line-height: 1.8 !important;
+    font-size: 1.15rem !important;
+    line-height: 1.9 !important;
     color: var(--silver) !important;
     font-style: normal !important;
-    margin: 0 auto 1.5rem auto !important;
-    max-width: 800px;
+    margin: 0 0 2rem 0 !important;
+    max-width: 900px;
     font-weight: 400 !important;
     text-transform: none !important;
     letter-spacing: normal !important;
+    text-align: left !important;
 }
 
-.manifesto-v2-text strong {
-    font-weight: 600;
-    color: #ffffff;
-}
-
-.manifesto-v2-subtext {
+/* GLOBAL SECTION SCALING - Increased font sizes for all main sections */
+.home main h2, 
+.home main .wp-block-heading {
     font-family: var(--font-body) !important;
-    font-size: 0.75rem !important;
-    letter-spacing: 0.2em !important;
-    color: #666666 !important;
-    max-width: 600px;
-    margin: 0 auto !important;
-    line-height: 1.8 !important;
-    text-transform: uppercase;
-    font-weight: 600 !important;
+    font-weight: 800 !important;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.35em !important;
+    color: var(--white) !important;
+    margin-bottom: 3rem !important;
+    text-align: left !important;
 }
 
-.manifesto-v2-text strong {
-    font-weight: 900;
-    color: #ffffff; /* Highlight 'Evolution' in white */
+.home main p {
+    color: #a0a0a0 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.9 !important;
+    text-align: left !important;
 }
 
-.manifesto-v2-subtext {
-    font-family: var(--font-body) !important;
-    font-size: 0.75rem !important;
-    letter-spacing: 0.2em !important;
-    color: #888888 !important;
-    max-width: 800px;
-    margin: 0 auto !important;
-    line-height: 1.8 !important;
-    text-transform: uppercase;
-    font-weight: 600 !important;
+/* Ensure sections below also scale and align left */
+.section-light h2,
+.section-dark h2,
+.section-graphite h2,
+.testimonial-section blockquote {
+    text-align: left !important;
+}
+
+.section-light p,
+.section-dark p {
+    font-size: 1.1rem !important;
+    text-align: left !important;
 }
 
 /* SECTIONS HEADINGS - MASCULINE REFINEMENT */
@@ -1224,8 +1264,8 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 }
 
 /* 
-   TECHNICAL THEME OVERRIDES FOR FRONT PAGE
-   Ensures all sections follow the masculine/technical dark aesthetic
+   TECHNICAL THEME OVERRIDES FOR FRONT PAGE - FINAL DEFINITIVE FORM
+   Ensures all sections follow the masculine/technical dark aesthetic with left alignment
 */
 .home .wp-site-blocks,
 .home main.wp-block-group {
@@ -1233,15 +1273,52 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 }
 
 /* Fix the 'Begin Your Collection' and similar sections that appear white */
-/* Scoped to main to avoid affecting the footer */
 .home main .wp-block-group:not(.hero-fullscreen-v2) {
     background: #1a1a1a !important;
     color: var(--white) !important;
 }
 
-/* Specific styling for the section containing 'Begin Your Collection' */
-.home main .wp-block-group:has(h2) {
-    padding: 10vh 8vw !important;
+/* GLOBAL SECTION ALIGNMENT & SCALING */
+.home main h2, 
+.home main .wp-block-heading,
+.home main .manifesto-v2-title,
+.section-light h2,
+.section-dark h2,
+.section-graphite h2 {
+    font-family: var(--font-body) !important;
+    font-weight: 800 !important;
+    font-size: clamp(1.5rem, 3vw, 2rem) !important; /* SIGNIFICANTLY INCREASED */
+    text-transform: uppercase !important;
+    letter-spacing: 0.35em !important;
+    color: var(--white) !important;
+    margin-bottom: 3rem !important;
+    text-align: left !important; /* LEFT ALIGN */
+    width: 100% !important;
+    max-width: 1000px !important;
+}
+
+.home main p,
+.home main .manifesto-v2-text,
+.section-light p,
+.section-dark p {
+    color: #b0b0b0 !important;
+    font-size: 1.25rem !important; /* SIGNIFICANTLY INCREASED */
+    line-height: 1.9 !important;
+    text-align: left !important; /* LEFT ALIGN */
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    max-width: 800px !important;
+}
+
+/* Ensure container allows left alignment */
+.home main .wp-block-group,
+.home main .manifesto-v2-container,
+.home main .wp-block-columns {
+    text-align: left !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    padding-left: 10vw !important;
 }
 
 /* Testimonial refinement - Sharp, Technical, Authoritative */
@@ -1252,19 +1329,20 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     padding: 15vh 10vw !important;
     border-top: 1px solid rgba(255,255,255,0.05);
     border-bottom: 1px solid rgba(255,255,255,0.05);
+    text-align: left !important;
 }
 
 .testimonial-section blockquote,
 .wp-block-quote.testimonial-section blockquote {
     font-family: var(--font-body) !important;
-    font-size: clamp(1.1rem, 2.2vw, 1.4rem) !important;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem) !important; /* INCREASED */
     font-weight: 500 !important;
     line-height: 1.8 !important;
     color: #e0e0e0 !important;
     font-style: normal !important;
     max-width: 900px;
-    margin: 0 auto !important;
-    text-align: center;
+    margin: 0 !important; /* LEFT ALIGN */
+    text-align: left !important;
     border: none !important;
     padding: 0 !important;
 }
@@ -1274,48 +1352,38 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     display: block;
     margin-top: 3rem !important;
     font-family: var(--font-body) !important;
-    font-size: 0.75rem !important;
+    font-size: 0.85rem !important;
     font-weight: 800 !important;
     letter-spacing: 0.4em !important;
     text-transform: uppercase !important;
     color: var(--gold) !important;
     font-style: normal !important;
-    text-align: center;
+    text-align: left !important; /* LEFT ALIGN */
 }
 
-/* 'Begin Your Collection' - Contact Section Technical Style */
-/* Scoped to main to avoid affecting the footer */
-.home main h2, 
-.home main .wp-block-heading {
-    font-family: var(--font-body) !important;
-    font-weight: 800 !important;
-    font-size: clamp(0.9rem, 2vw, 1.1rem) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.35em !important;
-    color: var(--white) !important;
-    margin-bottom: 2.5rem !important;
-    text-align: center !important;
+/* Ensure buttons in these sections match the gold technical style and align left */
+.home main .wp-block-buttons {
+    justify-content: flex-start !important;
 }
 
-.home main p {
-    color: #a0a0a0 !important;
-    font-size: 0.95rem !important;
-    line-height: 1.8 !important;
-    text-align: center !important;
-}
-
-/* Ensure buttons in these sections match the gold technical style */
-.home main .wp-block-group:not(.hero-fullscreen-v2) .wp-block-button__link {
+.home main .wp-block-button__link {
     border-color: var(--gold) !important;
     color: var(--gold) !important;
     background: transparent !important;
     font-weight: 700 !important;
     transition: all 0.3s ease;
+    margin-left: 0 !important;
 }
 
-.home main .wp-block-group:not(.hero-fullscreen-v2) .wp-block-button__link:hover {
+.home main .wp-block-button__link:hover {
     background: rgba(201, 169, 98, 0.1) !important;
     transform: translateY(-2px);
+}
+
+/* Reset specific manifesto-v2 overrides that might conflict */
+.manifesto-v2-container {
+    margin: 0 !important;
+    max-width: none !important;
 }
 
 /* Smooth scroll behavior */

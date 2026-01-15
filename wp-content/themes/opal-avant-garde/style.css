@@ -345,7 +345,13 @@ header .wc-block-customer-account__account-link {
     transform: translateY(-2px);
 }
 
-.home .entry-title, .home .entry-header, .home .wp-block-post-title { display: none !important; }
+.home .entry-title, .home .entry-header, .home .wp-block-post-title,
+.page-id-40 .entry-title, .page-id-40 .entry-header, .page-id-40 .wp-block-post-title,
+.page-id-40 .wp-block-spacer { display: none !important; }
+
+.page-id-40 .faq-section {
+    padding-top: 5vh !important;
+}
 
 /* HERO */
 .hero-fullscreen {
@@ -515,7 +521,7 @@ header .wc-block-customer-account__account-link {
 .manifesto-section-v2 {
     padding: 15vh 10vw !important;
     text-align: left !important;
-    background: var(--surface) !important;
+    background: #d0d0d0 !important;
 }
 
 /* Section immediately below the manifesto (Curated Selection) */
@@ -689,6 +695,19 @@ header .wc-block-customer-account__account-link {
 /* FEATURE GRID */
 .feature-grid-images { display: flex !important; flex-direction: column !important; gap: 3rem; max-width: 1400px !important; margin: 0 auto; }
 .feature-item-image { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; text-align: left; background: #e0e0e0; padding: 3rem; border-radius: 4px; border: 1px solid var(--line); }
+
+/* Force images left, text right for all feature blocks */
+.feature-item-image .feature-image { order: 1 !important; }
+.feature-item-image .feature-content { order: 2 !important; }
+
+/* Force WordPress native media-text blocks to always have media on left */
+.wp-block-media-text {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas: "media content" !important;
+}
+.wp-block-media-text__media { grid-area: media !important; }
+.wp-block-media-text__content { grid-area: content !important; }
 
 /* Gray containers for WordPress media-text blocks (Integrity, Brilliance, Designer Grade) */
 .wp-block-media-text,
@@ -1501,7 +1520,8 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     text-transform: uppercase !important;
     letter-spacing: 0.2em !important;
     color: var(--black) !important;
-    margin: 0 !important;
+    margin: 0 0 4rem 0 !important;
+    text-align: center !important;
 }
 
 .faq-grid {

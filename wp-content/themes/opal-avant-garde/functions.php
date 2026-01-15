@@ -122,7 +122,7 @@ function opal_get_faq_section_html() {
 function opal_get_contact_section_html() {
     $success_msg = '';
     if (isset($_GET['contact_success'])) {
-        $success_msg = '<div style="background:#d4edda; color:#155724; padding:1.5rem; border-radius:8px; margin-bottom:2rem; border:1px solid #c3e6cb; font-weight:600; text-align:center;">Thank you! Your message has been sent successfully.</div>';
+        $success_msg = '<div class="contact-success-banner">Thank you! Your message has been sent successfully.</div>';
     }
 
     return '
@@ -130,37 +130,37 @@ function opal_get_contact_section_html() {
         <div class="contact-container">
             ' . $success_msg . '
             <div class="wp-block-columns is-layout-flex">
-                <div class="wp-block-column has-black-background-color" style="background-color:#1a1a1a; padding: 4rem;">
-                    <h2 style="color:white; font-family:var(--font-display); font-size:3rem; margin-bottom:2rem; font-weight:300;">Get in touch</h2>
-                    <p style="color:#ccc; font-size:1.1rem; line-height:1.6; margin-bottom:3rem;">We’re here to answer your questions and listen to your suggestions.</p>
-                    <div style="color:white; line-height:2;">
-                        <p style="margin-bottom:2rem;">United States<br>P.O. Box 205<br>South Casco, ME 04077</p>
-                        <p><a href="mailto:info@labgrownopals.com" style="color:white; text-decoration:none; border-bottom:1px solid var(--gold);">info@labgrownopals.com</a></p>
+                <div class="wp-block-column contact-sidebar">
+                    <h2 class="contact-sidebar-title">Get in touch</h2>
+                    <p class="contact-sidebar-intro">We’re here to answer your questions and listen to your suggestions.</p>
+                    <div class="contact-sidebar-details">
+                        <p class="contact-address">United States<br>P.O. Box 205<br>South Casco, ME 04077</p>
+                        <p><a href="mailto:info@labgrownopals.com" class="contact-email-link">info@labgrownopals.com</a></p>
                     </div>
                 </div>
-                <div class="wp-block-column" style="background-color:white; padding: 4rem;">
+                <div class="wp-block-column contact-form-column">
                     <form class="opal-contact-form" method="POST">
                         <input type="hidden" name="opal_contact_submit" value="1">
-                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="form-row-split">
                             <div class="form-group">
-                                <label style="display:block; font-weight:600; margin-bottom:0.5rem; font-size:0.85rem;">First Name *</label>
-                                <input type="text" name="first_name" required style="width:100%; padding:0.8rem; border:1px solid #ddd; border-radius:4px;">
+                                <label>First Name *</label>
+                                <input type="text" name="first_name" required>
                             </div>
                             <div class="form-group">
-                                <label style="display:block; font-weight:600; margin-bottom:0.5rem; font-size:0.85rem;">Last Name</label>
-                                <input type="text" name="last_name" style="width:100%; padding:0.8rem; border:1px solid #ddd; border-radius:4px;">
+                                <label>Last Name</label>
+                                <input type="text" name="last_name">
                             </div>
                         </div>
-                        <div class="form-group" style="margin-bottom: 1.5rem;">
-                            <label style="display:block; font-weight:600; margin-bottom:0.5rem; font-size:0.85rem;">Email *</label>
-                            <input type="email" name="email" required style="width:100%; padding:0.8rem; border:1px solid #ddd; border-radius:4px;">
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required>
                         </div>
-                        <div class="form-group" style="margin-bottom: 1.5rem;">
-                            <label style="display:block; font-weight:600; margin-bottom:0.5rem; font-size:0.85rem;">Message *</label>
-                            <textarea name="message" rows="5" required style="width:100%; padding:0.8rem; border:1px solid #ddd; border-radius:4px;"></textarea>
+                        <div class="form-group">
+                            <label>Message *</label>
+                            <textarea name="message" rows="5" required></textarea>
                         </div>
-                        <p style="font-size:0.8rem; color:#666; margin-bottom:2rem;">By submitting this form, you agree to our processing of your data in accordance with our Privacy Policy.</p>
-                        <button type="submit" style="background:#ad6d74; color:white; border:none; padding:1rem 2rem; border-radius:4px; cursor:pointer; font-weight:600; width:100%; font-size:1rem;">Send Message</button>
+                        <p class="form-privacy-note">By submitting this form, you agree to our processing of your data in accordance with our Privacy Policy.</p>
+                        <button type="submit" class="contact-submit-button">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -193,7 +193,7 @@ add_action('template_redirect', function() {
 function opal_replace_content_text($content) {
     if (is_front_page()) {
         // --- MASTER GRADE SECTION ---
-        $new_title = 'The Molecular Standard of the Future';
+        $new_title = '<div id="molecular-standard" style="position:relative; top:-120px; visibility:hidden;"></div>' . 'The Molecular Standard of the Future';
         $new_text = '<p>Our lab-grown opals aren’t an alternative — they’re the evolution. By replicating the Earth’s pressure cycles in a controlled environment, we create opal that is optically and molecularly identical to mined stone, yet structurally superior in every measurable way.</p>' .
                     '<p>Engineered for absolute consistency and atomic-level brilliance, each block delivers flawless performance for precision lapidary, bespoke horology, and high-end craftsmanship. No fractures. No unpredictability. No environmental cost.</p>' .
                     '<p>Same fire. Same beauty.<br>Zero footprint. Total integrity. The new standard for the modern craftsman.</p>';
@@ -295,3 +295,84 @@ function opal_replace_block_text($block_content, $block) {
     return $block_content;
 }
 add_filter('render_block', 'opal_replace_block_text', 10, 2);
+
+// Make 'About' link point to the Molecular Standard section on homepage
+function opal_fix_about_link($nav_menu_items) {
+    foreach ($nav_menu_items as $item) {
+        if (strtolower($item->title) == 'about') {
+            $item->url = home_url('/') . '#molecular-standard';
+        }
+    }
+    return $nav_menu_items;
+}
+add_filter('wp_get_nav_menu_items', 'opal_fix_about_link', 10);
+
+// Change 'What You Want!?' to 'You\'ve Selected' on the cart page
+function opal_change_cart_attribute_label($translated_text, $text, $domain) {
+    if ($text === 'What You Want!?') {
+        $translated_text = 'You\'ve Selected';
+    }
+    return $translated_text;
+}
+add_filter('gettext', 'opal_change_cart_attribute_label', 20, 3);
+
+// More robust way to change WooCommerce attribute labels
+function opal_change_attribute_label($label, $name, $product) {
+    if (strpos($label, 'What You Want') !== false) {
+        return 'You\'ve Selected';
+    }
+    return $label;
+}
+add_filter('woocommerce_attribute_label', 'opal_change_attribute_label', 10, 3);
+
+// Even more aggressive: filter the cart item data
+function opal_change_cart_item_data_label($item_data, $cart_item) {
+    foreach ($item_data as $key => $data) {
+        if (strpos($data['name'], 'What You Want') !== false) {
+            $item_data[$key]['name'] = 'You\'ve Selected';
+        }
+    }
+    return $item_data;
+}
+add_filter('woocommerce_get_item_data', 'opal_change_cart_item_data_label', 10, 2);
+
+// Filter the actual variation data output
+function opal_change_variation_labels($data) {
+    if (is_array($data)) {
+        foreach ($data as $key => $value) {
+            if (strpos($key, 'What You Want') !== false) {
+                unset($data[$key]);
+                $data['You\'ve Selected'] = $value;
+            }
+        }
+    }
+    return $data;
+}
+// This is not a standard filter, but let's try gettext again with a higher priority and exact match check
+function opal_final_gettext_fix($translated_text, $text, $domain) {
+    $search = 'What You Want!?';
+    if (trim($text) === $search || $text === 'What You Want!?') {
+        return 'You\'ve Selected';
+    }
+    return $translated_text;
+}
+add_filter('gettext', 'opal_final_gettext_fix', 999, 3);
+add_filter('ngettext', 'opal_final_gettext_fix', 999, 3);
+
+// Force change attribute labels everywhere
+add_filter('woocommerce_attribute_label', function($label, $name, $product) {
+    if (strpos(strtolower($label), 'what you want') !== false) {
+        return 'You\'ve Selected';
+    }
+    return $label;
+}, 999, 3);
+
+// Filter the cart item data names directly
+add_filter('woocommerce_get_item_data', function($item_data, $cart_item) {
+    foreach ($item_data as $key => $data) {
+        if (isset($data['name']) && strpos(strtolower($data['name']), 'what you want') !== false) {
+            $item_data[$key]['name'] = 'You\'ve Selected';
+        }
+    }
+    return $item_data;
+}, 999, 2);

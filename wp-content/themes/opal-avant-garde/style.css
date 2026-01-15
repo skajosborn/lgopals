@@ -229,7 +229,7 @@ header .wc-block-customer-account__account-link {
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important; 
-    padding-top: 150px !important; 
+    padding-top: 100px !important; 
     overflow: hidden;
     color: var(--ink) !important; /* Allow gray/ink hero typography on white wash */
     margin-top: 0 !important;
@@ -255,7 +255,7 @@ header .wc-block-customer-account__account-link {
     z-index: 10;
     padding-left: 10vw; 
     width: 100%;
-    margin-top: 50px; /* Extra margin to ensure no overlap with nav */
+    margin-top: 0; /* Removed extra margin */
 }
 
 .hero-v3-content {
@@ -530,17 +530,17 @@ header .wc-block-customer-account__account-link {
 .section-light .wp-block-button__link, .section-white .wp-block-button__link { border-color: var(--ink) !important; background: transparent !important; color: var(--ink) !important; }
 .section-light .wp-block-button__link:hover, .section-white .wp-block-button__link:hover { background: var(--ink) !important; color: var(--white) !important; }
 
-/* MANIFESTO SECTION V2 - Molecular Standard - Unified white background */
+/* MANIFESTO SECTION V2 - Molecular Standard - Gray background for depth */
 .manifesto-section-v2 {
     padding: 15vh 10vw !important;
     text-align: left !important;
-    background: #d0d0d0 !important;
+    background: #ebebeb !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Section immediately below the manifesto (Curated Selection) */
-.manifesto-section-v2 + .wp-block-group,
-.home main .wp-block-group:has(h2:contains("Curated Selection")) {
-    background: var(--surface) !important;
+/* Section immediately below the manifesto - continue the gray background flow */
+.manifesto-section-v2 + .wp-block-group {
+    background: #ebebeb !important;
 }
 
 .manifesto-v2-container {
@@ -905,7 +905,9 @@ ul.products li.product .button:hover {
 /* SHOP PAGE - DARK BACKGROUND */
 body.woocommerce-shop,
 body.post-type-archive-product,
-body.single-product {
+body.single-product,
+body.woocommerce-cart,
+body.woocommerce-checkout {
     background: var(--surface-muted) !important;
 }
 
@@ -961,8 +963,10 @@ body.woocommerce header.wp-block-template-part nav a {
     color: #ffffff !important;
 }
 
-/* Single Product Page Padding - Ensure content is not cut off by fixed header */
-body.single-product {
+/* WooCommerce Content Padding - Ensure content is not cut off by fixed header */
+body.single-product,
+body.woocommerce-cart,
+body.woocommerce-checkout {
     padding-top: 180px !important;
 }
 
@@ -989,20 +993,34 @@ body.page:not(.home):not(.woocommerce):not(.woocommerce-page):not(.faqs):not(.pa
 }
 
 body.page:not(.home) h1.wp-block-post-title,
-body.page:not(.home) .entry-title {
-    font-family: var(--font-display) !important;
-    font-size: clamp(2.5rem, 5vw, 4rem) !important;
-    font-weight: 300 !important;
+body.page:not(.home) .entry-title,
+body.woocommerce-cart h1,
+body.woocommerce-checkout h1 {
+    font-family: var(--font-body) !important;
+    font-size: clamp(2rem, 6vw, 3.5rem) !important;
+    font-weight: 800 !important;
     text-align: center !important;
     margin: 4rem auto 4rem auto !important;
-    text-transform: none !important;
-    letter-spacing: -0.01em !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
     color: var(--black) !important;
 }
 
-body.is-contact-page h1.wp-block-post-title,
-body.is-contact-page .entry-title {
-    display: none !important;
+/* WooCommerce Cart/Checkout Container Refinement */
+body.woocommerce-cart .woocommerce,
+body.woocommerce-checkout .woocommerce {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 5vw !important;
+}
+
+body.woocommerce-cart .woocommerce-cart-form,
+body.woocommerce-cart .cart-collaterals {
+    background: #ffffff !important;
+    padding: 3rem !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02) !important;
+    margin-bottom: 2rem !important;
 }
 
 /* Style the page content containers */
@@ -1013,9 +1031,9 @@ body.page:not(.home) .wp-block-columns {
     margin-right: auto !important;
 }
 
-/* Contact page specific refinements for blocks */
+/* Contact page specific refinements */
 .contact-page-section {
-    padding: 4vh 5vw !important;
+    padding: 6vh 5vw !important;
 }
 
 .contact-page-section .contact-container {
@@ -1026,15 +1044,82 @@ body.page:not(.home) .wp-block-columns {
 .contact-page-section .wp-block-columns {
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.08) !important;
 }
 
-/* Ensure the contact form fields look perfect */
-.opal-contact-form input,
-.opal-contact-form textarea {
-    border: 1px solid #e2e8f0 !important;
+/* Dark sidebar styling (for the "Get in touch" side) */
+.contact-sidebar {
+    background-color: #2a2a2a !important; /* Matches navbar */
+    padding: 4rem !important;
+    color: #ffffff !important;
+}
+
+.contact-sidebar-title {
+    color: #ffffff !important;
     font-family: var(--font-body) !important;
-    transition: all 0.3s ease !important;
+    font-size: clamp(1.8rem, 4vw, 2.5rem) !important;
+    margin-bottom: 2rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+}
+
+.contact-sidebar-intro {
+    color: #bbbbbb !important;
+    font-size: 1.1rem !important;
+    line-height: 1.7 !important;
+    margin-bottom: 3rem !important;
+    font-family: var(--font-body) !important;
+}
+
+.contact-sidebar-details {
+    font-family: var(--font-body) !important;
+    line-height: 2 !important;
+    font-size: 0.95rem !important;
+}
+
+.contact-email-link {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid var(--gold);
+    transition: opacity 0.3s ease;
+}
+
+.contact-email-link:hover {
+    opacity: 0.8;
+}
+
+/* Form Styling - Clean, Rounded, Modern */
+.contact-form-column {
+    background-color: #ffffff !important;
+    padding: 4rem !important;
+}
+
+.form-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .form-row-split {
+        grid-template-columns: 1fr;
+    }
+}
+
+.opal-contact-form input[type="text"],
+.opal-contact-form input[type="email"],
+.opal-contact-form textarea {
+    width: 100% !important;
+    padding: 1rem 1.2rem !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+    font-family: var(--font-body) !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 1.5rem !important;
+    transition: all 0.3s ease;
 }
 
 .opal-contact-form input:focus,
@@ -1044,63 +1129,7 @@ body.page:not(.home) .wp-block-columns {
     outline: none !important;
 }
 
-/* Two-column Contact Layout Refinement */
-body.page .wp-block-columns.is-layout-flex {
-    gap: 0 !important;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-    margin-bottom: 4rem !important;
-}
-
-body.page .wp-block-column {
-    padding: 4rem !important;
-}
-
-body.page .wp-block-column.has-background {
-    margin: 0 !important;
-}
-
-/* Dark sidebar styling (for the "Get in touch" side) */
-body.page .wp-block-column.has-black-background-color,
-body.page .wp-block-column[style*="background-color:#000000"],
-body.page .wp-block-column[style*="background-color:var(--wp--preset--color--black)"] {
-    color: #ffffff !important;
-}
-
-body.page .wp-block-column.has-black-background-color h2,
-body.page .wp-block-column.has-black-background-color h3 {
-    color: #ffffff !important;
-    font-family: var(--font-display) !important;
-    font-size: 2.2rem !important;
-    margin-bottom: 2rem !important;
-}
-
-/* Form Styling - Clean, Rounded, Modern */
-body.page input[type="text"],
-body.page input[type="email"],
-body.page input[type="tel"],
-body.page input[type="url"],
-body.page textarea,
-body.page select {
-    width: 100% !important;
-    padding: 1rem 1.2rem !important;
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 8px !important;
-    background: #ffffff !important;
-    font-family: var(--font-body) !important;
-    font-size: 0.95rem !important;
-    margin-bottom: 1.5rem !important;
-    transition: border-color 0.3s ease;
-}
-
-body.page input:focus,
-body.page textarea:focus {
-    border-color: #ad6d74 !important;
-    outline: none !important;
-}
-
-body.page label {
+.opal-contact-form label {
     display: block !important;
     font-family: var(--font-body) !important;
     font-weight: 600 !important;
@@ -1110,9 +1139,8 @@ body.page label {
 }
 
 /* The Mauve Submit Button */
-body.page .wp-block-button__link,
-body.page button[type="submit"] {
-    background: #ad6d74 !important; /* Mauve/Dusty Rose from screenshot */
+.contact-submit-button {
+    background: #ad6d74 !important; /* Mauve from screenshot */
     color: #ffffff !important;
     border: none !important;
     border-radius: 8px !important;
@@ -1120,25 +1148,32 @@ body.page button[type="submit"] {
     font-family: var(--font-body) !important;
     font-weight: 600 !important;
     letter-spacing: 0.05em !important;
-    text-transform: none !important;
     width: 100% !important;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
-body.page .wp-block-button__link:hover,
-body.page button[type="submit"]:hover {
+.contact-submit-button:hover {
     background: #965d64 !important;
 }
 
-/* Fix social links in contact page */
-body.page .wp-block-social-links {
-    margin-top: 3rem !important;
-    gap: 1.5rem !important;
+.contact-success-banner {
+    background: #d4edda !important;
+    color: #155724 !important;
+    padding: 1.5rem !important;
+    border-radius: 8px !important;
+    margin-bottom: 2rem !important;
+    border: 1px solid #c3e6cb !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    font-family: var(--font-body) !important;
 }
 
-body.page .wp-block-social-links .wp-social-link {
-    background: transparent !important;
+.form-privacy-note {
+    font-size: 0.8rem !important;
+    color: #666 !important;
+    margin-bottom: 2rem !important;
+    font-family: var(--font-body) !important;
 }
 
 /* Technical Labels (e.g., CONTACT US) */
@@ -1164,7 +1199,7 @@ footer.wp-block-template-part,
 footer {
     background: #2a2a2a !important;
     padding: 8vh 8vw !important;
-    border-top: 1px solid rgba(255,255,255,0.05) !important;
+    border-top: none !important;
     color: #ffffff !important;
     width: 100% !important;
     max-width: none !important;
@@ -1484,19 +1519,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     position: relative;
 }
 
-.hero-fullscreen::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to bottom, transparent 0%, #1a1a1a 100%);
-    z-index: 5;
-    pointer-events: none;
-}
-
-/* Hero content refinements */
+/* hero content refinements removed gradients */
 .hero-content-center h1 {
     font-size: clamp(3rem, 8vw, 6rem) !important;
     font-weight: 300 !important;
@@ -1521,21 +1544,10 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     50% { opacity: 1; transform: translateX(-50%) translateY(5px); }
 }
 
-/* Section transitions - smooth flow */
+/* Section transitions - removed gradients */
 .section-dark {
     position: relative;
-    background: linear-gradient(180deg, #2a2a2a 0%, #353535 50%, #2a2a2a 100%) !important;
-}
-
-.section-dark::before {
-    content: "";
-    position: absolute;
-    top: -80px;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent 0%, #2a2a2a 100%);
-    pointer-events: none;
+    background: #2a2a2a !important;
 }
 
 /* Consistently wide and gray-toned sections */
@@ -1583,7 +1595,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 /* Curated section (products on homepage) */
 .section-light {
     position: relative;
-    background: linear-gradient(180deg, #2a2a2a 0%, #353535 50%, #2a2a2a 100%) !important;
+    background: #2a2a2a !important;
     padding: 12vh 6vw !important;
     width: 100% !important;
     max-width: none !important;
@@ -1624,22 +1636,17 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     background: var(--white) !important;
 }
 
-/* Fix sections that should appear white or very light gray */
-.home main .wp-block-group:not(.hero-fullscreen-v2) {
-    background: transparent !important;
+/* Alternate section backgrounds for depth - updated to gray flow */
+.home main .wp-block-group:not(.hero-fullscreen-v2):not(.why-lab-grown-section):not(.section-light):not(.faq-section) {
+    background: #ebebeb !important;
     color: var(--black) !important;
-}
-
-/* Alternate section backgrounds for depth */
-.home main .wp-block-group:nth-of-type(even):not(.hero-fullscreen-v2) {
-    background: transparent !important;
 }
 
 /* Specific fix for the "Science" section shown in screenshot */
 .why-lab-grown-section {
     background: var(--surface) !important;
     padding: 12vh 10vw !important;
-    border-top: 1px solid var(--line);
+    border-top: none !important;
 }
 
 .why-lab-grown-container {
@@ -1770,7 +1777,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 .faq-section {
     background: var(--white) !important;
     padding: 12vh 10vw !important;
-    border-top: 1px solid var(--line);
+    border-top: none !important;
 }
 
 .faq-container {

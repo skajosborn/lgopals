@@ -31,6 +31,9 @@ add_action("wp_enqueue_scripts", "opal_enqueue_styles");
 // Add custom body class
 function opal_body_class($classes) {
     $classes[] = "opal-elegant-v3";
+    if (is_page('contact') || is_page('contact-us')) {
+        $classes[] = "is-contact-page";
+    }
     return $classes;
 }
 add_filter("body_class", "opal_body_class");
@@ -80,7 +83,7 @@ function opal_get_faq_section_html() {
                     <h3 class="faq-question">Can I pay using a check or other payment platform?</h3>
                     <p class="faq-answer">In most cases. When paying with a check we will send out your order once the check has cleared. We can also accept payment via Zelle or Venmo. Please reach out to support@labgrownopals.com.</p>
                 </div>
-
+                
                 <div class="faq-item">
                     <h3 class="faq-question">Is lab-grown opal structurally identical to mined opal?</h3>
                     <p class="faq-answer">Synthetic opal shares the same SiO2 silica composition and crystal lattice as geological opal. The play-of-color phenomenon occurs through identical Bragg Diffraction physics. The distinction: our material incorporates a polymer stabilizer in place of the water content found in natural specimens—eliminating the primary failure mechanism.</p>
@@ -114,6 +117,77 @@ function opal_get_faq_section_html() {
         </div>
     </section>';
 }
+
+// Global Contact Section HTML
+function opal_get_contact_section_html() {
+    $success_msg = '';
+    if (isset($_GET['contact_success'])) {
+        $success_msg = '<div style="background:#d4edda; color:#155724; padding:1.5rem; border-radius:8px; margin-bottom:2rem; border:1px solid #c3e6cb; font-weight:600; text-align:center;">Thank you! Your message has been sent successfully.</div>';
+    }
+
+    return '
+    <section class="contact-page-section">
+        <div class="contact-container">
+            ' . $success_msg . '
+            <div class="wp-block-columns is-layout-flex">
+                <div class="wp-block-column has-black-background-color" style="background-color:#1a1a1a; padding: 4rem;">
+                    <h2 style="color:white; font-family:var(--font-display); font-size:3rem; margin-bottom:2rem; font-weight:300;">Get in touch</h2>
+                    <p style="color:#ccc; font-size:1.1rem; line-height:1.6; margin-bottom:3rem;">We’re here to answer your questions and listen to your suggestions.</p>
+                    <div style="color:white; line-height:2;">
+                        <p style="margin-bottom:2rem;">United States<br>P.O. Box 205<br>South Casco, ME 04077</p>
+                        <p><a href="mailto:info@labgrownopals.com" style="color:white; text-decoration:none; border-bottom:1px solid var(--gold);">info@labgrownopals.com</a></p>
+                    </div>
+                </div>
+                <div class="wp-block-column" style="background-color:white; padding: 4rem;">
+                    <form class="opal-contact-form" method="POST">
+                        <input type="hidden" name="opal_contact_submit" value="1">
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="form-group">
+                                <label style="display:block; font-weight:600; margin-bottom:0.5rem; font-size:0.85rem;">First Name *</label>
+                                <input type="text" name="first_name" required style="width:100%; padding:0.8rem; border:1px solid #ddd; border-radius:4px;">
+                            </div>
+                            <div class="form-group">
+                                <label style="display:block; font-weight:600; margin-bottom:0.5rem; font-size:0.85rem;">Last Name</label>
+                                <input type="text" name="last_name" style="width:100%; padding:0.8rem; border:1px solid #ddd; border-radius:4px;">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="display:block; font-weight:600; margin-bottom:0.5rem; font-size:0.85rem;">Email *</label>
+                            <input type="email" name="email" required style="width:100%; padding:0.8rem; border:1px solid #ddd; border-radius:4px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="display:block; font-weight:600; margin-bottom:0.5rem; font-size:0.85rem;">Message *</label>
+                            <textarea name="message" rows="5" required style="width:100%; padding:0.8rem; border:1px solid #ddd; border-radius:4px;"></textarea>
+                        </div>
+                        <p style="font-size:0.8rem; color:#666; margin-bottom:2rem;">By submitting this form, you agree to our processing of your data in accordance with our Privacy Policy.</p>
+                        <button type="submit" style="background:#ad6d74; color:white; border:none; padding:1rem 2rem; border-radius:4px; cursor:pointer; font-weight:600; width:100%; font-size:1rem;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>';
+}
+
+// Handle Contact Form Submission
+add_action('template_redirect', function() {
+    if (isset($_POST['opal_contact_submit'])) {
+        $first_name = sanitize_text_field($_POST['first_name']);
+        $last_name = sanitize_text_field($_POST['last_name']);
+        $email = sanitize_email($_POST['email']);
+        $message = sanitize_textarea_field($_POST['message']);
+        
+        $to = get_option('admin_email');
+        $subject = 'New Contact Form Submission from ' . $first_name;
+        $body = "Name: $first_name $last_name\nEmail: $email\n\nMessage:\n$message";
+        $headers = array('Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . $email);
+        
+        wp_mail($to, $subject, $body, $headers);
+        
+        $redirect_url = remove_query_arg('contact_success', $_SERVER['REQUEST_URI']);
+        wp_redirect(add_query_arg('contact_success', '1', $redirect_url));
+        exit;
+    }
+});
 
 // Replace text and images in content
 function opal_replace_content_text($content) {
@@ -169,6 +243,10 @@ function opal_replace_content_text($content) {
 
     if (is_page(40) || is_page('faqs') || is_page('faq') || is_page('faq-s')) {
         return opal_get_faq_section_html();
+    }
+
+    if (is_page('contact') || is_page('contact-us')) {
+        return opal_get_contact_section_html();
     }
 
     return $content;

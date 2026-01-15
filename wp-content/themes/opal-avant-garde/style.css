@@ -1000,12 +1000,48 @@ body.page:not(.home) .entry-title {
     color: var(--black) !important;
 }
 
+body.is-contact-page h1.wp-block-post-title,
+body.is-contact-page .entry-title {
+    display: none !important;
+}
+
 /* Style the page content containers */
 body.page:not(.home) .wp-block-group,
 body.page:not(.home) .wp-block-columns {
     max-width: 1400px !important;
     margin-left: auto !important;
     margin-right: auto !important;
+}
+
+/* Contact page specific refinements for blocks */
+.contact-page-section {
+    padding: 4vh 5vw !important;
+}
+
+.contact-page-section .contact-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.contact-page-section .wp-block-columns {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
+
+/* Ensure the contact form fields look perfect */
+.opal-contact-form input,
+.opal-contact-form textarea {
+    border: 1px solid #e2e8f0 !important;
+    font-family: var(--font-body) !important;
+    transition: all 0.3s ease !important;
+}
+
+.opal-contact-form input:focus,
+.opal-contact-form textarea:focus {
+    border-color: #ad6d74 !important;
+    box-shadow: 0 0 0 3px rgba(173, 109, 116, 0.1) !important;
+    outline: none !important;
 }
 
 /* Two-column Contact Layout Refinement */
@@ -1208,12 +1244,9 @@ footer .wp-block-columns {
 footer .wp-block-group p:has(a[href*="wordpress.org"]),
 footer .wp-block-group a[href*="wordpress.org"],
 .wp-block-template-part[slug="footer"] p:has(a[href*="wordpress.org"]),
-footer .wp-block-site-title + p {
-    color: #666 !important;
-    font-size: 0.65rem !important;
-    margin-top: 2rem !important;
-    text-align: center;
-    opacity: 0.5;
+footer .wp-block-site-title + p,
+.wp-block-template-part[slug="footer"] .wp-block-paragraph:last-child {
+    display: none !important;
 }
 
 

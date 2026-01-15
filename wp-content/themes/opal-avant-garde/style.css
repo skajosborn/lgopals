@@ -115,24 +115,47 @@ header .wp-block-navigation {
     height: 100% !important;
     position: static !important;
     flex-shrink: 0 !important;
+    /* Keep nav clear of logo (left) and icons (right) */
+    padding-left: 120px !important;
+    padding-right: 120px !important;
 }
 
+/* Navigation block renders as 1+ ULs; make them one horizontal row */
 header .wp-block-navigation__responsive-container,
-header .wp-block-navigation__responsive-container-content,
+header .wp-block-navigation__responsive-container-content {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+header .wp-block-navigation__responsive-container-content > ul,
 header .wp-block-navigation__container {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 3rem !important;
     list-style: none !important;
-    height: 100% !important;
-    width: auto !important;
-    position: static !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    transform: none !important;
-    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important; /* margin-based spacing below */
+}
+
+/* If WP outputs multiple UL groups, space the groups like items */
+header .wp-block-navigation__responsive-container-content > ul + ul {
+    margin-left: 1.5rem !important;
+}
+
+/* Spacing between items (within each UL) */
+header .wp-block-navigation__responsive-container-content > ul > li + li,
+header .wp-block-navigation__container > li + li {
+    margin-left: 1.5rem !important;
+}
+
+/* Ensure no auto-margins can create a "gap" */
+header .wp-block-navigation__responsive-container-content > ul > li,
+header .wp-block-navigation__container > li {
+    margin: 0 !important;
     padding: 0 !important;
 }
 
@@ -200,6 +223,58 @@ header .wp-block-woocommerce-customer-account svg {
 /* Give nav items room so they don't overlap with icons */
 header .wp-block-navigation {
     padding-right: 120px !important;
+}
+
+/* Remove any empty list items that might get rendered */
+header .wp-block-navigation__responsive-container-content li:empty,
+header .wp-block-navigation__container li:empty {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    header .wp-block-navigation {
+        padding-left: 96px !important;
+        padding-right: 96px !important;
+    }
+
+    header .wp-block-navigation-item__content {
+        font-size: 0.72rem !important;
+        letter-spacing: 0.18em !important;
+    }
+
+    header .wp-block-navigation__responsive-container-content > ul + ul {
+        margin-left: 1rem !important;
+    }
+
+    header .wp-block-navigation__responsive-container-content > ul > li + li,
+    header .wp-block-navigation__container > li + li {
+        margin-left: 1rem !important;
+    }
+}
+
+/* Style the Mini Cart Count Badge - Minimalist Look */
+.wc-block-mini-cart__badge {
+    background: var(--gold) !important;
+    color: #000000 !important;
+    font-family: var(--font-body) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    min-width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    top: -5px !important;
+    right: -10px !important;
+    z-index: 10 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+}
+
+/* Hide only the amount (price), keep the count badge */
+.wc-block-mini-cart__amount {
+    display: none !important;
 }
 
 header .wp-block-site-logo,
@@ -1000,7 +1075,7 @@ body.woocommerce-checkout h1 {
     font-size: clamp(2rem, 6vw, 3.5rem) !important;
     font-weight: 800 !important;
     text-align: center !important;
-    margin: 4rem auto 4rem auto !important;
+    margin: 2rem auto 2rem auto !important;
     text-transform: uppercase !important;
     letter-spacing: 0.15em !important;
     color: var(--black) !important;
@@ -1033,7 +1108,7 @@ body.page:not(.home) .wp-block-columns {
 
 /* Contact page specific refinements */
 .contact-page-section {
-    padding: 6vh 5vw !important;
+    padding: 2vh 5vw !important;
 }
 
 .contact-page-section .contact-container {
@@ -1237,8 +1312,6 @@ footer .wp-block-navigation-item__content:hover {
 }
 
 /* Hide unwanted pre-footer CTA elements (BEGIN YOUR COLLECTION, etc.) */
-.home .wp-block-buttons:has(a[href*="contact"]),
-.home a.wp-block-button__link[href*="contact"],
 footer.wp-block-template-part > h1,
 footer.wp-block-template-part > h2,
 footer.wp-block-template-part > h3,
@@ -1266,9 +1339,9 @@ footer.wp-block-template-part .wp-block-columns {
     margin: 0 auto !important;
 }
 
-/* Hide the Contact Us link if it's orphaned near the footer */
-.home a[href*="contact"],
-.home .wp-block-button:has(a[href*="contact"]),
+/* Hide the Contact Us link if it's orphaned near the footer - Target CTA areas only */
+.home main .wp-block-button:has(a[href*="contact"]),
+.home main a.wp-block-button__link[href*="contact"],
 footer.wp-block-template-part a[href*="contact"],
 footer.wp-block-template-part .wp-block-button:has(a[href*="contact"]) {
     display: none !important;

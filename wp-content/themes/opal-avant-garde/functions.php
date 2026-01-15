@@ -277,7 +277,8 @@ add_filter('the_posts', 'opal_force_faq_content');
 // Also apply replacements to blocks for block themes
 function opal_replace_block_text($block_content, $block) {
     if (is_front_page() && !is_admin()) {
-        $new_title = 'The Molecular Standard of the Future';
+        $anchor = '<div id="molecular-standard" style="position:relative; top:-120px; visibility:hidden;"></div>';
+        $new_title = $anchor . 'The Molecular Standard of the Future';
         $replacements = [
             'Ethereal Fire' => $new_title,
             'The Future of Fire' => $new_title,
@@ -304,16 +305,113 @@ function opal_replace_block_text($block_content, $block) {
 }
 add_filter('render_block', 'opal_replace_block_text', 10, 2);
 
-// Make 'About' link point to the Molecular Standard section on homepage
-function opal_fix_about_link($nav_menu_items) {
+// Remove 'About' and ensure 'Contact' link is handled
+function opal_fix_nav_menu_links($nav_menu_items) {
+    if (is_admin()) return $nav_menu_items;
+    
+    $filtered_items = array();
     foreach ($nav_menu_items as $item) {
-        if (strtolower($item->title) == 'about') {
-            $item->url = home_url('/') . '#molecular-standard';
+        $label = strtolower($item->title);
+        if ($label === 'about') continue;
+        
+        if ($label === 'home') {
+            $item->url = home_url('/');
+        }
+        if ($label === 'contact' || $label === 'contact us') {
+            $item->url = home_url('/contact');
+        }
+        $filtered_items[] = $item;
+    }
+    return $filtered_items;
+}
+add_filter('wp_get_nav_menu_items', 'opal_fix_nav_menu_links', 10);
+
+// Also fix for Navigation Block (block themes)
+function opal_fix_nav_block_links($block_content, $block) {
+    if (is_admin()) return $block_content;
+
+    // 1. Handle child blocks
+    if ($block['blockName'] === 'core/navigation-link' || $block['blockName'] === 'core/navigation-item') {
+        $label = isset($block['attrs']['label']) ? strtolower($block['attrs']['label']) : '';
+        if ($label === 'about') {
+            return '';
         }
     }
-    return $nav_menu_items;
+
+    // 2. Handle Navigation Container
+    if ($block['blockName'] === 'core/navigation') {
+        $home_url = home_url('/');
+        $contact_url = home_url('/contact');
+
+        // Initial aggressive cleanup to remove About and empty space artifacts
+        $block_content = preg_replace('/<li[^>]*>.*?About.*?<\/li>/is', '', $block_content);
+        $block_content = preg_replace('/<li[^>]*>\s*(<a[^>]*>\s*<\/a>)?\s*<\/li>/is', '', $block_content);
+        
+        // Remove any list items that might be hidden or contain only whitespace/empty spans
+        $block_content = preg_replace('/<li[^>]*>\s*(<span[^>]*>\s*<\/span>)*\s*<\/li>/is', '', $block_content);
+        $block_content = preg_replace('/<li[^>]*>\s*<a[^>]*>\s*(<span[^>]*>\s*<\/span>)*\s*<\/a>\s*<\/li>/is', '', $block_content);
+
+        // Process all list items
+        $block_content = preg_replace_callback('/<li[^>]*>(.*?)<\/li>/is', function($m) use ($home_url, $contact_url) {
+            $inner = $m[1];
+            $text_content = strip_tags($inner);
+            
+            // Remove About (case-insensitive check)
+            if (stripos($inner, 'About') !== false || stripos($text_content, 'About') !== false) {
+                return '';
+            }
+            
+            // Remove items with no visible text content
+            if (trim($text_content) === '' || trim($text_content) === '&nbsp;') {
+                return '';
+            }
+            
+            // Fix Home URL
+            if (stripos($inner, 'Home') !== false || stripos($text_content, 'Home') !== false) {
+                return preg_replace('/href="[^"]*"/', 'href="' . $home_url . '"', $m[0]);
+            }
+            
+            // Fix Contact URL
+            if (stripos($inner, 'Contact') !== false || stripos($text_content, 'Contact') !== false) {
+                return preg_replace('/href="[^"]*"/', 'href="' . $contact_url . '"', $m[0]);
+            }
+            
+            return $m[0];
+        }, $block_content);
+
+        // Check if Home exists, if not, inject it
+        if (stripos($block_content, 'Home') === false) {
+            $home_link = '<li class="wp-block-navigation-item wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="' . $home_url . '"><span class="wp-block-navigation-item__label">Home</span></a></li>';
+            $block_content = preg_replace('/(<ul[^>]*>)/i', '$1' . $home_link, $block_content);
+        }
+
+        // Check if Contact exists, if not, inject it
+        if (stripos($block_content, 'Contact') === false) {
+            $contact_link = '<li class="wp-block-navigation-item wp-block-navigation-link"><a class="wp-block-navigation-item__content" href="' . $contact_url . '"><span class="wp-block-navigation-item__label">Contact</span></a></li>';
+            
+            // Inject before FAQ or at end
+            if (stripos($block_content, 'FAQ') !== false) {
+                $block_content = preg_replace('/(<li[^>]*>.*?FAQ.*?<\/li>)/is', $contact_link . '$1', $block_content);
+            } else {
+                $block_content = preg_replace('/<\/ul>/i', $contact_link . '</ul>', $block_content);
+            }
+        }
+        
+        // Final polish: remove any resulting double-whitespace or empty items between <li> tags
+        $block_content = preg_replace('/<\/li>\s+<li/i', '</li><li', $block_content);
+        $block_content = preg_replace('/<li[^>]*>\s*<\/li>/i', '', $block_content);
+        
+        // Remove any remaining empty or whitespace-only list items
+        $block_content = preg_replace('/<li[^>]*>\s*(<[^>]*>\s*<\/[^>]*>)*\s*<\/li>/is', '', $block_content);
+        
+        // Collapse any whitespace between list items to prevent flex gap from creating extra space
+        $block_content = preg_replace('/<\/li>\s+/', '</li>', $block_content);
+        $block_content = preg_replace('/\s+<li/', '<li', $block_content);
+    }
+    
+    return $block_content;
 }
-add_filter('wp_get_nav_menu_items', 'opal_fix_about_link', 10);
+add_filter('render_block', 'opal_fix_nav_block_links', 10, 2);
 
 // Change 'What You Want!?' to 'You\'ve Selected' on the cart page
 function opal_change_cart_attribute_label($translated_text, $text, $domain) {

@@ -160,6 +160,11 @@ function opal_replace_content_text($content) {
 
         // Explicitly remove any FAQ sections from homepage
         $content = preg_replace('/<section[^>]*class="faq-section">.*?<\/section>/is', '', $content);
+
+        // --- REMOVE UNWANTED "BEGIN YOUR COLLECTION" SECTION ---
+        // Surgical removal of text only to prevent accidental deletion of nearby sections
+        $content = str_replace('BEGIN YOUR COLLECTION', '', $content);
+        $content = str_replace('Questions about our opals or custom orders? We are here to help bring your vision to life.', '', $content);
     }
 
     if (is_page(40) || is_page('faqs') || is_page('faq') || is_page('faq-s')) {

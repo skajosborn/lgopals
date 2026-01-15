@@ -47,12 +47,6 @@ body {
     max-width: none !important;
 }
 
-/* Ensure footer columns can sit side-by-side */
-footer.wp-block-template-part .wp-block-group {
-    width: auto !important;
-    max-width: 100% !important;
-}
-
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 400; line-height: 1.2; margin: 0 0 1.5rem 0; }
 h1 { font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 300; }
 h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
@@ -60,7 +54,8 @@ h3 { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.15em; text-transform
 p { margin: 0 0 1.5rem 0; font-size: 0.95rem; color: var(--slate); }
 
 /* AGGRESSIVE HEADER RESET - FINAL FORM */
-header.wp-block-template-part {
+header.wp-block-template-part,
+.wp-block-template-part[slug="header"] {
     height: 100px !important;
     padding: 0 5vw !important;
     display: flex !important;
@@ -75,6 +70,23 @@ header.wp-block-template-part {
     width: 100% !important;
     z-index: 1000 !important;
     border-bottom: 1px solid var(--line) !important;
+}
+
+/* Add Brand Element to Left of Header */
+header.wp-block-template-part::before,
+.wp-block-template-part[slug="header"]::before {
+    content: "";
+    display: block;
+    width: 180px;
+    height: 65px;
+    background: url('/wp-content/uploads/opal-bg.png') no-repeat center left;
+    background-size: contain;
+    position: absolute;
+    left: 5vw;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    pointer-events: none;
 }
 
 /* Force ALL header children into a single row */
@@ -878,55 +890,9 @@ ul.products li.product .button:hover {
 .testimonial-section cite { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* FOOTER - TECHNICAL REFINEMENT */
-footer.wp-block-template-part { 
-    position: relative !important;
-    background: #f4f4f4 !important; /* Lighter footer background */
-    color: var(--black) !important; 
-    padding: 10vh 8vw !important; 
-    border-top: 1px solid var(--line);
-}
-
-footer .wp-block-columns {
-    gap: 4rem !important;
-}
-
-/* Typography for footer headings */
-footer h2, 
-footer .wp-block-heading {
-    font-family: var(--font-body) !important;
-    font-weight: 700 !important;
-    font-size: 0.8rem !important;
-    letter-spacing: 0.2em !important;
-    text-transform: uppercase !important;
-    color: var(--ink) !important;
-    margin-bottom: 2rem !important;
-    text-align: left !important;
-}
-
-footer .wp-block-navigation-item__content {
-    font-family: var(--font-body) !important;
-    font-size: 0.85rem !important;
-    color: var(--ink-soft) !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    text-decoration: none !important;
-    transition: color 0.3s ease;
-}
-
-footer .wp-block-navigation-item__content:hover {
-    color: var(--gold) !important;
-}
-
-footer .wp-block-site-title a { 
-    font-family: var(--font-body) !important; 
-    font-weight: 900 !important;
-    font-size: 1.2rem !important; 
-    letter-spacing: 0.1em; 
-    text-transform: uppercase; 
-    color: var(--ink) !important; 
-}
-
-/* RESPONSIVE */
+/* ========================================
+   RESPONSIVE & UTILITY
+   ======================================== */
 @media (max-width: 600px) {
     .woocommerce ul.products,
     ul.products.columns-2,
@@ -959,8 +925,9 @@ body.woocommerce-shop .woocommerce-ordering select {
     border: 1px solid #d0d0d0 !important;
 }
 
-/* WooCommerce pages header - clean reset to remove "double" navbar effect */
-body.woocommerce header.wp-block-template-part {
+/* Shop and Product pages header - final clean reset */
+body.woocommerce header.wp-block-template-part,
+body.woocommerce .wp-block-template-part[slug="header"] {
     background: #2a2a2a !important;
     height: 100px !important;
     position: absolute !important;
@@ -1002,6 +969,251 @@ body.single-product {
 body.single-product main {
     padding-top: 0 !important;
     margin-top: 0 !important;
+}
+
+/* ========================================
+   GENERAL PAGES (Contact, About, etc.)
+   ======================================== */
+body.page:not(.home) {
+    background: #ffffff !important;
+}
+
+body.page:not(.home) .wp-site-blocks,
+body.page:not(.home) main.wp-block-group {
+    background: transparent !important;
+}
+
+/* Clear absolute header on standard pages */
+body.page:not(.home):not(.woocommerce):not(.woocommerce-page):not(.faqs):not(.page-id-40) {
+    padding-top: 100px !important;
+}
+
+body.page:not(.home) h1.wp-block-post-title,
+body.page:not(.home) .entry-title {
+    font-family: var(--font-display) !important;
+    font-size: clamp(2.5rem, 5vw, 4rem) !important;
+    font-weight: 300 !important;
+    text-align: center !important;
+    margin: 4rem auto 4rem auto !important;
+    text-transform: none !important;
+    letter-spacing: -0.01em !important;
+    color: var(--black) !important;
+}
+
+/* Style the page content containers */
+body.page:not(.home) .wp-block-group,
+body.page:not(.home) .wp-block-columns {
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Two-column Contact Layout Refinement */
+body.page .wp-block-columns.is-layout-flex {
+    gap: 0 !important;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    margin-bottom: 4rem !important;
+}
+
+body.page .wp-block-column {
+    padding: 4rem !important;
+}
+
+body.page .wp-block-column.has-background {
+    margin: 0 !important;
+}
+
+/* Dark sidebar styling (for the "Get in touch" side) */
+body.page .wp-block-column.has-black-background-color,
+body.page .wp-block-column[style*="background-color:#000000"],
+body.page .wp-block-column[style*="background-color:var(--wp--preset--color--black)"] {
+    color: #ffffff !important;
+}
+
+body.page .wp-block-column.has-black-background-color h2,
+body.page .wp-block-column.has-black-background-color h3 {
+    color: #ffffff !important;
+    font-family: var(--font-display) !important;
+    font-size: 2.2rem !important;
+    margin-bottom: 2rem !important;
+}
+
+/* Form Styling - Clean, Rounded, Modern */
+body.page input[type="text"],
+body.page input[type="email"],
+body.page input[type="tel"],
+body.page input[type="url"],
+body.page textarea,
+body.page select {
+    width: 100% !important;
+    padding: 1rem 1.2rem !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+    font-family: var(--font-body) !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 1.5rem !important;
+    transition: border-color 0.3s ease;
+}
+
+body.page input:focus,
+body.page textarea:focus {
+    border-color: #ad6d74 !important;
+    outline: none !important;
+}
+
+body.page label {
+    display: block !important;
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 0.5rem !important;
+    color: #1a202c !important;
+}
+
+/* The Mauve Submit Button */
+body.page .wp-block-button__link,
+body.page button[type="submit"] {
+    background: #ad6d74 !important; /* Mauve/Dusty Rose from screenshot */
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 1.2rem 2.5rem !important;
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: none !important;
+    width: 100% !important;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+body.page .wp-block-button__link:hover,
+body.page button[type="submit"]:hover {
+    background: #965d64 !important;
+}
+
+/* Fix social links in contact page */
+body.page .wp-block-social-links {
+    margin-top: 3rem !important;
+    gap: 1.5rem !important;
+}
+
+body.page .wp-block-social-links .wp-social-link {
+    background: transparent !important;
+}
+
+/* Technical Labels (e.g., CONTACT US) */
+.wp-block-heading.has-text-align-center,
+.section-label {
+    text-transform: uppercase !important;
+    letter-spacing: 0.3em !important;
+    font-weight: 800 !important;
+    font-size: 0.75rem !important;
+}
+
+.section-dark .wp-block-heading {
+    color: var(--gold) !important;
+}
+
+/* ========================================
+   FOOTER REFINEMENTS & CLEANUP
+   ======================================== */
+
+/* Single Dark Footer Background */
+footer.wp-block-template-part,
+.wp-block-template-part[slug="footer"],
+footer {
+    background: #2a2a2a !important;
+    padding: 8vh 8vw !important;
+    border-top: 1px solid rgba(255,255,255,0.05) !important;
+    color: #ffffff !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-shadow: none !important;
+}
+
+footer footer {
+    display: contents !important;
+}
+
+/* Typography for footer - ensuring white on dark */
+footer h2, 
+footer .wp-block-heading {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
+    font-family: var(--font-body) !important;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 2rem !important;
+    text-align: left !important;
+}
+
+footer p, 
+footer li,
+footer .wp-block-navigation-item__content,
+footer .wp-block-site-title a {
+    color: #aaaaaa !important;
+}
+
+footer .wp-block-navigation-item__content:hover {
+    color: var(--gold) !important;
+}
+
+/* Hide unwanted pre-footer CTA elements (BEGIN YOUR COLLECTION, etc.) */
+footer.wp-block-template-part > h1,
+footer.wp-block-template-part > h2,
+footer.wp-block-template-part > h3,
+footer.wp-block-template-part > p,
+footer.wp-block-template-part > .wp-block-buttons,
+footer.wp-block-template-part > div:not(.wp-block-group),
+.wp-block-template-part[slug="footer"] > h1,
+.wp-block-template-part[slug="footer"] > h2,
+.wp-block-template-part[slug="footer"] > h3,
+.wp-block-template-part[slug="footer"] > p,
+.wp-block-template-part[slug="footer"] > .wp-block-buttons {
+    display: none !important;
+}
+
+/* Clean Footer Content Group - No Card Look */
+footer.wp-block-template-part .wp-block-group,
+.wp-block-template-part[slug="footer"] .wp-block-group,
+footer.wp-block-template-part .wp-block-columns {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 auto !important;
+}
+
+/* Hide the Contact Us link if it's orphaned near the footer */
+footer.wp-block-template-part a[href*="contact"],
+footer.wp-block-template-part .wp-block-button:has(a[href*="contact"]) {
+    display: none !important;
+}
+
+/* Adjust footer columns */
+footer .wp-block-columns {
+    gap: 4rem !important;
+}
+
+/* Designed with WordPress cleanup */
+footer .wp-block-group p:has(a[href*="wordpress.org"]),
+footer .wp-block-group a[href*="wordpress.org"],
+.wp-block-template-part[slug="footer"] p:has(a[href*="wordpress.org"]),
+footer .wp-block-site-title + p {
+    color: #666 !important;
+    font-size: 0.65rem !important;
+    margin-top: 2rem !important;
+    text-align: center;
+    opacity: 0.5;
 }
 
 

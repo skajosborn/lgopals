@@ -1237,6 +1237,8 @@ footer .wp-block-navigation-item__content:hover {
 }
 
 /* Hide unwanted pre-footer CTA elements (BEGIN YOUR COLLECTION, etc.) */
+.home .wp-block-buttons:has(a[href*="contact"]),
+.home a.wp-block-button__link[href*="contact"],
 footer.wp-block-template-part > h1,
 footer.wp-block-template-part > h2,
 footer.wp-block-template-part > h3,
@@ -1265,6 +1267,8 @@ footer.wp-block-template-part .wp-block-columns {
 }
 
 /* Hide the Contact Us link if it's orphaned near the footer */
+.home a[href*="contact"],
+.home .wp-block-button:has(a[href*="contact"]),
 footer.wp-block-template-part a[href*="contact"],
 footer.wp-block-template-part .wp-block-button:has(a[href*="contact"]) {
     display: none !important;
@@ -1595,7 +1599,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 /* Curated section (products on homepage) */
 .section-light {
     position: relative;
-    background: #2a2a2a !important;
+    background: var(--white) !important;
     padding: 12vh 6vw !important;
     width: 100% !important;
     max-width: none !important;
@@ -1612,13 +1616,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 }
 
 .section-light::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(201,169,98,0.3) 50%, transparent 100%);
+    content: none !important;
 }
 
 .section-light .has-text-align-center {

@@ -235,10 +235,16 @@ function opal_replace_content_text($content) {
         // Explicitly remove any FAQ sections from homepage
         $content = preg_replace('/<section[^>]*class="faq-section">.*?<\/section>/is', '', $content);
 
-        // --- REMOVE UNWANTED "BEGIN YOUR COLLECTION" SECTION ---
-        // Surgical removal of text only to prevent accidental deletion of nearby sections
-        $content = str_replace('BEGIN YOUR COLLECTION', '', $content);
         $content = str_replace('Questions about our opals or custom orders? We are here to help bring your vision to life.', '', $content);
+
+        // Remove "BEGIN YOUR COLLECTION" and the "CONTACT US" button section
+        $content = preg_replace('/<h[1-6][^>]*>BEGIN YOUR COLLECTION<\/h[1-6]>/i', '', $content);
+        // Using a more targeted regex for the button to avoid over-matching
+        $content = preg_replace('/<div class="wp-block-button"><a[^>]*>CONTACT US<\/a><\/div>/is', '', $content);
+        
+        // Final fallback for plain text strings
+        $content = str_replace('BEGIN YOUR COLLECTION', '', $content);
+        $content = str_replace('CONTACT US', '', $content);
     }
 
     if (is_page(40) || is_page('faqs') || is_page('faq') || is_page('faq-s')) {
@@ -278,7 +284,9 @@ function opal_replace_block_text($block_content, $block) {
             'The Future of Luxury' => $new_title,
             'Master Grade Material' => $new_title,
             'Designer Lab-Grown Opals for the Discerning Creator' => '',
-            'Ethical Origin' => 'Integrity in Every Carat'
+            'Ethical Origin' => 'Integrity in Every Carat',
+            'BEGIN YOUR COLLECTION' => '',
+            'CONTACT US' => ''
         ];
         foreach ($replacements as $old => $new) {
             $block_content = str_replace($old, $new, $block_content);
@@ -376,3 +384,41 @@ add_filter('woocommerce_get_item_data', function($item_data, $cart_item) {
     }
     return $item_data;
 }, 999, 2);
+
+// Fix for missing cart item thumbnails (e.g. Blue/Red Glitter Opal)
+add_filter('woocommerce_cart_item_thumbnail', function($thumbnail, $cart_item, $cart_item_key) {
+    $product = $cart_item['data'];
+    
+    // If thumbnail is empty or contains the default placeholder, try to get the parent image
+    if (empty($thumbnail) || strpos($thumbnail, 'placeholder.png') !== false) {
+        if ($product->is_type('variation')) {
+            $parent_id = $product->get_parent_id();
+            $parent_product = wc_get_product($parent_id);
+            if ($parent_product) {
+                $thumbnail = $parent_product->get_image();
+            }
+        }
+    }
+    
+    // If we still have a placeholder or empty, and it's a variation, force the parent image
+    if ($product->is_type('variation') && (empty($thumbnail) || strpos($thumbnail, 'placeholder.png') !== false)) {
+        $thumbnail = get_the_post_thumbnail($product->get_parent_id(), 'woocommerce_thumbnail');
+    }
+
+    return $thumbnail;
+}, 999, 3);
+
+// Global fix for variation images falling back to parent image
+add_filter('woocommerce_product_get_image', function($image, $product, $size, $attr, $placeholder) {
+    if ($product && $product->is_type('variation')) {
+        // If image is empty or a placeholder
+        if (empty($image) || strpos($image, 'placeholder.png') !== false || strpos($image, 'src=""') !== false) {
+            $parent_id = $product->get_parent_id();
+            $parent_product = wc_get_product($parent_id);
+            if ($parent_product) {
+                return $parent_product->get_image($size, $attr, $placeholder);
+            }
+        }
+    }
+    return $image;
+}, 999, 5);

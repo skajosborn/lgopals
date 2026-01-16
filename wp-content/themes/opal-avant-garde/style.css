@@ -79,7 +79,8 @@ header.wp-block-template-part::before,
     display: block;
     width: 180px;
     height: 65px;
-    background: url('https://opals.betterbetterbetter.website/wp-content/2026/01/opal-bg.png') no-repeat center left;
+    /* Prefer live asset, fall back to local uploads */
+    background: url('https://opals.betterbetterbetter.website/wp-content/uploads/2026/01/opal-bg.png') no-repeat center left, url('/wp-content/uploads/opal-bg.png') no-repeat center left;
     background-size: contain;
     position: absolute;
     left: 5vw;
@@ -277,9 +278,9 @@ header .wp-block-navigation__container li:empty {
     display: none !important;
 }
 
-/* Keep logo visible; hide site title if present */
+/* Hide redundant site logo - brand logo is handled by header::before */
 header .wp-block-site-logo {
-    display: flex !important;
+    display: none !important;
 }
 
 header .wp-block-site-title {
@@ -302,7 +303,8 @@ header .wc-block-customer-account__account-link {
     height: 100vh !important;
     min-height: 850px !important;
     width: 100% !important;
-    background-image: url('https://opals.betterbetterbetter.website/wp-content/2026/01/bricks.png') !important;
+    /* Prefer live asset, fall back to local uploads */
+    background-image: url('https://opals.betterbetterbetter.website/wp-content/uploads/2026/01/bricks.png'), url('/wp-content/uploads/bricks.png') !important;
     background-size: cover !important;
     background-position: center !important;
     display: flex !important;
@@ -550,7 +552,8 @@ header .wc-block-customer-account__account-link {
     grid-column: 1 !important;
     inset: 0 !important;
     z-index: 1 !important;
-    background-image: url('https://opals.betterbetterbetter.website/wp-content/2026/01/newopals5.png') !important;
+    /* Prefer live asset, fall back to local uploads */
+    background-image: url('https://opals.betterbetterbetter.website/wp-content/uploads/2026/01/newopals5.png'), url('/wp-content/uploads/newopals5.png') !important;
     background-size: cover !important;
     background-position: center !important;
 }

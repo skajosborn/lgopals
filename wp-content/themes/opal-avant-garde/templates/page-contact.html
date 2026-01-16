@@ -1,0 +1,51 @@
+<!-- wp:template-part {"slug":"header","area":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"default"}} -->
+<main class="wp-block-group">
+	<!-- wp:post-title {"textAlign":"center"} /-->
+
+	<!-- wp:html -->
+	<section class="contact-page-section">
+		<div class="contact-container">
+			<div class="wp-block-columns is-layout-flex">
+				<div class="wp-block-column contact-sidebar">
+					<h2 class="contact-sidebar-title">Get in touch</h2>
+					<p class="contact-sidebar-intro">We’re here to answer your questions and listen to your suggestions.</p>
+					<div class="contact-sidebar-details">
+						<p class="contact-address">United States<br>P.O. Box 205<br>South Casco, ME 04077</p>
+						<p><a href="mailto:info@labgrownopals.com" class="contact-email-link">info@labgrownopals.com</a></p>
+					</div>
+				</div>
+				<div class="wp-block-column contact-form-column">
+					<form class="opal-contact-form" method="POST">
+						<input type="hidden" name="opal_contact_submit" value="1">
+						<div class="form-row-split">
+							<div class="form-group">
+								<label>First Name *</label>
+								<input type="text" name="first_name" required>
+							</div>
+							<div class="form-group">
+								<label>Last Name</label>
+								<input type="text" name="last_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Email *</label>
+							<input type="email" name="email" required>
+						</div>
+						<div class="form-group">
+							<label>Message *</label>
+							<textarea name="message" rows="5" required></textarea>
+						</div>
+						<p class="form-privacy-note">By submitting this form, you agree to our processing of your data in accordance with our Privacy Policy.</p>
+						<button type="submit" class="contact-submit-button">Send Message</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /wp:html -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer"} /-->

@@ -34,9 +34,6 @@ add_action("wp_enqueue_scripts", "opal_enqueue_styles");
 // Add custom body class
 function opal_body_class($classes) {
     $classes[] = "opal-elegant-v3";
-    if (is_page('contact') || is_page('contact-us')) {
-        $classes[] = "is-contact-page";
-    }
     return $classes;
 }
 add_filter("body_class", "opal_body_class");

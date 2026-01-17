@@ -1113,9 +1113,24 @@ body.page:not(.home) .wp-block-columns {
     margin-right: auto !important;
 }
 
-/* Contact page specific refinements */
+.contact-page-main .wp-block-post-title {
+    font-family: var(--font-body) !important;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem) !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    color: var(--black) !important;
+    margin: 0 0 4rem 0 !important;
+    text-align: center !important;
+}
+
+.contact-page-main {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+}
+
 .contact-page-section {
-    padding: 2vh 5vw !important;
+    padding: 0 5vw !important;
 }
 
 .contact-page-section .contact-container {
@@ -1124,15 +1139,29 @@ body.page:not(.home) .wp-block-columns {
 }
 
 .contact-page-section .wp-block-columns {
+    display: flex !important;
+    flex-direction: row !important;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 30px 60px rgba(0,0,0,0.08) !important;
+    background: #ffffff;
+}
+
+@media (max-width: 900px) {
+    .contact-page-section .wp-block-columns {
+        flex-direction: column !important;
+    }
 }
 
 /* Dark sidebar styling (for the "Get in touch" side) */
 .contact-sidebar {
     background-color: #2a2a2a !important; /* Matches navbar */
     padding: 4rem !important;
+    color: #ffffff !important;
+    flex: 1 !important;
+}
+
+.contact-sidebar * {
     color: #ffffff !important;
 }
 
@@ -1144,10 +1173,11 @@ body.page:not(.home) .wp-block-columns {
     font-weight: 800 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
+    line-height: 1.1;
 }
 
 .contact-sidebar-intro {
-    color: #bbbbbb !important;
+    color: rgba(255,255,255,0.7) !important;
     font-size: 1.1rem !important;
     line-height: 1.7 !important;
     margin-bottom: 3rem !important;
@@ -1160,8 +1190,12 @@ body.page:not(.home) .wp-block-columns {
     font-size: 0.95rem !important;
 }
 
-.contact-email-link {
+.contact-sidebar-details p {
     color: #ffffff !important;
+}
+
+.contact-email-link {
+    color: var(--gold) !important;
     text-decoration: none !important;
     border-bottom: 1px solid var(--gold);
     transition: opacity 0.3s ease;
@@ -1175,6 +1209,7 @@ body.page:not(.home) .wp-block-columns {
 .contact-form-column {
     background-color: #ffffff !important;
     padding: 4rem !important;
+    flex: 1.5 !important;
 }
 
 .form-row-split {

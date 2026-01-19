@@ -975,7 +975,7 @@ ul.products li.product,
     background: var(--white) !important;
     text-align: center !important;
     transition: all 0.4s ease !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     width: 100% !important;
     max-width: none !important;
     float: none !important;
@@ -1017,6 +1017,7 @@ ul.products li.product,
     flex-direction: column !important;
     background: #ffffff !important;
     position: relative !important;
+    overflow: hidden !important;
 }
 
 /* Force children to respect alignment */
@@ -1677,23 +1678,6 @@ body.woocommerce-shop .product_type_variable:hover {
 }
 
 /* Sale badge */
-body.woocommerce-shop .wc-block-components-product-sale-badge,
-body.woocommerce-shop .onsale {
-    position: absolute !important;
-    top: 12px !important;
-    left: 12px !important;
-    background: #c9a962 !important;
-    color: #1a1a1a !important;
-    font-family: "Montserrat", sans-serif !important;
-    font-size: 0.6rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.1em !important;
-    text-transform: uppercase !important;
-    padding: 0.4rem 0.8rem !important;
-    border-radius: 0 !important;
-    z-index: 10 !important;
-}
-
 /* Pagination */
 body.woocommerce-shop .wp-block-query-pagination,
 body.woocommerce-shop nav.woocommerce-pagination {
@@ -1857,7 +1841,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     color: rgba(255,255,255,0.6) !important; 
     letter-spacing: 0.3em !important;
     text-transform: uppercase !important;
-    margin-bottom: 4rem !important;
+    margin-bottom: 6rem !important; /* Increased spacing above CTA button */
     line-height: 1.8 !important;
 }
 
@@ -2257,30 +2241,33 @@ html, body {
     box-sizing: border-box !important;
 }
 
-/* SALE BADGE - NON-DISPLACING TECHNICAL TAG */
+/* SALE BADGE - NON-DISPLACING TECHNICAL TAG - DIAGONAL RED CORNER */
 .onsale, 
 span.onsale, 
-.wc-block-components-product-sale-badge {
+.wc-block-components-product-sale-badge,
+body.woocommerce-shop .onsale,
+body.woocommerce-shop .wc-block-components-product-sale-badge {
     position: absolute !important;
-    top: 10px !important;
-    right: 10px !important;
+    top: 15px !important;
+    right: -35px !important;
     left: auto !important;
-    width: auto !important;
+    width: 130px !important;
     height: auto !important;
-    padding: 4px 10px !important;
-    background: var(--gold) !important;
-    color: #000 !important;
+    padding: 6px 0 !important;
+    background: #d93025 !important; /* Bold Urgent Red */
+    color: #ffffff !important;
     font-size: 10px !important;
-    font-weight: 900 !important;
-    letter-spacing: 0.1em !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.15em !important;
     text-transform: uppercase !important;
-    z-index: 20 !important;
-    border-radius: 2px !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+    z-index: 50 !important;
+    transform: rotate(45deg) !important;
+    text-align: center !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
     line-height: 1 !important;
-    display: inline-block !important;
+    display: block !important;
     border: none !important;
-    transform: none !important;
+    border-radius: 0 !important;
 }
 
 /* Ensure the logo area in the top-left remains clear */

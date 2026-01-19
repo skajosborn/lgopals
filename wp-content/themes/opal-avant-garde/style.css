@@ -53,162 +53,264 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
 h3 { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--font-body); }
 p { margin: 0 0 1.5rem 0; font-size: 0.95rem; color: var(--slate); }
 
-/* AGGRESSIVE HEADER RESET - FINAL FORM */
-header.wp-block-template-part,
-.wp-block-template-part[slug="header"] {
-    height: 100px !important;
-    padding: 0 5vw !important;
+/* 
+   ========================================
+   CORE HEADER ARCHITECTURE (V5 FINAL)
+   - Clean 3-Part Desktop Split
+   - Balanced Mobile Interaction
+   ======================================== 
+*/
+
+header.site-header {
+    height: 80px !important;
+    padding: 0 4vw !important;
     display: flex !important;
     flex-direction: row !important;
+    flex-wrap: nowrap !important;
     align-items: center !important;
     justify-content: space-between !important;
     background: #2a2a2a !important;
-    backdrop-filter: blur(10px);
-    position: absolute !important;
+    position: sticky !important;
     top: 0;
-    left: 0;
     width: 100% !important;
     z-index: 1000 !important;
-    border-bottom: 1px solid var(--line) !important;
+    box-sizing: border-box !important;
 }
 
-/* Add Brand Element to Left of Header */
-header.wp-block-template-part::before,
-.wp-block-template-part[slug="header"]::before {
-    content: "";
-    display: block;
-    width: 180px;
-    height: 65px;
-    /* Prefer live asset, fall back to local uploads */
-    background: url('https://opals.betterbetterbetter.website/wp-content/uploads/2026/01/opal-bg.png') no-repeat center left, url('/wp-content/uploads/opal-bg.png') no-repeat center left;
-    background-size: contain;
-    position: absolute;
-    left: 5vw;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    pointer-events: none;
-}
-
-/* Force ALL header children into a single row */
-header.wp-block-template-part > *,
-header.wp-block-template-part > * > *,
-header.wp-block-template-part > * > * > * {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-}
-
-/* The row that contains nav + account + cart */
-header .wp-block-group:has(.wp-block-navigation) {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    width: 100% !important;
-    justify-content: center !important;
-}
-
-/* Force horizontal layout and kill mobile overlay */
-header .wp-block-navigation {
+/* 1. Logo Styling (Common) */
+header .wp-block-site-logo {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    height: 100% !important;
-    position: static !important;
     flex-shrink: 0 !important;
-    /* Keep nav clear of logo (left) and icons (right) */
-    padding-left: 120px !important;
-    padding-right: 120px !important;
 }
 
-/* Navigation block renders as 1+ ULs; make them one horizontal row */
-header .wp-block-navigation__responsive-container,
-header .wp-block-navigation__responsive-container-content {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: center !important;
+header .wp-block-site-logo img {
+    max-height: 50px !important;
+    width: auto !important;
 }
 
-header .wp-block-navigation__responsive-container-content > ul,
-header .wp-block-navigation__container {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: center !important;
-    list-style: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    gap: 0 !important; /* margin-based spacing below */
+/* --- DESKTOP STATE (≥1001px) --- */
+@media (min-width: 1001px) {
+    header.site-header { height: 100px !important; }
+
+    /* 3-Column Split for Desktop */
+    header.site-header .wp-block-site-logo { flex: 1 !important; }
+    header.site-header .wp-block-navigation { 
+        flex: 2 !important; 
+        display: flex !important; 
+        justify-content: center !important; 
+    }
+    header.site-header > .wp-block-group,
+    header.site-header > div:last-child { 
+        flex: 1 !important; 
+        display: flex !important;
+        justify-content: flex-end !important;
+    }
+
+    /* Show Horizontal Links and their container */
+    header .wp-block-navigation__container,
+    header .wp-block-navigation__responsive-container,
+    header .wp-block-navigation__responsive-container-content,
+    header .wp-block-navigation ul {
+        display: flex !important;
+        visibility: visible !important;
+        flex-direction: row !important;
+        gap: 2.5rem !important;
+        list-style: none !important;
+        opacity: 1 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    header .wp-block-navigation-item__content {
+        color: #ffffff !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.15em !important;
+        text-transform: uppercase !important;
+        text-decoration: none !important;
+    }
+
+    /* Strictly Hide Hamburger Button on Desktop */
+    header .wp-block-navigation__responsive-container-open,
+    header .wp-block-navigation-toggle,
+    header button[aria-label*="menu"],
+    header button[aria-label*="Menu"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        position: absolute !important;
+        pointer-events: none !important;
+    }
+
+    /* Desktop Utility Sizing */
+    header .wc-block-mini-cart__button svg,
+    header .wp-block-woocommerce-customer-account svg {
+        width: 34px !important;
+        height: 34px !important;
+    }
 }
 
-/* If WP outputs multiple UL groups, space the groups like items */
-header .wp-block-navigation__responsive-container-content > ul + ul {
-    margin-left: 1.5rem !important;
+/* --- MOBILE STATE (≤1000px) --- */
+@media (max-width: 1000px) {
+    /* Fluid Mobile Layout */
+    header.site-header {
+        justify-content: space-between !important;
+    }
+
+    header.site-header .wp-block-site-logo { 
+        flex: 1 !important; 
+        justify-content: flex-start !important;
+    }
+    
+    header.site-header .wp-block-navigation { 
+        flex: 1 !important; 
+        display: flex !important;
+        justify-content: center !important;
+    }
+    
+    header.site-header > .wp-block-group,
+    header.site-header > div:last-child { 
+        flex: 1 !important; 
+        justify-content: flex-end !important;
+    }
+
+    /* Hide Horizontal Links */
+    header .wp-block-navigation__container,
+    header .wp-block-navigation ul:not(.is-menu-open ul) {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* Show & Style Hamburger (Small & Technical) */
+    header .wp-block-navigation__responsive-container-open,
+    header .wp-block-navigation-toggle,
+    header button[aria-label*="menu"],
+    header button[aria-label*="Menu"] {
+        display: flex !important;
+        visibility: visible !important;
+        width: 44px !important;
+        height: 44px !important;
+        padding: 10px !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    header .wp-block-navigation__responsive-container-open svg,
+    header .wp-block-navigation-toggle svg,
+    header button[aria-label*="menu"] svg {
+        width: 22px !important; /* Small size as requested */
+        height: 22px !important;
+        fill: #ffffff !important;
+    }
+
+    /* Mobile Utility Sizing */
+    header .wc-block-mini-cart__button svg,
+    header .wp-block-woocommerce-customer-account svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    header .wc-block-customer-account__account-link-text {
+        display: none !important;
+    }
 }
 
-/* Spacing between items (within each UL) */
-header .wp-block-navigation__responsive-container-content > ul > li + li,
-header .wp-block-navigation__container > li + li {
-    margin-left: 1.5rem !important;
-}
-
-/* Ensure no auto-margins can create a "gap" */
-header .wp-block-navigation__responsive-container-content > ul > li,
-header .wp-block-navigation__container > li {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-header .wp-block-navigation-item {
-    display: flex !important;
-    align-items: center !important;
-    height: 100% !important;
-}
-
-header .wp-block-navigation-item__content {
+/* Common Utility Styles */
+header .wc-block-mini-cart__button,
+header .wp-block-woocommerce-customer-account a,
+header .wc-block-customer-account__account-link {
     color: #ffffff !important;
-    font-size: 0.8rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.25em !important;
-    text-transform: uppercase !important;
+    fill: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
     text-decoration: none !important;
-    white-space: nowrap !important;
-    display: flex !important;
-    align-items: center !important;
-    height: 100% !important;
-    padding: 6px 0 22px !important;
+    gap: 8px !important;
 }
 
-header button[aria-label*="menu"],
-header .wp-block-navigation__responsive-container-open,
-header .wp-block-navigation__responsive-container-close {
-    display: none !important;
+header .wc-block-customer-account__account-link-text {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
 }
 
-/* Position profile and cart on the far right with proper spacing */
-header .wp-block-woocommerce-customer-account {
-    position: absolute !important;
-    right: calc(5vw + 60px) !important; /* Account for cart space */
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    display: flex !important;
-    align-items: center !important;
-    color: #ffffff !important;
-    z-index: 100 !important;
-    padding: 0 !important;
+header .wc-block-mini-cart__button:hover svg,
+header .wp-block-woocommerce-customer-account:hover svg {
+    transform: scale(1.1);
 }
 
-header .wc-block-mini-cart {
-    position: absolute !important;
-    right: 5vw !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
+    /* MOBILE OVERLAY when open */
+    .wp-block-navigation__responsive-container.is-menu-open {
+        background: #111111 !important;
+        z-index: 99999 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: fixed !important;
+        inset: 0 !important;
+    }
+
+    .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+        width: 100%;
+        height: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Show nav links INSIDE the overlay */
+    .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container {
+        display: flex !important;
+        visibility: visible !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 2rem !important;
+    }
+
+    .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+        font-size: 1rem !important; /* Reduced from 1.3rem for "smaller" mobile menu */
+        letter-spacing: 0.25em !important;
+        color: #ffffff !important;
+    }
+
+    /* CLOSE BUTTON - Only inside open overlay */
+    .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-navigation__responsive-container-close {
+        display: none !important;
+    }
+
+    .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close {
+        display: block !important;
+        position: absolute !important;
+        top: 24px !important;
+        right: 24px !important;
+        background: transparent !important;
+        border: none !important;
+        color: #ffffff !important;
+        cursor: pointer !important;
+    }
+
+    .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close svg {
+        fill: #ffffff !important;
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+/* Icons Grouping (Login + Cart) */
+header .wp-block-group:has(.wc-block-mini-cart) {
     display: flex !important;
     align-items: center !important;
-    color: #ffffff !important;
-    z-index: 100 !important;
-    padding: 0 !important;
+    gap: 12px !important;
+    flex-shrink: 0 !important;
 }
 
 header .wc-block-mini-cart__button,
@@ -221,37 +323,47 @@ header .wp-block-woocommerce-customer-account svg {
     fill: #ffffff !important;
 }
 
-/* Give nav items room so they don't overlap with icons */
-header .wp-block-navigation {
-    padding-right: 120px !important;
-}
-
-/* Remove any empty list items that might get rendered */
-header .wp-block-navigation__responsive-container-content li:empty,
-header .wp-block-navigation__container li:empty {
-    display: none !important;
-}
-
-@media (max-width: 900px) {
-    header .wp-block-navigation {
-        padding-left: 96px !important;
-        padding-right: 96px !important;
-    }
-
-    header .wp-block-navigation-item__content {
-        font-size: 0.72rem !important;
-        letter-spacing: 0.18em !important;
-    }
-
-    header .wp-block-navigation__responsive-container-content > ul + ul {
-        margin-left: 1rem !important;
-    }
-
-    header .wp-block-navigation__responsive-container-content > ul > li + li,
-    header .wp-block-navigation__container > li + li {
-        margin-left: 1rem !important;
+/* Clean up mobile login text */
+@media (max-width: 600px) {
+    header .wc-block-customer-account__account-link-text {
+        display: none !important;
     }
 }
+
+/* Account and Cart - Grouped on Right */
+header .wp-block-woocommerce-customer-account,
+header .wc-block-mini-cart {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+    color: #ffffff !important;
+    z-index: 100 !important;
+    padding: 0 10px !important;
+    margin: 0 !important;
+}
+
+header .wp-block-group:has(.wc-block-mini-cart) {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    margin-left: auto !important;
+    gap: 5px;
+    flex-shrink: 0 !important;
+}
+
+header .wc-block-mini-cart__button,
+header .wc-block-mini-cart__button *,
+header .wc-block-customer-account__account-link,
+header .wc-block-customer-account__account-link *,
+header .wp-block-woocommerce-customer-account a,
+header .wp-block-woocommerce-customer-account svg {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
 
 /* Style the Mini Cart Count Badge - Minimalist Look */
 .wc-block-mini-cart__badge {
@@ -278,11 +390,6 @@ header .wp-block-navigation__container li:empty {
     display: none !important;
 }
 
-/* Hide redundant site logo - brand logo is handled by header::before */
-header .wp-block-site-logo {
-    display: none !important;
-}
-
 header .wp-block-site-title {
     display: none !important;
 }
@@ -303,8 +410,8 @@ header .wc-block-customer-account__account-link {
     height: 100vh !important;
     min-height: 850px !important;
     width: 100% !important;
-    /* Prefer live asset, fall back to local uploads */
-    background-image: url('https://opals.betterbetterbetter.website/wp-content/uploads/2026/01/bricks.png'), url('/wp-content/uploads/bricks.png') !important;
+    /* Prefer local theme asset */
+    background-image: url('images/bricks.png') !important;
     background-size: cover !important;
     background-position: center !important;
     display: flex !important;
@@ -552,8 +659,8 @@ header .wc-block-customer-account__account-link {
     grid-column: 1 !important;
     inset: 0 !important;
     z-index: 1 !important;
-    /* Prefer live asset, fall back to local uploads */
-    background-image: url('https://opals.betterbetterbetter.website/wp-content/uploads/2026/01/newopals5.png'), url('/wp-content/uploads/newopals5.png') !important;
+    /* Prefer local theme asset */
+    background-image: url('images/newopals5.png') !important;
     background-size: cover !important;
     background-position: center !important;
 }
@@ -843,9 +950,8 @@ ul.products.columns-2,
 ul.products.columns-4 {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
+    align-items: start !important;
     gap: 1.5rem !important;
-    list-style: none !important;
-    padding: 0 !important;
     margin: 0 auto !important;
     width: 100% !important;
     max-width: 800px !important;
@@ -873,6 +979,8 @@ ul.products li.product,
     margin: 0 !important;
     padding: 0 !important;
     clear: none !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .woocommerce ul.products li.product:hover {
@@ -880,29 +988,46 @@ ul.products li.product,
     box-shadow: 0 15px 35px rgba(0,0,0,0.25) !important;
 }
 
-/* SALE BADGE */
-span.onsale,
-.woocommerce span.onsale,
-.woocommerce ul.products li.product span.onsale,
-ul.products li.product span.onsale,
-li.product span.onsale {
-    all: unset !important;
-    position: absolute !important;
-    top: 10px !important;
-    left: 10px !important;
-    z-index: 100 !important;
-    background-color: var(--gold) !important;
-    color: var(--charcoal) !important;
-    font-family: var(--font-body) !important;
-    font-size: 0.55rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase !important;
-    padding: 0.35rem 0.6rem !important;
-    border-radius: 2px !important;
-    line-height: 1 !important;
-    display: inline-block !important;
-    box-sizing: border-box !important;
+/* Ensure product containers are perfectly aligned */
+.section-light ul.products,
+.home ul.products {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 4rem 2rem !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 900px !important;
+}
+
+.section-light ul.products li.product,
+.home ul.products li.product {
+    flex: 0 1 calc(50% - 1rem) !important;
+    max-width: calc(50% - 1rem) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #ffffff !important;
+    position: relative !important;
+}
+
+/* Force children to respect alignment */
+.section-light ul.products li.product > *,
+.home ul.products li.product > * {
+    margin-top: 0 !important;
+    transform: none !important;
+}
+
+/* Final staggering override */
+.section-light ul.products li.product:nth-child(n),
+.home ul.products li.product:nth-child(n) {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
 /* PRODUCT IMAGES */
@@ -915,13 +1040,6 @@ ul.products li.product img {
     background: #eaeaea !important;
     padding: 1rem !important;
     margin: 0 !important;
-}
-
-.woocommerce ul.products li.product a.woocommerce-LoopProduct-link,
-ul.products li.product a.woocommerce-LoopProduct-link {
-    display: block !important;
-    padding: 0 !important;
-    width: 100% !important;
 }
 
 /* PRODUCT TITLES */
@@ -1871,12 +1989,29 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     background: transparent !important;
     border: 2px solid var(--gold) !important;
     color: var(--gold) !important;
-    font-size: 0.8rem !important;
+    font-size: 0.85rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.2em !important;
     text-transform: uppercase !important;
-    padding: 1rem 2.5rem !important;
+    padding: 1.25rem 3.5rem !important;
     transition: all 0.3s ease;
+    display: inline-block !important;
+    white-space: nowrap !important;
+    width: auto !important;
+    min-width: 300px !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    box-shadow: none !important;
+    transform: none !important;
+    position: relative !important;
+    border-image: none !important; /* Kill any staggered line effects */
+}
+
+.why-lab-grown-section .wp-block-button__link::before,
+.why-lab-grown-section .wp-block-button__link::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
 }
 
 .why-lab-grown-section .wp-block-button__link:hover {
@@ -2015,33 +2150,66 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
     max-width: none !important;
 }
 
-/* Smooth scroll behavior */
-html {
-    scroll-behavior: smooth;
+/* 
+   GLOBAL STABILITY & OVERFLOW CONTROL
+   Kills the "white space on the right" by forcing container containment.
+*/
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden !important;
+    width: 100vw !important;
+    position: relative !important;
 }
 
-/* Button refinements */
-.wp-block-button__link {
-    position: relative;
-    overflow: hidden;
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-.wp-block-button__link::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: left 0.5s ease;
+/* Fix Hero Typography Overflow on Mobile */
+.hero-v3-title {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    font-size: clamp(2rem, 8vw, 6.5rem) !important;
 }
 
-.wp-block-button__link:hover::before {
-    left: 100%;
+.hero-v3-container {
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
-/* Global spacing refinements */
-.wp-block-spacer {
-    opacity: 0;
+/* SALE BADGE - NON-DISPLACING TECHNICAL TAG */
+.onsale, 
+span.onsale, 
+.wc-block-components-product-sale-badge {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 4px 10px !important;
+    background: var(--gold) !important;
+    color: #000 !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    z-index: 20 !important;
+    border-radius: 2px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+    line-height: 1 !important;
+    display: inline-block !important;
+    border: none !important;
+    transform: none !important;
+}
+
+/* Ensure the logo area in the top-left remains clear */
+.home li.product img,
+.home .wc-block-grid__product img,
+li.product img {
+    position: relative !important;
+    z-index: 1 !important;
 }

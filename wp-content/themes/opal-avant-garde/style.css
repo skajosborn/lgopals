@@ -100,6 +100,8 @@ header .custom-logo-link img {
     header.site-header .custom-logo-link { 
         flex: 1 !important; 
         order: 1 !important; 
+        display: flex !important;
+        justify-content: flex-start !important;
     }
     header.site-header .wp-block-navigation { 
         flex: 2 !important; 
@@ -115,6 +117,14 @@ header .custom-logo-link img {
         justify-content: flex-end !important;
         order: 3 !important;
         gap: 20px !important;
+    }
+
+    /* Move Login to the right of Cart on Desktop */
+    header .wp-block-woocommerce-customer-account {
+        order: 2 !important;
+    }
+    header .wc-block-mini-cart {
+        order: 1 !important;
     }
 
     /* Show Horizontal Links and their container */
@@ -244,6 +254,22 @@ header .custom-logo-link img {
     /* Hide Login text, icons only */
     header .wc-block-customer-account__account-link-text {
         display: none !important;
+    }
+
+    /* Move Login to the right of Cart on Mobile */
+    header .wp-block-woocommerce-customer-account {
+        order: 2 !important;
+    }
+    header .wc-block-mini-cart {
+        order: 1 !important;
+    }
+
+    /* Move Login to the right of Cart on Mobile */
+    header .wp-block-woocommerce-customer-account {
+        order: 2 !important;
+    }
+    header .wc-block-mini-cart {
+        order: 1 !important;
     }
 
     /* MOBILE OVERLAY when open */

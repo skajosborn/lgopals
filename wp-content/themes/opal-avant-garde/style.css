@@ -97,17 +97,24 @@ header .custom-logo-link img {
 
     /* 3-Column Split for Desktop */
     header.site-header .wp-block-site-logo,
-    header.site-header .custom-logo-link { flex: 1 !important; }
+    header.site-header .custom-logo-link { 
+        flex: 1 !important; 
+        order: 1 !important; 
+    }
     header.site-header .wp-block-navigation { 
         flex: 2 !important; 
         display: flex !important; 
         justify-content: center !important; 
+        order: 2 !important; 
     }
     header.site-header > .wp-block-group,
-    header.site-header > div:last-child { 
+    header.site-header > div:last-child,
+    .desktop-only-utility { 
         flex: 1 !important; 
         display: flex !important;
         justify-content: flex-end !important;
+        order: 3 !important;
+        gap: 20px !important;
     }
 
     /* Show Horizontal Links and their container */
@@ -162,23 +169,28 @@ header .custom-logo-link img {
     header.site-header {
         justify-content: space-between !important;
         padding: 0 4vw !important;
+        display: flex !important;
     }
 
+    /* Force Logo to the Left */
     header.site-header .wp-block-site-logo,
     header.site-header .custom-logo-link { 
         flex: 0 1 auto !important; 
         order: 1 !important;
+        margin-right: auto !important; /* Push everything else to the right */
     }
     
-    /* Utility Icons (Login/Cart) - Moved to Middle */
+    /* Utility Icons (Login/Cart) - Moved to Right Side of Logo */
+    header.site-header .desktop-only-utility,
+    header.site-header .wp-block-woocommerce-customer-account,
+    header.site-header .wc-block-mini-cart,
     header.site-header > .wp-block-group,
-    header.site-header > div:last-child,
-    .desktop-only-utility { 
-        flex: 1 !important; 
+    header.site-header > div:last-child { 
+        flex: 0 0 auto !important; 
         display: flex !important;
-        justify-content: flex-end !important;
+        align-items: center !important;
         order: 2 !important;
-        margin-right: 10px !important;
+        margin-right: 15px !important;
         gap: 15px !important;
     }
     

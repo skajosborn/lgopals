@@ -78,13 +78,15 @@ header.site-header {
 }
 
 /* 1. Logo Styling (Common) */
-header .wp-block-site-logo {
+header .wp-block-site-logo,
+header .custom-logo-link {
     display: flex !important;
     align-items: center !important;
     flex-shrink: 0 !important;
 }
 
-header .wp-block-site-logo img {
+header .wp-block-site-logo img,
+header .custom-logo-link img {
     max-height: 50px !important;
     width: auto !important;
 }
@@ -94,7 +96,8 @@ header .wp-block-site-logo img {
     header.site-header { height: 100px !important; }
 
     /* 3-Column Split for Desktop */
-    header.site-header .wp-block-site-logo { flex: 1 !important; }
+    header.site-header .wp-block-site-logo,
+    header.site-header .custom-logo-link { flex: 1 !important; }
     header.site-header .wp-block-navigation { 
         flex: 2 !important; 
         display: flex !important; 
@@ -160,7 +163,8 @@ header .wp-block-site-logo img {
         justify-content: space-between !important;
     }
 
-    header.site-header .wp-block-site-logo { 
+    header.site-header .wp-block-site-logo,
+    header.site-header .custom-logo-link { 
         flex: 1 !important; 
         justify-content: flex-start !important;
     }
@@ -303,7 +307,6 @@ header .wp-block-woocommerce-customer-account:hover svg {
         width: 24px !important;
         height: 24px !important;
     }
-}
 
 /* Icons Grouping (Login + Cart) */
 header .wp-block-group:has(.wc-block-mini-cart) {
@@ -896,7 +899,7 @@ header .wc-block-customer-account__account-link {
 
 /* FEATURE GRID */
 .feature-grid-images { display: flex !important; flex-direction: column !important; gap: 3rem; max-width: 1400px !important; margin: 0 auto; }
-.feature-item-image { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; text-align: left; background: #e0e0e0; padding: 3rem; border-radius: 4px; border: 1px solid var(--line); }
+.feature-item-image { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; text-align: left; background: #f5f5f5; padding: 3rem; border-radius: 4px; border: 1px solid var(--line); }
 
 /* Force images left, text right for all feature blocks */
 .feature-item-image .feature-image { order: 1 !important; }
@@ -915,7 +918,7 @@ header .wc-block-customer-account__account-link {
 .wp-block-media-text,
 .home .entry-content .wp-block-media-text,
 .home main .wp-block-media-text {
-    background: #e0e0e0 !important;
+    background: #f5f5f5 !important;
     padding: 4rem !important;
     border-radius: 8px !important;
     margin-bottom: 3rem !important;
@@ -925,7 +928,7 @@ header .wc-block-customer-account__account-link {
 .wp-block-media-text:hover,
 .home .entry-content .wp-block-media-text:hover,
 .home main .wp-block-media-text:hover {
-    background: #d4d4d4 !important;
+    background: #eeeeee !important;
 }
 .feature-item-image:nth-child(even) { direction: rtl; }
 .feature-item-image:nth-child(even) > * { direction: ltr; }
@@ -1806,7 +1809,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 }
 
 .feature-item-image {
-    background: #e0e0e0 !important;
+    background: #f5f5f5 !important;
     border-radius: 12px;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     padding: 4.5rem !important;
@@ -1825,7 +1828,7 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 }
 
 .feature-item-image:hover {
-    background: #d4d4d4 !important;
+    background: #eeeeee !important;
     transform: translateY(-5px);
 }
 

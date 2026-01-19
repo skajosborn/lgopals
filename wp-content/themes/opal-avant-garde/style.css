@@ -161,31 +161,38 @@ header .custom-logo-link img {
     /* Fluid Mobile Layout */
     header.site-header {
         justify-content: space-between !important;
+        padding: 0 4vw !important;
     }
 
     header.site-header .wp-block-site-logo,
     header.site-header .custom-logo-link { 
-        flex: 1 !important; 
-        justify-content: flex-start !important;
+        flex: 0 1 auto !important; 
+        order: 1 !important;
     }
     
-    header.site-header .wp-block-navigation { 
+    /* Utility Icons (Login/Cart) - Moved to Middle */
+    header.site-header > .wp-block-group,
+    header.site-header > div:last-child,
+    .desktop-only-utility { 
         flex: 1 !important; 
         display: flex !important;
-        justify-content: center !important;
+        justify-content: flex-end !important;
+        order: 2 !important;
+        margin-right: 10px !important;
+        gap: 15px !important;
     }
     
-    header.site-header > .wp-block-group,
-    header.site-header > div:last-child { 
-        flex: 1 !important; 
+    /* Mobile Menu (Hamburger) - Moved to Far Right */
+    header.site-header .wp-block-navigation { 
+        flex: 0 0 auto !important; 
+        display: flex !important;
+        order: 3 !important;
         justify-content: flex-end !important;
     }
 
-    /* Hide Horizontal Links */
-    header .wp-block-navigation__container,
-    header .wp-block-navigation ul:not(.is-menu-open ul) {
+    /* Hide Desktop Links */
+    header .wp-block-navigation__container:not(.is-menu-open .wp-block-navigation__container) {
         display: none !important;
-        visibility: hidden !important;
     }
 
     /* Show & Style Hamburger (Small & Technical) */
@@ -203,51 +210,29 @@ header .custom-logo-link img {
         cursor: pointer !important;
         justify-content: center !important;
         align-items: center !important;
+        z-index: 2000 !important;
+        margin-right: -10px !important;
     }
 
     header .wp-block-navigation__responsive-container-open svg,
     header .wp-block-navigation-toggle svg,
     header button[aria-label*="menu"] svg {
-        width: 22px !important; /* Small size as requested */
-        height: 22px !important;
+        width: 24px !important; 
+        height: 24px !important;
         fill: #ffffff !important;
     }
 
     /* Mobile Utility Sizing */
     header .wc-block-mini-cart__button svg,
     header .wp-block-woocommerce-customer-account svg {
-        width: 24px !important;
-        height: 24px !important;
+        width: 22px !important;
+        height: 22px !important;
     }
 
+    /* Hide Login text, icons only */
     header .wc-block-customer-account__account-link-text {
         display: none !important;
     }
-}
-
-/* Common Utility Styles */
-header .wc-block-mini-cart__button,
-header .wp-block-woocommerce-customer-account a,
-header .wc-block-customer-account__account-link {
-    color: #ffffff !important;
-    fill: #ffffff !important;
-    display: flex !important;
-    align-items: center !important;
-    text-decoration: none !important;
-    gap: 8px !important;
-}
-
-header .wc-block-customer-account__account-link-text {
-    font-size: 0.9rem !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-}
-
-header .wc-block-mini-cart__button:hover svg,
-header .wp-block-woocommerce-customer-account:hover svg {
-    transform: scale(1.1);
-}
 
     /* MOBILE OVERLAY when open */
     .wp-block-navigation__responsive-container.is-menu-open {
@@ -259,6 +244,8 @@ header .wp-block-woocommerce-customer-account:hover svg {
         justify-content: center !important;
         position: fixed !important;
         inset: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
@@ -307,6 +294,31 @@ header .wp-block-woocommerce-customer-account:hover svg {
         width: 24px !important;
         height: 24px !important;
     }
+}
+
+/* Common Utility Styles */
+header .wc-block-mini-cart__button,
+header .wp-block-woocommerce-customer-account a,
+header .wc-block-customer-account__account-link {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    gap: 8px !important;
+}
+
+header .wc-block-customer-account__account-link-text {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+}
+
+header .wc-block-mini-cart__button:hover svg,
+header .wp-block-woocommerce-customer-account:hover svg {
+    transform: scale(1.1);
+}
 
 /* Icons Grouping (Login + Cart) */
 header .wp-block-group:has(.wc-block-mini-cart) {
@@ -1144,10 +1156,17 @@ body.woocommerce .wp-block-template-part[slug="header"] {
     border: none !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
-    overflow: hidden !important;
+    overflow: visible !important;
 }
 
-body.woocommerce header.wp-block-template-part * {
+@media (max-width: 1000px) {
+    body.woocommerce header.wp-block-template-part,
+    body.woocommerce .wp-block-template-part[slug="header"] {
+        height: 80px !important; /* Match mobile standard height */
+    }
+}
+
+body.woocommerce header.wp-block-template-part *:not(.wp-block-navigation__responsive-container):not(.wp-block-navigation__responsive-container *) {
     background: transparent !important;
     background-color: transparent !important;
     box-shadow: none !important;
@@ -1163,11 +1182,18 @@ body.woocommerce header .wp-block-navigation-item__content {
 }
 
 body.woocommerce header.wp-block-template-part a,
-body.woocommerce header.wp-block-template-part nav a {
+body.woocommerce header.wp-block-template-part nav a,
+body.woocommerce .is-menu-open .wp-block-navigation-item__content {
     color: #ffffff !important;
 }
 
-/* WooCommerce Content Padding - Ensure content is not cut off by fixed header */
+body.woocommerce .wp-block-navigation__responsive-container.is-menu-open {
+    background: #111111 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
 body.single-product,
 body.woocommerce-cart,
 body.woocommerce-checkout {

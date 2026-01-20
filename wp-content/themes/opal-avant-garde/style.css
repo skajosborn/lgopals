@@ -1400,10 +1400,17 @@ body.woocommerce-account main h1,
     font-weight: 800 !important;
     font-style: normal !important; /* Ensure no italics */
     text-align: center !important;
-    margin: 2rem auto 2rem auto !important;
+    margin: 0 auto 2rem auto !important; /* Set top margin to 0 globally */
     text-transform: uppercase !important;
     letter-spacing: 0.15em !important;
     color: var(--black) !important;
+}
+
+/* Add top padding/margin ONLY to the CONTACT page title */
+.contact-page-main .wp-block-post-title,
+.page-template-page-contact .faq-title {
+    padding-top: 16vh !important;
+    margin-top: 8rem !important;
 }
 
 /* My Account Alignment */
@@ -2294,7 +2301,12 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 
 .faq-header {
     margin-bottom: 2rem;
-    padding-top: 5vh;
+    padding-top: 0 !important; /* Set to 0 globally */
+}
+
+/* Restore top padding ONLY to the CONTACT page title */
+.page-template-page-contact .faq-header {
+    padding-top: 20vh !important;
 }
 
 .faq-title {

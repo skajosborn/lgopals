@@ -2406,7 +2406,7 @@ html, body {
     box-sizing: border-box !important;
 }
 
-/* SALE BADGE - NON-DISPLACING TECHNICAL TAG - DIAGONAL RED CORNER */
+/* SALE BADGE - SVG TAG ICON */
 .onsale, 
 span.onsale, 
 .wc-block-components-product-sale-badge,
@@ -2414,25 +2414,30 @@ body.woocommerce-shop .onsale,
 body.woocommerce-shop .wc-block-components-product-sale-badge {
     position: absolute !important;
     top: 15px !important;
-    right: -35px !important;
+    right: 15px !important;
     left: auto !important;
-    width: 130px !important;
-    height: auto !important;
-    padding: 6px 0 !important;
-    background: #d93025 !important; /* Bold Urgent Red */
-    color: #ffffff !important;
-    font-size: 10px !important;
-    font-weight: 800 !important;
-    letter-spacing: 0.15em !important;
-    text-transform: uppercase !important;
+    width: 45px !important;
+    height: 45px !important;
+    background: url('images/sale-tag.svg') no-repeat center center !important;
+    background-size: contain !important;
+    color: transparent !important;
+    font-size: 0 !important;
     z-index: 50 !important;
-    transform: rotate(45deg) !important;
-    text-align: center !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
-    line-height: 1 !important;
-    display: block !important;
+    transform: none !important;
+    box-shadow: none !important;
     border: none !important;
     border-radius: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    display: block !important;
+}
+
+/* Shift sale badge on single product pages to avoid the magnifying glass in the top-right */
+body.single-product .onsale {
+    top: auto !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    left: auto !important;
 }
 
 /* Ensure the logo area in the top-left remains clear */

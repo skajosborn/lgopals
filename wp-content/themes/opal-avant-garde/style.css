@@ -1299,13 +1299,15 @@ body.single-product .product_title,
 body.single-product h1.product_title,
 body.single-product main .entry-title {
     font-family: var(--font-body) !important; /* Bold, Technical Montserrat */
-    font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+    font-size: clamp(2rem, 5vw, 4rem) !important; /* Slightly reduced for better responsiveness */
     font-weight: 800 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.15em !important;
+    letter-spacing: 0.1em !important; /* Reduced from 0.15em to help with long words */
     color: var(--black) !important;
     margin-bottom: 1.5rem !important;
     line-height: 1.1 !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
 }
 
 body.single-product .single_add_to_cart_button,
@@ -1371,17 +1373,54 @@ body.woocommerce:not(.home) {
     padding-top: 100px !important;
 }
 
+/* Global "Avant-Garde" Title Style - Aggressive Override */
+h1, h2, h3, h4, h5, h6,
+.entry-title,
+.wp-block-post-title,
+.contact-page-main .wp-block-post-title,
+.faq-section-header h1,
+.faqs .entry-title,
+.faq-title,
+body.page:not(.home) main h1,
+body.woocommerce-cart main h1,
+body.woocommerce-checkout main h1,
+body.woocommerce-account main h1 {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
 body.page:not(.home) main h1.wp-block-post-title,
 body.woocommerce-cart main h1,
-body.woocommerce-checkout main h1 {
-    font-family: var(--font-body) !important;
-    font-size: clamp(2rem, 6vw, 3.5rem) !important;
+body.woocommerce-checkout main h1,
+body.woocommerce-account main h1,
+.contact-page-main .wp-block-post-title,
+.faq-section-header h1,
+.faqs .entry-title,
+.faq-title {
+    font-size: clamp(2rem, 5vw, 2.5rem) !important; /* Reduced size to match My Account */
     font-weight: 800 !important;
+    font-style: normal !important; /* Ensure no italics */
     text-align: center !important;
     margin: 2rem auto 2rem auto !important;
     text-transform: uppercase !important;
     letter-spacing: 0.15em !important;
     color: var(--black) !important;
+}
+
+/* My Account Alignment */
+body.woocommerce-account .woocommerce {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+
+body.woocommerce-account .woocommerce-MyAccount-content {
+    text-align: center !important;
+}
+
+body.woocommerce-account .woocommerce-MyAccount-content p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 600px !important;
 }
 
 /* WooCommerce Cart/Checkout Container Refinement */
@@ -1407,17 +1446,6 @@ body.page:not(.home) .wp-block-columns {
     max-width: 1400px !important;
     margin-left: auto !important;
     margin-right: auto !important;
-}
-
-.contact-page-main .wp-block-post-title {
-    font-family: var(--font-body) !important;
-    font-size: clamp(1.8rem, 3.5vw, 2.5rem) !important;
-    font-weight: 800 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.2em !important;
-    color: var(--black) !important;
-    margin: 0 0 4rem 0 !important;
-    text-align: center !important;
 }
 
 .contact-page-main {
@@ -2270,9 +2298,6 @@ body.woocommerce-shop .wp-block-query-pagination-previous:hover {
 }
 
 .faq-title {
-    font-family: var(--font-display) !important;
-    font-size: clamp(3rem, 6vw, 4.5rem) !important;
-    font-style: italic !important;
     color: var(--black) !important;
     margin: 0 0 4rem 0 !important;
     text-align: center !important;
@@ -2412,32 +2437,47 @@ span.onsale,
 .wc-block-components-product-sale-badge,
 body.woocommerce-shop .onsale,
 body.woocommerce-shop .wc-block-components-product-sale-badge {
-    position: absolute !important;
-    top: 15px !important;
-    right: 15px !important;
-    left: auto !important;
-    width: 45px !important;
-    height: 45px !important;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    left: auto;
+    width: 45px;
+    height: 45px;
     background: url('images/sale-tag.svg') no-repeat center center !important;
     background-size: contain !important;
     color: transparent !important;
     font-size: 0 !important;
-    z-index: 50 !important;
+    z-index: 50;
     transform: none !important;
     box-shadow: none !important;
     border: none !important;
     border-radius: 0 !important;
     padding: 0 !important;
     line-height: 0 !important;
-    display: block !important;
+    display: block;
 }
 
-/* Shift sale badge on single product pages to avoid the magnifying glass in the top-right */
-body.single-product .onsale {
-    top: auto !important;
-    bottom: 20px !important;
-    right: 20px !important;
+/* Position sale badge below the magnifying glass on single product pages */
+body.single-product .onsale,
+body.single-product .wc-block-components-product-sale-badge,
+.woocommerce-product-gallery .onsale,
+.woocommerce-product-gallery__wrapper .onsale {
+    position: absolute !important;
+    display: block !important;
+    top: 75px !important; /* Clears the magnifying glass icon */
+    right: 15px !important;
     left: auto !important;
+    bottom: auto !important;
+    width: 45px !important;
+    height: 45px !important;
+    z-index: 100 !important;
+    transform: none !important;
+    margin: 0 !important;
+}
+
+/* Ensure the price container returns to normal */
+body.single-product .price {
+    display: block !important;
 }
 
 /* Ensure the logo area in the top-left remains clear */

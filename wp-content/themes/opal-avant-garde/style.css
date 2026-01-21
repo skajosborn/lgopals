@@ -1447,6 +1447,46 @@ body.woocommerce-cart .cart-collaterals {
     margin-bottom: 2rem !important;
 }
 
+/* Proceed to Checkout & Place Order Buttons */
+body.woocommerce-cart .checkout-button,
+body.woocommerce-cart .wc-forward,
+body.woocommerce-cart .wc-proceed-to-checkout a.button,
+body.woocommerce-cart .wc-block-cart__submit-button,
+body.woocommerce-cart .wc-block-components-button,
+body.woocommerce-checkout #place_order,
+body.woocommerce-checkout .wc-block-checkout__submit-button,
+body.woocommerce-checkout .wc-block-components-button {
+    background-color: #b58e4f !important; /* Gold */
+    color: #000000 !important;
+    padding: 1.25rem 2.5rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    text-decoration: none !important;
+    width: auto !important;
+    min-width: 200px !important;
+}
+
+body.woocommerce-cart .checkout-button:hover,
+body.woocommerce-cart .wc-forward:hover,
+body.woocommerce-cart .wc-proceed-to-checkout a.button:hover,
+body.woocommerce-cart .wc-block-cart__submit-button:hover,
+body.woocommerce-cart .wc-block-components-button:hover,
+body.woocommerce-checkout #place_order:hover,
+body.woocommerce-checkout .wc-block-checkout__submit-button:hover,
+body.woocommerce-checkout .wc-block-components-button:hover {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+}
+
 /* Style the page content containers - ensure header is excluded from max-width */
 body.page:not(.home) .wp-block-group:not(.site-header):not(.wp-block-template-part),
 body.page:not(.home) .wp-block-columns {

@@ -16,17 +16,14 @@ function opal_enqueue_styles() {
         null
     );
     
-    // Parent theme
-    wp_enqueue_style("twentytwentyfour-style", get_template_directory_uri() . "/style.css");
-    
-    // Child theme
-    $child_style_path = get_stylesheet_directory() . "/style.css";
-    $child_style_ver = file_exists($child_style_path) ? filemtime($child_style_path) : wp_get_theme()->get("Version");
+    // Theme styles
+    $style_path = get_stylesheet_directory() . "/style.css";
+    $style_ver = file_exists($style_path) ? filemtime($style_path) : wp_get_theme()->get("Version");
     wp_enqueue_style(
         "opal-avant-garde-style",
         get_stylesheet_uri(),
-        array("twentytwentyfour-style"),
-        $child_style_ver
+        array(),
+        $style_ver
     );
 }
 add_action("wp_enqueue_scripts", "opal_enqueue_styles");
